@@ -4,11 +4,11 @@ import { Container, Navbar } from "react-bootstrap";
 function AppHeader() {
   return (
     <Navbar bg="dark" variant="dark">
-      <Container>
+      <Container fluid>
         <Navbar.Brand>
           Modeling Representation
           <br />
-          With Rank Choice Voting
+          with Ranked Choice Voting
         </Navbar.Brand>
       </Container>
     </Navbar>

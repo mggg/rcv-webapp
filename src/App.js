@@ -1,17 +1,13 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import AppHeader from "./AppHeader";
+import SimulationContainer from "./SimulationContainer";
 import "./App.css";
 
 function App() {
   return (
     <>
       <AppHeader />
-      <Container>
-        <Row>
-          <Col>1 of 1</Col>
-        </Row>
-      </Container>
+      <SimulationContainer />
     </>
   );
 }
