@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/rcv-webapp/static/css/main.ae60043f.chunk.css",
+    "main.js": "/rcv-webapp/static/js/main.3bb00b41.chunk.js",
+    "main.js.map": "/rcv-webapp/static/js/main.3bb00b41.chunk.js.map",
+    "runtime-main.js": "/rcv-webapp/static/js/runtime-main.3cf5c632.js",
+    "runtime-main.js.map": "/rcv-webapp/static/js/runtime-main.3cf5c632.js.map",
+    "static/css/2.4113e0bc.chunk.css": "/rcv-webapp/static/css/2.4113e0bc.chunk.css",
+    "static/js/2.edf32e94.chunk.js": "/rcv-webapp/static/js/2.edf32e94.chunk.js",
+    "static/js/2.edf32e94.chunk.js.map": "/rcv-webapp/static/js/2.edf32e94.chunk.js.map",
+    "index.html": "/rcv-webapp/index.html",
+    "precache-manifest.0bc30334cc2a57ba8a378885484b51c1.js": "/rcv-webapp/precache-manifest.0bc30334cc2a57ba8a378885484b51c1.js",
+    "service-worker.js": "/rcv-webapp/service-worker.js",
+    "static/css/2.4113e0bc.chunk.css.map": "/rcv-webapp/static/css/2.4113e0bc.chunk.css.map",
+    "static/css/main.ae60043f.chunk.css.map": "/rcv-webapp/static/css/main.ae60043f.chunk.css.map",
+    "static/js/2.edf32e94.chunk.js.LICENSE.txt": "/rcv-webapp/static/js/2.edf32e94.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/rcv-webapp/static/media/open-sans-vietnamese-400-normal.eafec10d.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3cf5c632.js",
+    "static/css/2.4113e0bc.chunk.css",
+    "static/js/2.edf32e94.chunk.js",
+    "static/css/main.ae60043f.chunk.css",
+    "static/js/main.3bb00b41.chunk.js"
+  ]
+}
