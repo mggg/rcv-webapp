@@ -1,14 +1,21 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppHeader from "./AppHeader";
-import SimulationContainer from "./SimulationContainer";
+import { routes } from "./routes";
 import "./App.css";
 
 function App() {
   return (
-    <>
-      <AppHeader />
-      <SimulationContainer />
-    </>
+    <Router>
+      <AppHeader routes={routes} />
+      <Switch>
+        {routes.map((route, i) => (
+          <Route path={route.path} key={i}>
+            <route.component />
+          </Route>
+        ))}
+      </Switch>
+    </Router>
   );
 }
 

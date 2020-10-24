@@ -4,7 +4,7 @@ import ElectionParameters from "./ElectionParameters";
 import ModelParameters from "./ModelParameters";
 import SimulationResults from "./SimulationResults";
 
-function SimulationContainer() {
+function SimulationPage() {
   const [seatsOpen, setSeatsOpen] = useState(0);
   const [simulationResults, setSimulationResults] = useState({});
 
@@ -32,4 +32,4 @@ function SimulationContainer() {
   );
 }
 
-export default SimulationContainer;
+export default SimulationPage;
