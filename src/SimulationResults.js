@@ -6,8 +6,11 @@ import ParameterContainer from "./ParameterContainer";
 import EmptyDataPlaceholder from "./EmptyDataPlaceholder";
 
 function SimulationResults(props) {
-  const apiURL = `http://localhost:1080/api/v1/simulate`;
-
+  const apiURL =
+    process.env.REACT_APP_API_URL +
+    ":" +
+    process.env.REACT_APP_API_PORT +
+    process.env.REACT_APP_API_SLUG;
   const fetchData = async () => {
     const response = await axios.get(apiURL, { params: props.queryParams });
     props.setSimulationResults(response.data);
