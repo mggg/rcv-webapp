@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2e3095dcbd4b236ab19cd39965218278",
+    "revision": "a778a4727c01baf5c0054e2f1faaecdf",
     "url": "/rcv-webapp/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/rcv-webapp/static/css/2.4113e0bc.chunk.css"
   },
   {
-    "revision": "66735f907b260f3fac01",
+    "revision": "8e46e4f98a6c1d219b11",
     "url": "/rcv-webapp/static/css/main.ae60043f.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/rcv-webapp/static/js/2.edf32e94.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "66735f907b260f3fac01",
-    "url": "/rcv-webapp/static/js/main.4bcd2db2.chunk.js"
+    "revision": "8e46e4f98a6c1d219b11",
+    "url": "/rcv-webapp/static/js/main.32a804be.chunk.js"
   },
   {
     "revision": "c51b2b804c8d57fcd8cb",
