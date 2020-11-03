@@ -7,10 +7,7 @@ import EmptyDataPlaceholder from "./EmptyDataPlaceholder";
 
 function SimulationResults(props) {
   const apiURL =
-    process.env.REACT_APP_API_BASEURL +
-    ":" +
-    process.env.REACT_APP_API_PORT +
-    process.env.REACT_APP_API_SLUG;
+    process.env.REACT_APP_API_BASEURL + process.env.REACT_APP_API_SLUG;
   const fetchData = async () => {
     const response = await axios.get(apiURL, { params: props.queryParams });
     props.setSimulationResults(response.data);
