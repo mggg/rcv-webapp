@@ -1,15 +1,24 @@
 import React from "react";
 
-function NumberInput(props) {
+function NumberInput({
+  label,
+  handleChange,
+  value,
+  name,
+  helperText,
+  step = 1,
+}) {
   return (
     <>
-      <label className="input-label">{props.label}</label>
+      <label className="input-label">{label}</label>
       <input
+        name={name}
         type="number"
-        onChange={(e) => props.handleChange(e.target.value)}
-        value={props.value}
+        onChange={handleChange}
+        value={value}
+        step={step}
       />
-      <p className="input-helper-text">{props.helperText}</p>
+      <p className="input-helper-text">{helperText}</p>
     </>
   );
 }
