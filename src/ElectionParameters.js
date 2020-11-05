@@ -20,6 +20,7 @@ function ElectionParameters({ formData, setFormData, formParams }) {
               return (
                 <NumberInput
                   id={param.id}
+                  key={param.id}
                   // Note: This is used to key onto the formData object, and is crucial for successfully updating the formData appropriately
                   name={param.name}
                   label={param.label}
@@ -33,6 +34,7 @@ function ElectionParameters({ formData, setFormData, formParams }) {
               return (
                 <Slider
                   id={param.id}
+                  key={param.id}
                   // Note: This is used to key onto the formData object, and is crucial for successfully updating the formData appropriately
                   name={param.name}
                   label={param.label}
@@ -49,39 +51,6 @@ function ElectionParameters({ formData, setFormData, formParams }) {
               return null;
           }
         })}
-        {/*
-                        <label className="input-label">Open Candidate Seats</label>
-                <input
-                  type="number"
-                  onChange={(e) => props.setSeatsOpen(e.target.value)}
-                  value={props.seatsOpen}
-                />
-                <p className="input-helper-text">Max 30</p>
-
-
-        <label className="input-label">Open Candidate Seats</label>
-        <input
-          type="number"
-          onChange={(e) => props.setSeatsOpen(e.target.value)}
-          value={props.seatsOpen}
-        />
-        <p className="input-helper-text">Max 30</p>
-
-        <label className="input-label">Voter Population</label>
-        <input
-          type="number"
-          onChange={(e) => props.setSeatsOpen(e.target.value)}
-          value={props.seatsOpen}
-        />
-        <p className="input-helper-text">Max 10,000</p>
-
-        <label className="input-label">Minority </label>
-        <input
-          type="number"
-          onChange={(e) => props.setSeatsOpen(e.target.value)}
-          value={props.seatsOpen}
-        />
-        <p className="input-helper-text">Max 10,000</p> */}
       </ParameterContainer>
     </>
   );

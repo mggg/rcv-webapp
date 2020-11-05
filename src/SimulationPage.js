@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ElectionParameters from "./ElectionParameters";
-import ModelParameters from "./ModelParameters";
+// import ModelParameters from "./ModelParameters";
 import SimulationResults from "./SimulationResults";
 
 // A common lookup table for Majority-Minority labels
-const mmLabels = {
-  maj: "Green",
-  min: "Purple",
-};
+// const mmLabels = {
+//   maj: "Green",
+//   min: "Purple",
+// };
 
 const electionParams = [
   {
@@ -26,84 +26,84 @@ const electionParams = [
     name: "seatsOpen",
     type: "number",
     initialValue: 10,
-    step: 3,
+    step: 1,
     label: "Spots Up For Election",
     helperText: "Max 30",
     info: "The number of open seats open for election in each simulation",
   },
 ];
 
-const modelParams = [
-  {
-    id: "majorityMajorityAffinity",
-    name: "majorityMajorityAffinity",
-    type: "slider",
-    initialValue: 1,
-    step: 0.1,
-    min: 0.5,
-    max: 2.0,
-    minLabel: "Fairly even across options",
-    maxLabel: "",
-    title: `Among ${mmLabels.maj} voters, support for ${mmLabels.maj} candidates is...`,
-    info: `This value provides information to the model on how even or polarized support
-    is among ${mmLabels.maj} voters for ${mmLabels.maj} candidates. If support is even,
-    there are no stand out candidates and all are liked evenly. If support is polarized,
-    there is a front-runner ${mmLabels.maj} candidate among ${mmLabels.maj} voters.`,
-  },
-  {
-    id: "majorityMinorityAffinity",
-    name: "majorityMinorityAffinity",
-    type: "slider",
-    initialValue: 1,
-    step: 0.1,
-    min: 0.5,
-    max: 2.0,
-    minLabel: "Fairly even across options",
-    maxLabel: "",
-    title: `Among ${mmLabels.maj} voters, support for ${mmLabels.min} candidates is...`,
-    info: `This value provides information to the model on how even or polarized support
-    is among ${mmLabels.maj} voters for ${mmLabels.min} candidates. If support is even,
-    there are no stand out candidates and all are liked evenly. If support is polarized,
-    there is a front-runner ${mmLabels.min} among ${mmLabels.maj} candidates.`,
-  },
-  {
-    id: "minorityMinorityAffinity",
-    name: "minorityMinorityAffinity",
-    type: "slider",
-    initialValue: 1,
-    step: 0.1,
-    min: 0.5,
-    max: 2.0,
-    minLabel: "Fairly even across options",
-    maxLabel: "",
-    title: `Among ${mmLabels.min} voters, support for ${mmLabels.min} candidates is...`,
-    info: `This value provides information to the model on how even or polarized support
-     is among ${mmLabels.min} voters for ${mmLabels.min} candidates. If support is even,
-     there are no stand out candidates and all are liked evenly. If support is polarized,
-     there is a front-runner ${mmLabels.min} among ${mmLabels.min} voters.`,
-  },
-  {
-    id: "minorityMajorityAffinity",
-    name: "minorityMajorityAffinity",
-    type: "slider",
-    initialValue: 1,
-    step: 0.1,
-    min: 0.5,
-    max: 2.0,
-    minLabel: "Fairly even across options",
-    maxLabel: "",
-    title: `Among ${mmLabels.min} voters, support for ${mmLabels.maj} candidates is...`,
-    info: `This value provides information to the model on how even or polarized support
-     is among ${mmLabels.min} voters for ${mmLabels.maj} candidates. If support is even,
-     there are no stand out candidates and all are liked evenly. If support is polarized,
-     there is a front-runner ${mmLabels.maj} among Majority voters.`,
-  },
-];
+// const modelParams = [
+//   {
+//     id: "majorityMajorityAffinity",
+//     name: "majorityMajorityAffinity",
+//     type: "slider",
+//     initialValue: 1,
+//     step: 0.1,
+//     min: 0.5,
+//     max: 2.0,
+//     minLabel: "Fairly even across options",
+//     maxLabel: "",
+//     title: `Among ${mmLabels.maj} voters, support for ${mmLabels.maj} candidates is...`,
+//     info: `This value provides information to the model on how even or polarized support
+//     is among ${mmLabels.maj} voters for ${mmLabels.maj} candidates. If support is even,
+//     there are no stand out candidates and all are liked evenly. If support is polarized,
+//     there is a front-runner ${mmLabels.maj} candidate among ${mmLabels.maj} voters.`,
+//   },
+//   {
+//     id: "majorityMinorityAffinity",
+//     name: "majorityMinorityAffinity",
+//     type: "slider",
+//     initialValue: 1,
+//     step: 0.1,
+//     min: 0.5,
+//     max: 2.0,
+//     minLabel: "Fairly even across options",
+//     maxLabel: "",
+//     title: `Among ${mmLabels.maj} voters, support for ${mmLabels.min} candidates is...`,
+//     info: `This value provides information to the model on how even or polarized support
+//     is among ${mmLabels.maj} voters for ${mmLabels.min} candidates. If support is even,
+//     there are no stand out candidates and all are liked evenly. If support is polarized,
+//     there is a front-runner ${mmLabels.min} among ${mmLabels.maj} candidates.`,
+//   },
+//   {
+//     id: "minorityMinorityAffinity",
+//     name: "minorityMinorityAffinity",
+//     type: "slider",
+//     initialValue: 1,
+//     step: 0.1,
+//     min: 0.5,
+//     max: 2.0,
+//     minLabel: "Fairly even across options",
+//     maxLabel: "",
+//     title: `Among ${mmLabels.min} voters, support for ${mmLabels.min} candidates is...`,
+//     info: `This value provides information to the model on how even or polarized support
+//      is among ${mmLabels.min} voters for ${mmLabels.min} candidates. If support is even,
+//      there are no stand out candidates and all are liked evenly. If support is polarized,
+//      there is a front-runner ${mmLabels.min} among ${mmLabels.min} voters.`,
+//   },
+//   {
+//     id: "minorityMajorityAffinity",
+//     name: "minorityMajorityAffinity",
+//     type: "slider",
+//     initialValue: 1,
+//     step: 0.1,
+//     min: 0.5,
+//     max: 2.0,
+//     minLabel: "Fairly even across options",
+//     maxLabel: "",
+//     title: `Among ${mmLabels.min} voters, support for ${mmLabels.maj} candidates is...`,
+//     info: `This value provides information to the model on how even or polarized support
+//      is among ${mmLabels.min} voters for ${mmLabels.maj} candidates. If support is even,
+//      there are no stand out candidates and all are liked evenly. If support is polarized,
+//      there is a front-runner ${mmLabels.maj} among Majority voters.`,
+//   },
+// ];
 
 function SimulationPage() {
   const paramKeys = [].concat(
-    electionParams.map((p) => ({ key: p.name, value: p.initialValue })),
-    modelParams.map((p) => ({ key: p.name, value: p.initialValue }))
+    electionParams.map((p) => ({ key: p.name, value: p.initialValue }))
+    // modelParams.map((p) => ({ key: p.name, value: p.initialValue }))
   );
   // Iterate over all params to set our initial values appropriately
   const initialState = {};

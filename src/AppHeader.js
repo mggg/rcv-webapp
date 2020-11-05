@@ -13,7 +13,7 @@ function AppHeader(props) {
       <Navbar.Collapse className="justify-content-end">
         <Nav className="justify-content-end">
           {props.routes.map((route, i) => (
-            <Nav.Item className="text-right">
+            <Nav.Item className="text-right" key={route.display}>
               <Nav.Link as={Link} to={route.path} key={i} href={route.path}>
                 {route.display}
               </Nav.Link>
