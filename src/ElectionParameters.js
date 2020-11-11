@@ -1,7 +1,7 @@
 import React from "react";
-import NumberInput from "./NumberInput";
+import NumberInput from "./inputs/NumberInput";
 import ParameterContainer from "./ParameterContainer";
-import Slider from "./Slider";
+import Slider from "./inputs/Slider";
 
 function ElectionParameters({ formData, setFormData, formInputs }) {
   const handleChange = (event) => {

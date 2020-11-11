@@ -1,5 +1,5 @@
-import SimulationPage from "./SimulationPage";
-import AboutPage from "./AboutPage";
+import SimulationPage from "./pages/SimulationPage";
+import AboutPage from "./pages/AboutPage";
 
 // Config file serving as a single point of truth for all application routes
 const routes = [
