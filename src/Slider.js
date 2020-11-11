@@ -15,7 +15,9 @@ function Slider({
   return (
     <div className="d-flex flex-wrap">
       <label className="w-100">{label}</label>
-      <span className="mr-1">{minLabel}</span>
+      <span className="input-helper-text align-self-center mr-1">
+        {minLabel}
+      </span>
       <input
         type="range"
         className="w-75"
@@ -26,7 +28,9 @@ function Slider({
         max={max}
         step={step}
       />
-      <span className="ml-1">{maxLabel}</span>
+      <span className="input-helper-text align-self-center ml-1">
+        {maxLabel}
+      </span>
       <span className="ml-auto">{value}%</span>
       <p className="input-helper-text w-100">{helperText}</p>
     </div>
