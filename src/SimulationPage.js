@@ -5,18 +5,37 @@ import ElectionParameters from "./ElectionParameters";
 import SimulationResults from "./SimulationResults";
 
 // A common lookup table for Majority-Minority labels
-// const mmLabels = {
-//   maj: "Green",
-//   min: "Purple",
-// };
+const mmLabels = {
+  maj: "Green",
+  min: "Purple",
+};
 
 const electionParams = [
   {
     id: "ballots",
     name: "ballots",
-    type: "number",
     initialValue: 1000,
+  },
+  {
+    id: "seatsOpen",
+    name: "seatsOpen",
+    initialValue: 10,
+  },
+  {
+    id: `pop${mmLabels.maj}Party`,
+    name: `pop${mmLabels.maj}Party`,
+    initialValue: 70,
+  },
+];
+
+const electionInputs = [
+  {
+    id: "ballots",
+    name: "ballots",
+    type: "number",
     step: 10,
+    min: 10,
+    max: 10000,
     label: "Voter Population",
     helperText: "Max 10,000",
     info: "The number of voters in each election simulation",
@@ -25,11 +44,43 @@ const electionParams = [
     id: "seatsOpen",
     name: "seatsOpen",
     type: "number",
-    initialValue: 10,
     step: 1,
+    min: 1,
+    max: 30,
     label: "Spots Up For Election",
     helperText: "Max 30",
     info: "The number of open seats open for election in each simulation",
+  },
+  {
+    id: `pop${mmLabels.maj}Party`,
+    name: `pop${mmLabels.maj}Party`,
+    type: "slider",
+    step: 1,
+    min: 1,
+    max: 100,
+    minLabel: `1%`,
+    maxLabel: `100%`,
+    label: `Percentage voting ${mmLabels.maj}`,
+    helperText: `Max 100%`,
+    info: `Assuming all members of the population vote for either ${mmLabels.maj}
+    or ${mmLabels.min}, which percentage votes for ${mmLabels.maj}
+    `,
+  },
+  {
+    id: `pop${mmLabels.min}Party`,
+    name: `pop${mmLabels.maj}Party`,
+    type: "anti-slider",
+    step: 1,
+    min: 1,
+    max: 100,
+    fullWidth: true,
+    minLabel: `1%`,
+    maxLabel: `100%`,
+    label: `Percentage voting ${mmLabels.min}`,
+    helperText: `Max 100%`,
+    info: `Assuming all members of the population vote for either ${mmLabels.min}
+    or ${mmLabels.min}, which percentage votes for ${mmLabels.min}
+    `,
   },
 ];
 
@@ -44,7 +95,7 @@ const electionParams = [
 //     max: 2.0,
 //     minLabel: "Fairly even across options",
 //     maxLabel: "",
-//     title: `Among ${mmLabels.maj} voters, support for ${mmLabels.maj} candidates is...`,
+//     label: `Among ${mmLabels.maj} voters, support for ${mmLabels.maj} candidates is...`,
 //     info: `This value provides information to the model on how even or polarized support
 //     is among ${mmLabels.maj} voters for ${mmLabels.maj} candidates. If support is even,
 //     there are no stand out candidates and all are liked evenly. If support is polarized,
@@ -60,7 +111,7 @@ const electionParams = [
 //     max: 2.0,
 //     minLabel: "Fairly even across options",
 //     maxLabel: "",
-//     title: `Among ${mmLabels.maj} voters, support for ${mmLabels.min} candidates is...`,
+//     label: `Among ${mmLabels.maj} voters, support for ${mmLabels.min} candidates is...`,
 //     info: `This value provides information to the model on how even or polarized support
 //     is among ${mmLabels.maj} voters for ${mmLabels.min} candidates. If support is even,
 //     there are no stand out candidates and all are liked evenly. If support is polarized,
@@ -76,7 +127,7 @@ const electionParams = [
 //     max: 2.0,
 //     minLabel: "Fairly even across options",
 //     maxLabel: "",
-//     title: `Among ${mmLabels.min} voters, support for ${mmLabels.min} candidates is...`,
+//     label: `Among ${mmLabels.min} voters, support for ${mmLabels.min} candidates is...`,
 //     info: `This value provides information to the model on how even or polarized support
 //      is among ${mmLabels.min} voters for ${mmLabels.min} candidates. If support is even,
 //      there are no stand out candidates and all are liked evenly. If support is polarized,
@@ -92,7 +143,7 @@ const electionParams = [
 //     max: 2.0,
 //     minLabel: "Fairly even across options",
 //     maxLabel: "",
-//     title: `Among ${mmLabels.min} voters, support for ${mmLabels.maj} candidates is...`,
+//     label: `Among ${mmLabels.min} voters, support for ${mmLabels.maj} candidates is...`,
 //     info: `This value provides information to the model on how even or polarized support
 //      is among ${mmLabels.min} voters for ${mmLabels.maj} candidates. If support is even,
 //      there are no stand out candidates and all are liked evenly. If support is polarized,
@@ -121,6 +172,7 @@ function SimulationPage() {
             formData={formData}
             setFormData={setFormData}
             formParams={electionParams}
+            formInputs={electionInputs}
           />
         </Col>
         <Col className="pt-2 d-flex flex-column">

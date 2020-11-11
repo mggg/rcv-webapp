@@ -5,11 +5,13 @@ function NumberInput({
   handleChange,
   value,
   name,
+  min,
+  max,
   helperText,
   step = 1,
 }) {
   return (
-    <>
+    <div className="sm-6">
       <label className="input-label">{label}</label>
       <input
         name={name}
@@ -17,9 +19,11 @@ function NumberInput({
         onChange={handleChange}
         value={value}
         step={step}
+        min={min}
+        max={max}
       />
       <p className="input-helper-text">{helperText}</p>
-    </>
+    </div>
   );
 }
 

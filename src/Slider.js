@@ -1,15 +1,35 @@
 import React from "react";
 
-import { Form } from "react-bootstrap";
-
-function Slider() {
+function Slider({
+  label,
+  handleChange,
+  value,
+  name,
+  helperText,
+  min,
+  max,
+  minLabel,
+  maxLabel,
+  step = 1,
+}) {
   return (
-    <Form>
-      <Form.Group controlId="formBasicRange">
-        <Form.Label>Range</Form.Label>
-        <Form.Control type="range" />
-      </Form.Group>
-    </Form>
+    <div className="d-flex flex-wrap">
+      <label className="w-100">{label}</label>
+      <span className="mr-1">{minLabel}</span>
+      <input
+        type="range"
+        className="w-75"
+        onChange={handleChange}
+        name={name}
+        value={value}
+        min={min}
+        max={max}
+        step={step}
+      />
+      <span className="ml-1">{maxLabel}</span>
+      <span className="ml-auto">{value}%</span>
+      <p className="input-helper-text w-100">{helperText}</p>
+    </div>
   );
 }
 
