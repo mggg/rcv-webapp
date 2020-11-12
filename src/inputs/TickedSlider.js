@@ -1,6 +1,7 @@
 import React from "react";
+import _ from "lodash";
 
-function Slider({
+function TickedSlider({
   id,
   label,
   handleChange,
@@ -13,10 +14,15 @@ function Slider({
   maxLabel,
   step = 1,
 }) {
+  const ticks = _.range(min, max + step, (max - min) / 3);
+  console.log("step", step);
+  console.log("max", max);
+  console.log("min", min);
+  console.log("ticks", ticks);
   return (
     <div className="d-flex flex-wrap">
       <label className="input-label w-100">{label}</label>
-      <div className="d-flex justify-content-between w-75">
+      <div className="d-flex justify-content-between w-100">
         <span className="input-helper-text align-self-center mr-1">
           {minLabel}
         </span>
@@ -26,17 +32,27 @@ function Slider({
       </div>
       <input
         type="range"
-        className="w-75"
+        className="w-100"
         onChange={handleChange}
         name={name}
         value={value}
         min={min}
         max={max}
         step={step}
+        list={`${id}-steplist`}
       />
-      <span className="ml-auto">{value}%</span>
+      <datalist
+        id={`${id}-steplist`}
+        className="d-flex w-100 justify-content-between"
+      >
+        {ticks.map((tick, i) => (
+          <option key={tick} label={_.round(tick, 2)}>
+            {_.round(tick, 2)}
+          </option>
+        ))}
+      </datalist>
     </div>
   );
 }
 
-export default Slider;
+export default TickedSlider;

@@ -15,7 +15,7 @@ function SimulationResults(props) {
 
   return (
     <>
-      <h1>Simultation Results</h1>
+      <h1>Simulation Results</h1>
       <ParameterContainer>
         {_.isEmpty(props.simulationResults) && <EmptyDataPlaceholder />}
         {!_.isEmpty(props.simulationResults) && (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Tab, Tabs, Nav } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import LuceModelParameters from "./LuceModelParameters";
 import CambridgeSamplerModelParameters from "./CambridgeSamplerModelParameters";
 import BradleyTerryModelParameters from "./BradleyTerryModelParameters";
@@ -17,31 +17,42 @@ const models = [
     id: "bradleyTerry",
     name: "bradleyTerry",
     display: "Bradley-Terry",
-    component: CambridgeSamplerModelParameters,
+    component: BradleyTerryModelParameters,
   },
   {
     id: "alternatingCrossover",
     name: "alternatingCrossover",
     display: "Alternating-Crossover",
-    component: BradleyTerryModelParameters,
+    component: AlternatingCrossoverModelParameters,
   },
   {
     id: "cambridgeSampler",
     name: "cambridgeSampler",
     display: "Cambridge Sampler",
-    component: AlternatingCrossoverModelParameters,
+    component: CambridgeSamplerModelParameters,
   },
 ];
-function renderSelectedModelParameters(selectedModel) {
+
+function renderSelectedModelParameters(
+  selectedModel,
+  formData,
+  setFormData,
+  formInputs
+) {
   const SelectedModelParameters =
     models.find((model) => model.name === selectedModel) &&
     models.find((model) => model.name === selectedModel).component;
-  return <SelectedModelParameters />;
+  return (
+    <SelectedModelParameters
+      formData={formData}
+      setFormData={setFormData}
+      formInputs={formInputs[selectedModel]}
+    />
+  );
 }
 
-function ModelParameters() {
+function ModelParameters({ formData, setFormData, formInputs }) {
   const [selectedModel, setSelectedModel] = useState(models[0].name);
-  console.log(models.find((model) => model.name === selectedModel).component);
   return (
     <>
       <h1>Model Parameters</h1>
@@ -51,7 +62,6 @@ function ModelParameters() {
             variant="tabs"
             defaultActiveKey={models[0].name}
             onSelect={(k) => {
-              console.log(k);
               setSelectedModel(k);
             }}
           >
@@ -63,7 +73,12 @@ function ModelParameters() {
           </Nav>
         }
       >
-        {renderSelectedModelParameters(selectedModel)}
+        {renderSelectedModelParameters(
+          selectedModel,
+          formData,
+          setFormData,
+          formInputs
+        )}
       </ParameterContainer>
     </>
   );

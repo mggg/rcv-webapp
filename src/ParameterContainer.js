@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 
 function ParameterContainer(props) {
   return (
-    <Card className="flex-grow-1">
+    <Card className="parameter-container flex-grow-1">
       {props.headerComponent && (
         <Card.Header>{props.headerComponent}</Card.Header>
       )}

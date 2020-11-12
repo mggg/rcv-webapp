@@ -1,10 +1,20 @@
 import React from "react";
-function LuceModelParameters() {
+import GenericInput from "../inputs/GenericInput";
+
+function LuceModelParameters({ formData, setFormData, formInputs }) {
   return (
-    <div className="pt-1 pr-2">
-      Luce Model Parameters go here
-      <span>Anything</span>
-    </div>
+    <>
+      {formInputs.map((param) => {
+        return (
+          <GenericInput
+            key={param.id}
+            param={param}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        );
+      })}
+    </>
   );
 }
 

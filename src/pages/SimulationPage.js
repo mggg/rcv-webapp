@@ -26,6 +26,26 @@ const electionParams = [
     name: `pop${mmLabels.maj}Party`,
     initialValue: 70,
   },
+  {
+    id: `${mmLabels.maj}Candidates`,
+    name: `${mmLabels.maj}Candidates`,
+    initialValue: 4,
+  },
+  {
+    id: `percentage${mmLabels.maj}${mmLabels.maj}Support`,
+    name: `percentage${mmLabels.maj}${mmLabels.maj}Support`,
+    initialValue: 70,
+  },
+  {
+    id: `${mmLabels.min}Candidates`,
+    name: `${mmLabels.min}Candidates`,
+    initialValue: 4,
+  },
+  {
+    id: `percentage${mmLabels.min}${mmLabels.min}Support`,
+    name: `percentage${mmLabels.min}${mmLabels.min}Support`,
+    initialValue: 70,
+  },
 ];
 
 const electionInputs = [
@@ -82,74 +102,184 @@ const electionInputs = [
     or ${mmLabels.min}, which percentage votes for ${mmLabels.min}
     `,
   },
+  // Information about the maj candidates and maj-voter support
+  {
+    id: `${mmLabels.maj}Candidates`,
+    name: `${mmLabels.maj}Candidates`,
+    type: "number",
+    step: 1,
+    min: 1,
+    max: 7,
+    label: `Number of ${mmLabels.maj} candidates running`,
+    helperText: "Max 30",
+    info: `The number of ${mmLabels.maj} candidates running for election in each simulation`,
+  },
+  {
+    id: `percentage${mmLabels.maj}${mmLabels.maj}Support`,
+    name: `percentage${mmLabels.maj}${mmLabels.maj}Support`,
+    type: "slider",
+    step: 1,
+    min: 1,
+    max: 100,
+    minLabel: `1%`,
+    maxLabel: `100%`,
+    label: `${mmLabels.maj} voters typically vote for ${mmLabels.maj} candidates this percent of the time...`,
+    helperText: `Max 100%`,
+    // info: `Assuming all members of the population vote for either ${mmLabels.maj}
+    // or ${mmLabels.min}, which percentage votes for ${mmLabels.maj}
+    // `,
+  },
+  {
+    id: `percentage${mmLabels.maj}${mmLabels.min}Support`,
+    name: `percentage${mmLabels.maj}${mmLabels.maj}Support`,
+    type: "anti-slider",
+    step: 1,
+    min: 1,
+    max: 100,
+    fullWidth: true,
+    minLabel: `1%`,
+    maxLabel: `100%`,
+    label: `${mmLabels.maj} voters occasionally vote for ${mmLabels.min} candidates this percent of the time...`,
+    helperText: `Max 100%`,
+    // info: `Assuming all members of the population vote for either ${mmLabels.min}
+    // or ${mmLabels.min}, which percentage votes for ${mmLabels.min}
+    // `,
+  },
+  // Information about the min candidates and min-voter support
+  {
+    id: `${mmLabels.min}Candidates`,
+    name: `${mmLabels.min}Candidates`,
+    type: "number",
+    step: 1,
+    min: 1,
+    max: 7,
+    label: `Number of ${mmLabels.min} candidates running`,
+    helperText: "Max 30",
+    info: `The number of ${mmLabels.min} candidates running for election in each simulation`,
+  },
+  {
+    id: `percentage${mmLabels.min}${mmLabels.min}Support`,
+    name: `percentage${mmLabels.min}${mmLabels.min}Support`,
+    type: "slider",
+    step: 1,
+    min: 1,
+    max: 100,
+    minLabel: `1%`,
+    maxLabel: `100%`,
+    label: `${mmLabels.min} voters typically vote for ${mmLabels.min} candidates this percent of the time...`,
+    helperText: `Max 100%`,
+    // info: `Assuming all members of the population vote for either ${mmLabels.min}
+    // or ${mmLabels.min}, which percentage votes for ${mmLabels.min}
+    // `,
+  },
+  {
+    id: `percentage${mmLabels.min}${mmLabels.maj}Support`,
+    name: `percentage${mmLabels.min}${mmLabels.min}Support`,
+    type: "anti-slider",
+    step: 1,
+    min: 1,
+    max: 100,
+    fullWidth: true,
+    minLabel: `1%`,
+    maxLabel: `100%`,
+    label: `${mmLabels.min} voters occasionally vote for ${mmLabels.maj} candidates this percent of the time...`,
+    helperText: `Max 100%`,
+    // info: `Assuming all members of the population vote for either ${mmLabels.min}
+    // or ${mmLabels.min}, which percentage votes for ${mmLabels.min}
+    // `,
+  },
 ];
 
 const modelParams = [
   {
     id: `${mmLabels.maj}${mmLabels.maj}Affinity`,
     name: `${mmLabels.maj}${mmLabels.maj}Affinity`,
-    type: "slider",
     initialValue: 1,
-    step: 0.1,
-    min: 0.5,
-    max: 2.0,
-    minLabel: "Fairly even across options",
-    maxLabel: "",
-    label: `Among ${mmLabels.maj} voters, support for ${mmLabels.maj} candidates is...`,
-    info: `This value provides information to the model on how even or polarized support
-    is among ${mmLabels.maj} voters for ${mmLabels.maj} candidates. If support is even,
-    there are no stand out candidates and all are liked evenly. If support is polarized,
-    there is a front-runner ${mmLabels.maj} candidate among ${mmLabels.maj} voters.`,
   },
   {
     id: `${mmLabels.maj}${mmLabels.min}Affinity`,
     name: `${mmLabels.maj}${mmLabels.min}Affinity`,
-    type: "slider",
     initialValue: 1,
-    step: 0.1,
-    min: 0.5,
-    max: 2.0,
-    minLabel: "Fairly even across options",
-    maxLabel: "",
-    label: `Among ${mmLabels.maj} voters, support for ${mmLabels.min} candidates is...`,
-    info: `This value provides information to the model on how even or polarized support
-    is among ${mmLabels.maj} voters for ${mmLabels.min} candidates. If support is even,
-    there are no stand out candidates and all are liked evenly. If support is polarized,
-    there is a front-runner ${mmLabels.min} among ${mmLabels.maj} candidates.`,
   },
   {
     id: `${mmLabels.min}${mmLabels.min}Affinity`,
     name: `${mmLabels.min}${mmLabels.min}Affinity`,
-    type: "slider",
     initialValue: 1,
-    step: 0.1,
-    min: 0.5,
-    max: 2.0,
-    minLabel: "Fairly even across options",
-    maxLabel: "",
-    label: `Among ${mmLabels.min} voters, support for ${mmLabels.min} candidates is...`,
-    info: `This value provides information to the model on how even or polarized support
-     is among ${mmLabels.min} voters for ${mmLabels.min} candidates. If support is even,
-     there are no stand out candidates and all are liked evenly. If support is polarized,
-     there is a front-runner ${mmLabels.min} among ${mmLabels.min} voters.`,
   },
   {
     id: `${mmLabels.min}${mmLabels.maj}Affinity`,
     name: `${mmLabels.min}${mmLabels.maj}Affinity`,
-    type: "slider",
     initialValue: 1,
-    step: 0.1,
-    min: 0.5,
-    max: 2.0,
-    minLabel: "Fairly even across options",
-    maxLabel: "",
-    label: `Among ${mmLabels.min} voters, support for ${mmLabels.maj} candidates is...`,
-    info: `This value provides information to the model on how even or polarized support
-     is among ${mmLabels.min} voters for ${mmLabels.maj} candidates. If support is even,
-     there are no stand out candidates and all are liked evenly. If support is polarized,
-     there is a front-runner ${mmLabels.maj} among Majority voters.`,
   },
 ];
+
+const modelInputs = {
+  luce: [
+    {
+      id: `${mmLabels.maj}${mmLabels.maj}Affinity`,
+      name: `${mmLabels.maj}${mmLabels.maj}Affinity`,
+      type: "ticked-slider",
+      step: 0.1,
+      min: 0.5,
+      max: 2.0,
+      label: `Among all ${mmLabels.maj} voters, support for ${mmLabels.maj} candidates is...`,
+      minLabel: "Split evenly",
+      maxLabel: "Leaning towards one candidate",
+      info: `This value provides information to the model on how even or polarized support
+      is among all ${mmLabels.maj} voters for ${mmLabels.maj} candidates. If support is even,
+      there are no stand out candidates and all are liked evenly. If support is polarized,
+      there is a front-runner ${mmLabels.maj} candidate among all ${mmLabels.maj} voters.`,
+    },
+    {
+      id: `${mmLabels.maj}${mmLabels.min}Affinity`,
+      name: `${mmLabels.maj}${mmLabels.min}Affinity`,
+      type: "ticked-slider",
+      step: 0.1,
+      min: 0.5,
+      max: 2.0,
+      label: `Among all ${mmLabels.maj} voters, support for ${mmLabels.min} candidates is...`,
+      minLabel: "Split evenly",
+      maxLabel: "Leaning towards one candidate",
+      info: `This value provides information to the model on how even or polarized support
+      is among all ${mmLabels.maj} voters for ${mmLabels.min} candidates. If support is even,
+      there are no stand out candidates and all are liked evenly. If support is polarized,
+      there is a front-runner ${mmLabels.min} among all ${mmLabels.maj} candidates.`,
+    },
+    {
+      id: `${mmLabels.min}${mmLabels.min}Affinity`,
+      name: `${mmLabels.min}${mmLabels.min}Affinity`,
+      type: "ticked-slider",
+      step: 0.1,
+      min: 0.5,
+      max: 2.0,
+      label: `Among all ${mmLabels.min} voters, support for ${mmLabels.min} candidates is...`,
+      minLabel: "Split evenly",
+      maxLabel: "Leaning towards one candidate",
+      info: `This value provides information to the model on how even or polarized support
+      is among all ${mmLabels.min} voters for ${mmLabels.min} candidates. If support is even,
+      there are no stand out candidates and all are liked evenly. If support is polarized,
+      there is a front-runner ${mmLabels.min} among all ${mmLabels.min} voters.`,
+    },
+    {
+      id: `${mmLabels.min}${mmLabels.maj}Affinity`,
+      name: `${mmLabels.min}${mmLabels.maj}Affinity`,
+      type: "ticked-slider",
+      step: 0.1,
+      min: 0.5,
+      max: 2.0,
+      label: `Among all ${mmLabels.min} voters, support for ${mmLabels.maj} candidates is...`,
+      minLabel: "Split evenly",
+      maxLabel: "Leaning towards one candidate",
+      info: `This value provides information to the model on how even or polarized support
+      is among all ${mmLabels.min} voters for ${mmLabels.maj} candidates. If support is even,
+      there are no stand out candidates and all are liked evenly. If support is polarized,
+      there is a front-runner ${mmLabels.maj} among Majority voters.`,
+    },
+  ],
+  bradleyTerry: [],
+  alternatingCrossover: [],
+  cambridgeSampler: [],
+};
 
 function SimulationPage() {
   const paramKeys = [].concat(
@@ -178,7 +308,7 @@ function SimulationPage() {
           <ModelParameters
             formData={formData}
             setFormData={setFormData}
-            formParams={modelParams}
+            formInputs={modelInputs}
           />
         </Col>
         <Col xl={12} className="pt-2 d-flex flex-column">

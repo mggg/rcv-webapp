@@ -22,7 +22,7 @@ function NumberInput({
         min={min}
         max={max}
       />
-      <p className="input-helper-text">{helperText}</p>
+      <span className="d-block input-helper-text">{helperText}</span>
     </div>
   );
 }

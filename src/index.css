@@ -7,9 +7,16 @@ h1 {
   font-size: 1.75rem;
 }
 
-.input-label {
-  font-size: 1rem;
+.parameter-container .input-label {
+  font-size: 1.1rem;
   display: block;
+  max-width: 50%;
+}
+.parameter-container > .card-body > * {
+  margin-top: 0.75rem;
+}
+.parameter-container > .card-body > *:first-child {
+  margin-top: 0;
 }
 
 .input-helper-text {
