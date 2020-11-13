@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ElectionParameters from "../ElectionParameters";
-import ModelParameters from "../modelParameters/ModelParameters";
+import ModelParameters from "../ModelParameters";
 import SimulationResults from "../SimulationResults";
 
 // A common lookup table for Majority-Minority labels
@@ -22,28 +22,28 @@ const electionParams = [
     initialValue: 10,
   },
   {
-    id: `pop${mmLabels.maj}Party`,
-    name: `pop${mmLabels.maj}Party`,
+    id: `popMajParty`,
+    name: `popMajParty`,
     initialValue: 70,
   },
   {
-    id: `${mmLabels.maj}Candidates`,
-    name: `${mmLabels.maj}Candidates`,
+    id: `majCandidates`,
+    name: `majCandidates`,
     initialValue: 4,
   },
   {
-    id: `percentage${mmLabels.maj}${mmLabels.maj}Support`,
-    name: `percentage${mmLabels.maj}${mmLabels.maj}Support`,
+    id: `percentageMajMajSupport`,
+    name: `percentageMajMajSupport`,
     initialValue: 70,
   },
   {
-    id: `${mmLabels.min}Candidates`,
-    name: `${mmLabels.min}Candidates`,
+    id: `minCandidates`,
+    name: `minCandidates`,
     initialValue: 4,
   },
   {
-    id: `percentage${mmLabels.min}${mmLabels.min}Support`,
-    name: `percentage${mmLabels.min}${mmLabels.min}Support`,
+    id: `percentageMinMinSupport`,
+    name: `percentageMinMinSupport`,
     initialValue: 70,
   },
 ];
@@ -72,31 +72,32 @@ const electionInputs = [
     info: "The number of open seats open for election in each simulation",
   },
   {
-    id: `pop${mmLabels.maj}Party`,
-    name: `pop${mmLabels.maj}Party`,
+    id: `popMajParty`,
+    name: `popMajParty`,
     type: "slider",
     step: 1,
     min: 1,
     max: 100,
     minLabel: `1%`,
     maxLabel: `100%`,
-    label: `Percentage voting ${mmLabels.maj}`,
+    label: `Percent of voters who are ${mmLabels.maj}`,
     helperText: `Max 100%`,
     info: `Assuming all members of the population vote for either ${mmLabels.maj}
     or ${mmLabels.min}, which percentage votes for ${mmLabels.maj}
     `,
   },
   {
-    id: `pop${mmLabels.min}Party`,
-    name: `pop${mmLabels.maj}Party`,
+    id: `popMinParty`,
+    name: `popMajParty`,
     type: "anti-slider",
     step: 1,
     min: 1,
     max: 100,
+    updateTransform: (value) => 100 - value,
     fullWidth: true,
     minLabel: `1%`,
     maxLabel: `100%`,
-    label: `Percentage voting ${mmLabels.min}`,
+    label: `Percent of voters who are ${mmLabels.min}`,
     helperText: `Max 100%`,
     info: `Assuming all members of the population vote for either ${mmLabels.min}
     or ${mmLabels.min}, which percentage votes for ${mmLabels.min}
@@ -104,19 +105,19 @@ const electionInputs = [
   },
   // Information about the maj candidates and maj-voter support
   {
-    id: `${mmLabels.maj}Candidates`,
-    name: `${mmLabels.maj}Candidates`,
+    id: `majCandidates`,
+    name: `majCandidates`,
     type: "number",
     step: 1,
     min: 1,
     max: 7,
     label: `Number of ${mmLabels.maj} candidates running`,
-    helperText: "Max 30",
+    helperText: "Max 7",
     info: `The number of ${mmLabels.maj} candidates running for election in each simulation`,
   },
   {
-    id: `percentage${mmLabels.maj}${mmLabels.maj}Support`,
-    name: `percentage${mmLabels.maj}${mmLabels.maj}Support`,
+    id: `percentageMajMajSupport`,
+    name: `percentageMajMajSupport`,
     type: "slider",
     step: 1,
     min: 1,
@@ -130,12 +131,13 @@ const electionInputs = [
     // `,
   },
   {
-    id: `percentage${mmLabels.maj}${mmLabels.min}Support`,
-    name: `percentage${mmLabels.maj}${mmLabels.maj}Support`,
+    id: `percentageMajMinSupport`,
+    name: `percentageMajMajSupport`,
     type: "anti-slider",
     step: 1,
     min: 1,
     max: 100,
+    updateTransform: (value) => 100 - value,
     fullWidth: true,
     minLabel: `1%`,
     maxLabel: `100%`,
@@ -147,19 +149,19 @@ const electionInputs = [
   },
   // Information about the min candidates and min-voter support
   {
-    id: `${mmLabels.min}Candidates`,
-    name: `${mmLabels.min}Candidates`,
+    id: `minCandidates`,
+    name: `minCandidates`,
     type: "number",
     step: 1,
     min: 1,
     max: 7,
     label: `Number of ${mmLabels.min} candidates running`,
-    helperText: "Max 30",
+    helperText: "Max 7",
     info: `The number of ${mmLabels.min} candidates running for election in each simulation`,
   },
   {
-    id: `percentage${mmLabels.min}${mmLabels.min}Support`,
-    name: `percentage${mmLabels.min}${mmLabels.min}Support`,
+    id: `percentageMinMinSupport`,
+    name: `percentageMinMinSupport`,
     type: "slider",
     step: 1,
     min: 1,
@@ -173,12 +175,13 @@ const electionInputs = [
     // `,
   },
   {
-    id: `percentage${mmLabels.min}${mmLabels.maj}Support`,
-    name: `percentage${mmLabels.min}${mmLabels.min}Support`,
+    id: `percentageMinMajSupport`,
+    name: `percentageMinMinSupport`,
     type: "anti-slider",
     step: 1,
     min: 1,
     max: 100,
+    updateTransform: (value) => 100 - value,
     fullWidth: true,
     minLabel: `1%`,
     maxLabel: `100%`,
@@ -192,36 +195,36 @@ const electionInputs = [
 
 const modelParams = [
   {
-    id: `${mmLabels.maj}${mmLabels.maj}Affinity`,
-    name: `${mmLabels.maj}${mmLabels.maj}Affinity`,
-    initialValue: 1,
+    id: `majMajAffinity`,
+    name: `majMajAffinity`,
+    initialValue: 0,
   },
   {
-    id: `${mmLabels.maj}${mmLabels.min}Affinity`,
-    name: `${mmLabels.maj}${mmLabels.min}Affinity`,
-    initialValue: 1,
+    id: `majMinAffinity`,
+    name: `majMinAffinity`,
+    initialValue: 0,
   },
   {
-    id: `${mmLabels.min}${mmLabels.min}Affinity`,
-    name: `${mmLabels.min}${mmLabels.min}Affinity`,
-    initialValue: 1,
+    id: `minMinAffinity`,
+    name: `minMinAffinity`,
+    initialValue: 0,
   },
   {
-    id: `${mmLabels.min}${mmLabels.maj}Affinity`,
-    name: `${mmLabels.min}${mmLabels.maj}Affinity`,
-    initialValue: 1,
+    id: `minMajAffinity`,
+    name: `minMajAffinity`,
+    initialValue: 0,
   },
 ];
 
 const modelInputs = {
   luce: [
     {
-      id: `${mmLabels.maj}${mmLabels.maj}Affinity`,
-      name: `${mmLabels.maj}${mmLabels.maj}Affinity`,
+      id: `majMajAffinity`,
+      name: `majMajAffinity`,
       type: "ticked-slider",
-      step: 0.1,
-      min: 0.5,
-      max: 2.0,
+      step: 0.5,
+      min: -1,
+      max: 1.0,
       label: `Among all ${mmLabels.maj} voters, support for ${mmLabels.maj} candidates is...`,
       minLabel: "Split evenly",
       maxLabel: "Leaning towards one candidate",
@@ -231,12 +234,12 @@ const modelInputs = {
       there is a front-runner ${mmLabels.maj} candidate among all ${mmLabels.maj} voters.`,
     },
     {
-      id: `${mmLabels.maj}${mmLabels.min}Affinity`,
-      name: `${mmLabels.maj}${mmLabels.min}Affinity`,
+      id: `majMinAffinity`,
+      name: `majMinAffinity`,
       type: "ticked-slider",
-      step: 0.1,
-      min: 0.5,
-      max: 2.0,
+      step: 0.5,
+      min: -1,
+      max: 1,
       label: `Among all ${mmLabels.maj} voters, support for ${mmLabels.min} candidates is...`,
       minLabel: "Split evenly",
       maxLabel: "Leaning towards one candidate",
@@ -246,12 +249,12 @@ const modelInputs = {
       there is a front-runner ${mmLabels.min} among all ${mmLabels.maj} candidates.`,
     },
     {
-      id: `${mmLabels.min}${mmLabels.min}Affinity`,
-      name: `${mmLabels.min}${mmLabels.min}Affinity`,
+      id: `minMinAffinity`,
+      name: `minMinAffinity`,
       type: "ticked-slider",
-      step: 0.1,
-      min: 0.5,
-      max: 2.0,
+      step: 0.5,
+      min: -1,
+      max: 1,
       label: `Among all ${mmLabels.min} voters, support for ${mmLabels.min} candidates is...`,
       minLabel: "Split evenly",
       maxLabel: "Leaning towards one candidate",
@@ -261,12 +264,12 @@ const modelInputs = {
       there is a front-runner ${mmLabels.min} among all ${mmLabels.min} voters.`,
     },
     {
-      id: `${mmLabels.min}${mmLabels.maj}Affinity`,
-      name: `${mmLabels.min}${mmLabels.maj}Affinity`,
+      id: `minMajAffinity`,
+      name: `minMajAffinity`,
       type: "ticked-slider",
-      step: 0.1,
-      min: 0.5,
-      max: 2.0,
+      step: 0.5,
+      min: -1,
+      max: 1,
       label: `Among all ${mmLabels.min} voters, support for ${mmLabels.maj} candidates is...`,
       minLabel: "Split evenly",
       maxLabel: "Leaning towards one candidate",
@@ -283,13 +286,19 @@ const modelInputs = {
 
 function SimulationPage() {
   const paramKeys = [].concat(
-    electionParams.map((p) => ({ key: p.name, value: p.initialValue })),
-    modelParams.map((p) => ({ key: p.name, value: p.initialValue }))
+    electionParams.map((p) => ({
+      name: p.name,
+      value: p.initialValue,
+    })),
+    modelParams.map((p) => ({
+      name: p.name,
+      value: p.initialValue,
+    }))
   );
   // Iterate over all params to set our initial values appropriately
   const initialState = {};
   paramKeys.forEach((p) => {
-    initialState[p.key] = p.value;
+    initialState[p.name] = p.value;
   });
   const [formData, setFormData] = useState(initialState);
   const [simulationResults, setSimulationResults] = useState({});

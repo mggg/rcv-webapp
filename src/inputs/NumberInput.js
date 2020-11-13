@@ -11,7 +11,7 @@ function NumberInput({
   step = 1,
 }) {
   return (
-    <div className="sm-6">
+    <div>
       <label className="input-label">{label}</label>
       <input
         name={name}

@@ -1,35 +1,29 @@
 import React, { useState } from "react";
 import { Nav } from "react-bootstrap";
-import LuceModelParameters from "./LuceModelParameters";
-import CambridgeSamplerModelParameters from "./CambridgeSamplerModelParameters";
-import BradleyTerryModelParameters from "./BradleyTerryModelParameters";
-import AlternatingCrossoverModelParameters from "./AlternatingCrossoverModelParameters";
-import ParameterContainer from "../ParameterContainer";
+// import LuceModelParameters from "./LuceModelParameters";
+import GenericInput from "./inputs/GenericInput";
+import ParameterContainer from "./ParameterContainer";
 
 const models = [
   {
     id: "luce",
     name: "luce",
     display: "Luce",
-    component: LuceModelParameters,
   },
   {
     id: "bradleyTerry",
     name: "bradleyTerry",
     display: "Bradley-Terry",
-    component: BradleyTerryModelParameters,
   },
   {
     id: "alternatingCrossover",
     name: "alternatingCrossover",
     display: "Alternating-Crossover",
-    component: AlternatingCrossoverModelParameters,
   },
   {
     id: "cambridgeSampler",
     name: "cambridgeSampler",
     display: "Cambridge Sampler",
-    component: CambridgeSamplerModelParameters,
   },
 ];
 
@@ -39,15 +33,22 @@ function renderSelectedModelParameters(
   setFormData,
   formInputs
 ) {
-  const SelectedModelParameters =
-    models.find((model) => model.name === selectedModel) &&
-    models.find((model) => model.name === selectedModel).component;
+  // const SelectedModelParameters =
+  //   models.find((model) => model.name === selectedModel) &&
+  //   models.find((model) => model.name === selectedModel).component;
   return (
-    <SelectedModelParameters
-      formData={formData}
-      setFormData={setFormData}
-      formInputs={formInputs[selectedModel]}
-    />
+    <>
+      {formInputs[selectedModel].map((param) => {
+        return (
+          <GenericInput
+            key={param.id}
+            param={param}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        );
+      })}
+    </>
   );
 }
 

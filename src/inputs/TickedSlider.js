@@ -14,11 +14,7 @@ function TickedSlider({
   maxLabel,
   step = 1,
 }) {
-  const ticks = _.range(min, max + step, (max - min) / 3);
-  console.log("step", step);
-  console.log("max", max);
-  console.log("min", min);
-  console.log("ticks", ticks);
+  const ticks = _.range(min, max + step, step);
   return (
     <div className="d-flex flex-wrap">
       <label className="input-label w-100">{label}</label>
@@ -46,9 +42,7 @@ function TickedSlider({
         className="d-flex w-100 justify-content-between"
       >
         {ticks.map((tick, i) => (
-          <option key={tick} label={_.round(tick, 2)}>
-            {_.round(tick, 2)}
-          </option>
+          <option key={tick} value={tick} />
         ))}
       </datalist>
     </div>

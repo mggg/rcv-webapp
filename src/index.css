@@ -10,7 +10,7 @@ h1 {
 .parameter-container .input-label {
   font-size: 1.1rem;
   display: block;
-  max-width: 50%;
+  max-width: 75%;
 }
 .parameter-container > .card-body > * {
   margin-top: 0.75rem;
