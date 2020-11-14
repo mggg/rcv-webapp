@@ -12,14 +12,27 @@ h1 {
   display: block;
   max-width: 75%;
 }
+.parameter-container > .card-body {
+  padding: 0.75rem;
+  padding-top: 0;
+}
+
 .parameter-container > .card-body > * {
   margin-top: 0.75rem;
-}
-.parameter-container > .card-body > *:first-child {
-  margin-top: 0;
 }
 
 .input-helper-text {
   font-size: 0.75rem;
   font-style: italic;
+}
+
+.input-value {
+  font-weight: 600;
+}
+
+.ticked-slider-datalist {
+  height: 0;
+}
+.ticked-slider-datalist > * {
+  padding: 0;
 }

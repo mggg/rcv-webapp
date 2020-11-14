@@ -7,11 +7,14 @@ function NumberInput({
   name,
   min,
   max,
+  maxVariable,
+  fullWidth,
   helperText,
   step = 1,
 }) {
+  const widthClass = fullWidth ? " w-100 " : " w-50 ";
   return (
-    <div>
+    <div className={`pr-2 pl-2 ${widthClass}`}>
       <label className="input-label">{label}</label>
       <input
         name={name}

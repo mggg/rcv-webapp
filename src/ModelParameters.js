@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Nav } from "react-bootstrap";
-// import LuceModelParameters from "./LuceModelParameters";
+import { Nav, Card } from "react-bootstrap";
 import GenericInput from "./inputs/GenericInput";
-import ParameterContainer from "./ParameterContainer";
 
 const models = [
   {
@@ -57,8 +55,8 @@ function ModelParameters({ formData, setFormData, formInputs }) {
   return (
     <>
       <h1>Model Parameters</h1>
-      <ParameterContainer
-        headerComponent={
+      <Card className="parameter-container flex-grow-1">
+        <Card.Header>
           <Nav
             variant="tabs"
             defaultActiveKey={models[0].name}
@@ -72,15 +70,16 @@ function ModelParameters({ formData, setFormData, formInputs }) {
               </Nav.Item>
             ))}
           </Nav>
-        }
-      >
-        {renderSelectedModelParameters(
-          selectedModel,
-          formData,
-          setFormData,
-          formInputs
-        )}
-      </ParameterContainer>
+        </Card.Header>
+        <Card.Body className="">
+          {renderSelectedModelParameters(
+            selectedModel,
+            formData,
+            setFormData,
+            formInputs
+          )}
+        </Card.Body>
+      </Card>
     </>
   );
 }

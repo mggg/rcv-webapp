@@ -17,29 +17,29 @@ const electionParams = [
     initialValue: 1000,
   },
   {
-    id: "seatsOpen",
-    name: "seatsOpen",
-    initialValue: 10,
-  },
-  {
     id: `popMajParty`,
     name: `popMajParty`,
     initialValue: 70,
   },
   {
+    id: "seatsOpen",
+    name: "seatsOpen",
+    initialValue: 5,
+  },
+  {
     id: `majCandidates`,
     name: `majCandidates`,
-    initialValue: 4,
+    initialValue: 6,
+  },
+  {
+    id: `minCandidates`,
+    name: `minCandidates`,
+    initialValue: 6,
   },
   {
     id: `percentageMajMajSupport`,
     name: `percentageMajMajSupport`,
     initialValue: 70,
-  },
-  {
-    id: `minCandidates`,
-    name: `minCandidates`,
-    initialValue: 4,
   },
   {
     id: `percentageMinMinSupport`,
@@ -49,6 +49,7 @@ const electionParams = [
 ];
 
 const electionInputs = [
+  // Information about the number of voters and the population demographics
   {
     id: "ballots",
     name: "ballots",
@@ -56,6 +57,7 @@ const electionInputs = [
     step: 10,
     min: 10,
     max: 10000,
+    // fullWidth: true,
     label: "Voter Population",
     helperText: "Max 10,000",
     info: "The number of voters in each election simulation",
@@ -66,11 +68,35 @@ const electionInputs = [
     type: "number",
     step: 1,
     min: 1,
-    max: 30,
+    max: 20,
     label: "Spots Up For Election",
-    helperText: "Max 30",
+    helperText: "Max 20",
     info: "The number of open seats open for election in each simulation",
   },
+  // Information about the maj candidates and maj-voter support
+  {
+    id: `majCandidates`,
+    name: `majCandidates`,
+    type: "number",
+    step: 1,
+    min: 1,
+    max: 15,
+    helperText: "Max 15",
+    label: `Number of ${mmLabels.maj} candidates running`,
+    info: `The number of ${mmLabels.maj} candidates running for election in each simulation`,
+  },
+  {
+    id: `minCandidates`,
+    name: `minCandidates`,
+    type: "number",
+    step: 1,
+    min: 1,
+    max: 15,
+    helperText: "Max 15",
+    label: `Number of ${mmLabels.min} candidates running`,
+    info: `The number of ${mmLabels.min} candidates running for election in each simulation`,
+  },
+
   {
     id: `popMajParty`,
     name: `popMajParty`,
@@ -94,7 +120,6 @@ const electionInputs = [
     min: 1,
     max: 100,
     updateTransform: (value) => 100 - value,
-    fullWidth: true,
     minLabel: `1%`,
     maxLabel: `100%`,
     label: `Percent of voters who are ${mmLabels.min}`,
@@ -102,18 +127,6 @@ const electionInputs = [
     info: `Assuming all members of the population vote for either ${mmLabels.min}
     or ${mmLabels.min}, which percentage votes for ${mmLabels.min}
     `,
-  },
-  // Information about the maj candidates and maj-voter support
-  {
-    id: `majCandidates`,
-    name: `majCandidates`,
-    type: "number",
-    step: 1,
-    min: 1,
-    max: 7,
-    label: `Number of ${mmLabels.maj} candidates running`,
-    helperText: "Max 7",
-    info: `The number of ${mmLabels.maj} candidates running for election in each simulation`,
   },
   {
     id: `percentageMajMajSupport`,
@@ -126,38 +139,6 @@ const electionInputs = [
     maxLabel: `100%`,
     label: `${mmLabels.maj} voters typically vote for ${mmLabels.maj} candidates this percent of the time...`,
     helperText: `Max 100%`,
-    // info: `Assuming all members of the population vote for either ${mmLabels.maj}
-    // or ${mmLabels.min}, which percentage votes for ${mmLabels.maj}
-    // `,
-  },
-  {
-    id: `percentageMajMinSupport`,
-    name: `percentageMajMajSupport`,
-    type: "anti-slider",
-    step: 1,
-    min: 1,
-    max: 100,
-    updateTransform: (value) => 100 - value,
-    fullWidth: true,
-    minLabel: `1%`,
-    maxLabel: `100%`,
-    label: `${mmLabels.maj} voters occasionally vote for ${mmLabels.min} candidates this percent of the time...`,
-    helperText: `Max 100%`,
-    // info: `Assuming all members of the population vote for either ${mmLabels.min}
-    // or ${mmLabels.min}, which percentage votes for ${mmLabels.min}
-    // `,
-  },
-  // Information about the min candidates and min-voter support
-  {
-    id: `minCandidates`,
-    name: `minCandidates`,
-    type: "number",
-    step: 1,
-    min: 1,
-    max: 7,
-    label: `Number of ${mmLabels.min} candidates running`,
-    helperText: "Max 7",
-    info: `The number of ${mmLabels.min} candidates running for election in each simulation`,
   },
   {
     id: `percentageMinMinSupport`,
@@ -169,6 +150,19 @@ const electionInputs = [
     minLabel: `1%`,
     maxLabel: `100%`,
     label: `${mmLabels.min} voters typically vote for ${mmLabels.min} candidates this percent of the time...`,
+    helperText: `Max 100%`,
+  },
+  {
+    id: `percentageMajMinSupport`,
+    name: `percentageMajMajSupport`,
+    type: "anti-slider",
+    step: 1,
+    min: 1,
+    max: 100,
+    updateTransform: (value) => 100 - value,
+    minLabel: `1%`,
+    maxLabel: `100%`,
+    label: `${mmLabels.maj} voters occasionally vote for ${mmLabels.min} candidates this percent of the time...`,
     helperText: `Max 100%`,
     // info: `Assuming all members of the population vote for either ${mmLabels.min}
     // or ${mmLabels.min}, which percentage votes for ${mmLabels.min}
@@ -182,14 +176,10 @@ const electionInputs = [
     min: 1,
     max: 100,
     updateTransform: (value) => 100 - value,
-    fullWidth: true,
     minLabel: `1%`,
     maxLabel: `100%`,
     label: `${mmLabels.min} voters occasionally vote for ${mmLabels.maj} candidates this percent of the time...`,
     helperText: `Max 100%`,
-    // info: `Assuming all members of the population vote for either ${mmLabels.min}
-    // or ${mmLabels.min}, which percentage votes for ${mmLabels.min}
-    // `,
   },
 ];
 
@@ -284,6 +274,27 @@ const modelInputs = {
   cambridgeSampler: [],
 };
 
+const simulationParams = [
+  {
+    id: "numSimulations",
+    name: "numSimulations",
+    initialValue: 1,
+  },
+];
+
+const simulationInputs = [
+  {
+    id: "numSimulations",
+    name: "numSimulations",
+    type: "number",
+    min: 1,
+    max: 15,
+    label: "Simulations to Run",
+    helperText: "Max 15",
+    info: "The number of simulations to run in with these parameters",
+  },
+];
+
 function SimulationPage() {
   const paramKeys = [].concat(
     electionParams.map((p) => ({
@@ -291,6 +302,10 @@ function SimulationPage() {
       value: p.initialValue,
     })),
     modelParams.map((p) => ({
+      name: p.name,
+      value: p.initialValue,
+    })),
+    simulationParams.map((p) => ({
       name: p.name,
       value: p.initialValue,
     }))
@@ -322,8 +337,10 @@ function SimulationPage() {
         </Col>
         <Col xl={12} className="pt-2 d-flex flex-column">
           <SimulationResults
+            formData={formData}
+            setFormData={setFormData}
+            formInputs={simulationInputs}
             simulationResults={simulationResults}
-            queryParams={{ ...formData }}
             setSimulationResults={setSimulationResults}
           />
         </Col>

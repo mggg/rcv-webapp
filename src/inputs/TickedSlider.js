@@ -39,7 +39,7 @@ function TickedSlider({
       />
       <datalist
         id={`${id}-steplist`}
-        className="d-flex w-100 justify-content-between"
+        className="d-flex w-100 justify-content-between ticked-slider-datalist"
       >
         {ticks.map((tick, i) => (
           <option key={tick} value={tick} />

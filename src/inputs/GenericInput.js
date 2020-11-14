@@ -1,5 +1,4 @@
 import React from "react";
-import _ from "lodash";
 import NumberInput from "./NumberInput";
 import Slider from "./Slider";
 import TickedSlider from "./TickedSlider";
@@ -8,7 +7,17 @@ function GenericInput({ param, formData, setFormData, formInputs }) {
   const handleChange = (param) => (event) => {
     const transformFunction = param.updateTransform || ((arg) => arg);
     const formDataCopy = { ...formData };
-    formDataCopy[event.target.name] = transformFunction(event.target.value);
+    formDataCopy[event.target.name] = transformFunction(
+      event.target.value,
+      event.target.name,
+      formDataCopy
+    );
+    console.log("event.target.value", event.target.value);
+    console.log("formDataCopy", formDataCopy);
+    console.log(
+      "formDataCopy[event.target.name]",
+      formDataCopy[event.target.name]
+    );
     setFormData(formDataCopy);
   };
 
@@ -17,8 +26,19 @@ function GenericInput({ param, formData, setFormData, formInputs }) {
       return (
         <NumberInput
           {...param}
+          max={param.maxVariable ? formData[param.maxVariable] : param.max}
           handleChange={handleChange(param)}
           value={formData[param.name]}
+        />
+      );
+
+    case "anti-number":
+      return (
+        <NumberInput
+          {...param}
+          max={param.maxVariable ? formData[param.maxVariable] : param.max}
+          handleChange={handleChange(param)}
+          value={formData[param.maxVariable] - formData[param.name]}
         />
       );
     case "slider":
@@ -37,7 +57,6 @@ function GenericInput({ param, formData, setFormData, formInputs }) {
           value={formData[param.name]}
         />
       );
-
     case "anti-slider":
       return (
         <Slider
