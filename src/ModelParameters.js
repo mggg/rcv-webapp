@@ -2,56 +2,14 @@ import React, { useState } from "react";
 import { Nav, Card } from "react-bootstrap";
 import GenericInput from "./inputs/GenericInput";
 
-const models = [
-  {
-    id: "luce",
-    name: "luce",
-    display: "Luce",
-  },
-  {
-    id: "bradleyTerry",
-    name: "bradleyTerry",
-    display: "Bradley-Terry",
-  },
-  {
-    id: "alternatingCrossover",
-    name: "alternatingCrossover",
-    display: "Alternating-Crossover",
-  },
-  {
-    id: "cambridgeSampler",
-    name: "cambridgeSampler",
-    display: "Cambridge Sampler",
-  },
-];
-
-function renderSelectedModelParameters(
-  selectedModel,
+function ModelParameters({
+  filterInputsByModelType,
   formData,
+  formInputs,
+  models,
   setFormData,
-  formInputs
-) {
-  // const SelectedModelParameters =
-  //   models.find((model) => model.name === selectedModel) &&
-  //   models.find((model) => model.name === selectedModel).component;
-  return (
-    <>
-      {formInputs[selectedModel].map((param) => {
-        return (
-          <GenericInput
-            key={param.id}
-            param={param}
-            formData={formData}
-            setFormData={setFormData}
-          />
-        );
-      })}
-    </>
-  );
-}
-
-function ModelParameters({ formData, setFormData, formInputs }) {
-  const [selectedModel, setSelectedModel] = useState(models[0].name);
+}) {
+  const [selectedModel, setSelectedModel] = useState(models[2].dataid);
   return (
     <>
       <h1>Model Parameters</h1>
@@ -59,25 +17,27 @@ function ModelParameters({ formData, setFormData, formInputs }) {
         <Card.Header>
           <Nav
             variant="tabs"
-            defaultActiveKey={models[0].name}
+            defaultActiveKey={selectedModel}
             onSelect={(k) => {
               setSelectedModel(k);
             }}
           >
             {models.map((model) => (
               <Nav.Item key={model.id}>
-                <Nav.Link eventKey={model.name}>{model.display}</Nav.Link>
+                <Nav.Link eventKey={model.dataid}>{model.display}</Nav.Link>
               </Nav.Item>
             ))}
           </Nav>
         </Card.Header>
-        <Card.Body className="">
-          {renderSelectedModelParameters(
-            selectedModel,
-            formData,
-            setFormData,
-            formInputs
-          )}
+        <Card.Body className="d-flex flex-wrap align-content-start">
+          {filterInputsByModelType(formInputs, selectedModel).map((param) => (
+            <GenericInput
+              key={param.id}
+              param={param}
+              formData={formData}
+              setFormData={setFormData}
+            />
+          ))}
         </Card.Body>
       </Card>
     </>

@@ -1,23 +1,22 @@
 import React from "react";
 
 function NumberInput({
-  label,
+  dataid,
+  fullWidth,
   handleChange,
-  value,
-  name,
-  min,
+  helperText,
+  label,
   max,
   maxVariable,
-  fullWidth,
-  helperText,
+  min,
+  value,
   step = 1,
 }) {
-  const widthClass = fullWidth ? " w-100 " : " w-50 ";
+  const widthClass = fullWidth ? " col-12 " : " col-sm-6 ";
   return (
     <div className={`pr-2 pl-2 ${widthClass}`}>
       <label className="input-label">{label}</label>
       <input
-        name={name}
         type="number"
         onChange={handleChange}
         value={value}

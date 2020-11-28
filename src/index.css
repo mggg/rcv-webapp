@@ -1,10 +1,16 @@
+html {
+  font-size: 14px;
+}
+
 body {
+  /* font-family: "Castoro" !important; */
+  /* font-family: "Open Sans" !important; */
+  font-family: "Lato" !important;
   margin: 0;
-  font-family: "Open Sans";
 }
 
 h1 {
-  font-size: 1.75rem;
+  font-size: 1.85rem;
 }
 
 .parameter-container .input-label {
@@ -13,21 +19,36 @@ h1 {
   max-width: 75%;
 }
 .parameter-container > .card-body {
-  padding: 0.75rem;
+  padding: 0.85rem;
   padding-top: 0;
 }
 
 .parameter-container > .card-body > * {
-  margin-top: 0.75rem;
+  margin-top: 0.85rem;
 }
 
 .input-helper-text {
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-style: italic;
 }
 
 .input-value {
   font-weight: 600;
+}
+
+/* Give inputs a hover text */
+input:hover {
+  cursor: pointer;
+}
+
+label[for] {
+  cursor: pointer;
+}
+
+.input-option-text {
+  font-size: 0.85rem;
+  margin-bottom: 0;
+  margin-left: 0.75rem;
 }
 
 .ticked-slider-datalist {

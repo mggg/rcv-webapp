@@ -1,5 +1,6 @@
 import React from "react";
 import NumberInput from "./NumberInput";
+import RadioInput from "./RadioInput";
 import Slider from "./Slider";
 import TickedSlider from "./TickedSlider";
 
@@ -7,16 +8,10 @@ function GenericInput({ param, formData, setFormData, formInputs }) {
   const handleChange = (param) => (event) => {
     const transformFunction = param.updateTransform || ((arg) => arg);
     const formDataCopy = { ...formData };
-    formDataCopy[event.target.name] = transformFunction(
+    formDataCopy[param.dataid] = transformFunction(
       event.target.value,
-      event.target.name,
+      param.dataid,
       formDataCopy
-    );
-    console.log("event.target.value", event.target.value);
-    console.log("formDataCopy", formDataCopy);
-    console.log(
-      "formDataCopy[event.target.name]",
-      formDataCopy[event.target.name]
     );
     setFormData(formDataCopy);
   };
@@ -28,7 +23,7 @@ function GenericInput({ param, formData, setFormData, formInputs }) {
           {...param}
           max={param.maxVariable ? formData[param.maxVariable] : param.max}
           handleChange={handleChange(param)}
-          value={formData[param.name]}
+          value={formData[param.dataid]}
         />
       );
 
@@ -38,7 +33,7 @@ function GenericInput({ param, formData, setFormData, formInputs }) {
           {...param}
           max={param.maxVariable ? formData[param.maxVariable] : param.max}
           handleChange={handleChange(param)}
-          value={formData[param.maxVariable] - formData[param.name]}
+          value={formData[param.maxVariable] - formData[param.dataid]}
         />
       );
     case "slider":
@@ -46,7 +41,7 @@ function GenericInput({ param, formData, setFormData, formInputs }) {
         <Slider
           {...param}
           handleChange={handleChange(param)}
-          value={formData[param.name]}
+          value={formData[param.dataid]}
         />
       );
     case "ticked-slider":
@@ -54,7 +49,7 @@ function GenericInput({ param, formData, setFormData, formInputs }) {
         <TickedSlider
           {...param}
           handleChange={handleChange(param)}
-          value={formData[param.name]}
+          value={formData[param.dataid]}
         />
       );
     case "anti-slider":
@@ -62,7 +57,16 @@ function GenericInput({ param, formData, setFormData, formInputs }) {
         <Slider
           {...param}
           handleChange={handleChange(param)}
-          value={param.max - formData[param.name]}
+          value={param.max - formData[param.dataid] + param.min}
+        />
+      );
+    case "radio":
+      return (
+        <RadioInput
+          {...param}
+          handleChange={handleChange(param)}
+          value={formData[param.dataid]}
+          formData={formData}
         />
       );
     default:

@@ -7,7 +7,7 @@ function ElectionParameters({ formData, setFormData, formInputs }) {
     <>
       <h1>Election Parameters</h1>
       <Card className="parameter-container flex-grow-1">
-        <Card.Body className="d-flex flex-wrap">
+        <Card.Body className="d-flex flex-wrap align-content-start">
           {formInputs.map((param) => {
             return (
               <GenericInput

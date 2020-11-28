@@ -1,22 +1,37 @@
 import React from "react";
 
 function Slider({
+  dataid,
+  fullWidth,
+  handleChange,
+  helperText,
   id,
   label,
-  handleChange,
-  value,
-  name,
-  helperText,
-  min,
   max,
-  minLabel,
   maxLabel,
+  min,
+  minLabel,
+  value,
   step = 1,
 }) {
+  const widthClass = fullWidth ? " col-12 " : " col-sm-6 ";
+
   return (
-    <div className="d-flex flex-wrap w-50 pr-2 pl-2">
-      <label className="input-label w-100">{label}</label>
-      <span className="ml-auto align-self-center input-value">{value}%</span>
+    <div className={`pr-2 pl-2 ${widthClass}`}>
+      <div className="row align-items-center">
+        <label className="input-label col-8">{label}</label>
+        <div className="col-4 text-right">
+          <input
+            className="align-self-center input-value"
+            onChange={handleChange}
+            type="number"
+            value={value}
+            min={min}
+            max={max}
+            step={step}
+          />
+        </div>
+      </div>
       <div className="d-flex justify-content-between w-100">
         <span className="input-helper-text align-self-center mr-1">
           {minLabel}
@@ -29,7 +44,6 @@ function Slider({
         type="range"
         className="w-100"
         onChange={handleChange}
-        name={name}
         value={value}
         min={min}
         max={max}
