@@ -6,7 +6,7 @@ import "./App.css";
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <AppHeader routes={routes} />
       <Switch>
         {routes.map((route, i) => (

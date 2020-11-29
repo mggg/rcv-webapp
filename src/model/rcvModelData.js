@@ -1,25 +1,30 @@
 import { mmLabels } from "./constants";
+import _ from "lodash";
 
 const models = [
   {
     id: "plackettLuce",
     dataid: "plackettLuce",
     display: "Plackett-Luce",
+    apiEndpoint: "plackettLuce",
   },
   {
     id: "bradleyTerry",
     dataid: "bradleyTerry",
     display: "Bradley-Terry",
+    apiEndpoint: "bradleyTerry",
   },
   {
     id: "alternatingCrossover",
     dataid: "alternatingCrossover",
     display: "Alternating-Crossover",
+    apiEndpoint: "alternatingCrossover",
   },
   {
     id: "cambridgeSampler",
     dataid: "cambridgeSampler",
     display: "Cambridge Sampler",
+    apiEndpoint: "cambridgeSampler",
   },
 ];
 
@@ -73,44 +78,44 @@ const modelParams = [
   {
     id: `majMajCandidateAgreement-alternatingCrossover`,
     dataid: `majMajCandidateAgreement-alternatingCrossover`,
-    initialValue: 0,
+    initialValue: 1,
   },
   {
     id: `majMinCandidateAgreement-alternatingCrossover`,
     dataid: `majMinCandidateAgreement-alternatingCrossover`,
-    initialValue: 0,
+    initialValue: 1,
   },
   {
     id: `minMinCandidateAgreement-alternatingCrossover`,
     dataid: `minMinCandidateAgreement-alternatingCrossover`,
-    initialValue: 0,
+    initialValue: 1,
   },
   {
     id: `minMajCandidateAgreement-alternatingCrossover`,
     dataid: `minMajCandidateAgreement-alternatingCrossover`,
-    initialValue: 0,
+    initialValue: 1,
   },
   ////////////////////////////
   // CambridgeSampler
   {
     id: `majMajCandidateAgreement-cambridgeSampler`,
     dataid: `majMajCandidateAgreement-cambridgeSampler`,
-    initialValue: 0,
+    initialValue: 1,
   },
   {
     id: `majMinCandidateAgreement-cambridgeSampler`,
     dataid: `majMinCandidateAgreement-cambridgeSampler`,
-    initialValue: 0,
+    initialValue: 1,
   },
   {
     id: `minMinCandidateAgreement-cambridgeSampler`,
     dataid: `minMinCandidateAgreement-cambridgeSampler`,
-    initialValue: 0,
+    initialValue: 1,
   },
   {
     id: `minMajCandidateAgreement-cambridgeSampler`,
     dataid: `minMajCandidateAgreement-cambridgeSampler`,
-    initialValue: 0,
+    initialValue: 1,
   },
 ];
 
@@ -225,12 +230,12 @@ const modelInputs = [
     options: [
       {
         id: "uniform-majMajCandidateAgreement-alternatingCrossover",
-        value: 0,
+        value: 1,
         label: `Yes, ${mmLabels.maj} voters rank ${mmLabels.maj} candidates the same way`,
       },
       {
         id: "random-majMajCandidateAgreement-alternatingCrossover",
-        value: 1,
+        value: 0,
         label: `No, ${mmLabels.maj} voters rank ${mmLabels.maj} candidates differently`,
       },
     ],
@@ -243,12 +248,12 @@ const modelInputs = [
     options: [
       {
         id: "uniform-majMinCandidateAgreement-alternatingCrossover",
-        value: 0,
+        value: 1,
         label: `Yes, ${mmLabels.maj} voters rank ${mmLabels.min} candidates the same way`,
       },
       {
         id: "random-majMinCandidateAgreement-alternatingCrossover",
-        value: 1,
+        value: 0,
         label: `No, ${mmLabels.maj} voters rank ${mmLabels.min} candidates differently`,
       },
     ],
@@ -261,12 +266,12 @@ const modelInputs = [
     options: [
       {
         id: "uniform-minMinCandidateAgreement-alternatingCrossover",
-        value: 0,
+        value: 1,
         label: `Yes, ${mmLabels.min} voters rank ${mmLabels.min} candidates the same way`,
       },
       {
         id: "random-minMinCandidateAgreement-alternatingCrossover",
-        value: 1,
+        value: 0,
         label: `No, ${mmLabels.min} voters rank ${mmLabels.min} candidates differently`,
       },
     ],
@@ -279,17 +284,17 @@ const modelInputs = [
     options: [
       {
         id: "uniform-minMajCandidateAgreement-alternatingCrossover",
-        value: 0,
+        value: 1,
         label: `Yes, ${mmLabels.min} voters rank ${mmLabels.maj} candidates the same way`,
       },
       {
         id: "random-minMajCandidateAgreement-alternatingCrossover",
-        value: 1,
+        value: 0,
         label: `No, ${mmLabels.min} voters rank ${mmLabels.maj} candidates differently`,
       },
     ],
   },
-  ////////////////////////////
+  /////////////1//////////////
   // Cambridge-Sampler
   {
     id: `majMajCandidateAgreement-cambridgeSampler`,
@@ -299,12 +304,12 @@ const modelInputs = [
     options: [
       {
         id: "uniform-majMajCandidateAgreement-cambridgeSampler",
-        value: 0,
+        value: 1,
         label: `Yes, ${mmLabels.maj} voters rank ${mmLabels.maj} candidates the same way`,
       },
       {
         id: "random-majMajCandidateAgreement-cambridgeSampler",
-        value: 1,
+        value: 0,
         label: `No, ${mmLabels.maj} voters rank ${mmLabels.maj} candidates differently`,
       },
     ],
@@ -317,12 +322,12 @@ const modelInputs = [
     options: [
       {
         id: "uniform-majMinCandidateAgreement-cambridgeSampler",
-        value: 0,
+        value: 1,
         label: `Yes, ${mmLabels.maj} voters rank ${mmLabels.min} candidates the same way`,
       },
       {
         id: "random-majMinCandidateAgreement-cambridgeSampler",
-        value: 1,
+        value: 0,
         label: `No, ${mmLabels.maj} voters rank ${mmLabels.min} candidates differently`,
       },
     ],
@@ -335,12 +340,12 @@ const modelInputs = [
     options: [
       {
         id: "uniform-minMinCandidateAgreement-cambridgeSampler",
-        value: 0,
+        value: 1,
         label: `Yes, ${mmLabels.min} voters rank ${mmLabels.min} candidates the same way`,
       },
       {
         id: "random-minMinCandidateAgreement-cambridgeSampler",
-        value: 1,
+        value: 0,
         label: `No, ${mmLabels.min} voters rank ${mmLabels.min} candidates differently`,
       },
     ],
@@ -353,24 +358,54 @@ const modelInputs = [
     options: [
       {
         id: "uniform-minMajCandidateAgreement-cambridgeSampler",
-        value: 0,
+        value: 1,
         label: `Yes, ${mmLabels.min} voters rank ${mmLabels.maj} candidates the same way`,
       },
       {
         id: "random-minMajCandidateAgreement-cambridgeSampler",
-        value: 1,
+        value: 0,
         label: `No, ${mmLabels.min} voters rank ${mmLabels.maj} candidates differently`,
       },
     ],
   },
 ];
 
+// Given a list of inputs, filter down to only those that have a given modelType
 function filterInputsByModelType(inputs, modelType) {
   return inputs.filter((input) => {
     const id = input.id;
     const idSplitFromType = id.split("-");
-    return idSplitFromType[1] && idSplitFromType[1] === modelType;
+    const hasModelType = Boolean(idSplitFromType[1]);
+    return hasModelType && idSplitFromType[1] === modelType;
   });
 }
 
-export { models, modelParams, modelInputs, filterInputsByModelType };
+// Given a formDataObject, filter down to inputs that have no modelType or have a given modelType
+function filterDataByModelTypes(formObject, modelType) {
+  return _.pick(
+    formObject,
+    Object.keys(formObject).filter((key) => {
+      const keySplitFromType = key.split("-");
+      const hasModelType = Boolean(keySplitFromType[1]);
+      // Get keys that either don't have a model type
+      //  or have a model type that matches this modelType
+      return (
+        !hasModelType || (hasModelType && keySplitFromType[1] === modelType)
+      );
+    })
+  );
+}
+
+function getApiEndpoint(selectedModelDataid) {
+  return models.find((model) => model.dataid === selectedModelDataid)
+    .apiEndpoint;
+}
+
+export {
+  models,
+  modelParams,
+  modelInputs,
+  filterInputsByModelType,
+  filterDataByModelTypes,
+  getApiEndpoint,
+};

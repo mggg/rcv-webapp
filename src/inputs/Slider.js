@@ -11,18 +11,20 @@ function Slider({
   maxLabel,
   min,
   minLabel,
-  value,
+  padding = true,
   step = 1,
+  value,
 }) {
   const widthClass = fullWidth ? " col-12 " : " col-sm-6 ";
+  const paddingClass = padding ? " pr-2 pl-2 " : "";
 
   return (
-    <div className={`pr-2 pl-2 ${widthClass}`}>
+    <div className={`${paddingClass} ${widthClass}`}>
       <div className="row align-items-center">
         <label className="input-label col-8">{label}</label>
         <div className="col-4 text-right">
           <input
-            className="align-self-center input-value"
+            className="align-self-center input-value text-right"
             onChange={handleChange}
             type="number"
             value={value}

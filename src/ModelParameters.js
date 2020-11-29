@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Nav, Card } from "react-bootstrap";
 import GenericInput from "./inputs/GenericInput";
+import {
+  models,
+  modelInputs,
+  filterInputsByModelType,
+} from "./model/rcvModelData";
 
 function ModelParameters({
-  filterInputsByModelType,
   formData,
-  formInputs,
-  models,
+  selectedModelDataid,
   setFormData,
+  setSelectedModelDataid,
 }) {
-  const [selectedModel, setSelectedModel] = useState(models[2].dataid);
   return (
     <>
       <h1>Model Parameters</h1>
@@ -17,9 +20,9 @@ function ModelParameters({
         <Card.Header>
           <Nav
             variant="tabs"
-            defaultActiveKey={selectedModel}
+            defaultActiveKey={selectedModelDataid}
             onSelect={(k) => {
-              setSelectedModel(k);
+              setSelectedModelDataid(k);
             }}
           >
             {models.map((model) => (
@@ -30,18 +33,20 @@ function ModelParameters({
           </Nav>
         </Card.Header>
         <Card.Body className="d-flex flex-wrap align-content-start">
-          {filterInputsByModelType(formInputs, selectedModel).map((param) => (
-            <GenericInput
-              key={param.id}
-              param={param}
-              formData={formData}
-              setFormData={setFormData}
-            />
-          ))}
+          {filterInputsByModelType(modelInputs, selectedModelDataid).map(
+            (param) => (
+              <GenericInput
+                key={param.id}
+                param={param}
+                formData={formData}
+                setFormData={setFormData}
+              />
+            )
+          )}
         </Card.Body>
       </Card>
     </>
   );
 }
 
-export default ModelParameters;
+export default React.memo(ModelParameters);

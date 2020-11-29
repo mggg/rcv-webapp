@@ -5,12 +5,14 @@ html {
 body {
   /* font-family: "Castoro" !important; */
   /* font-family: "Open Sans" !important; */
-  font-family: "Lato" !important;
+  /* font-family: "Lato" !important; */
+  font-family: "Source Sans Pro" !important;
   margin: 0;
 }
 
 h1 {
   font-size: 1.85rem;
+  padding-top: 0.5rem;
 }
 
 .parameter-container .input-label {
@@ -41,6 +43,12 @@ input:hover {
   cursor: pointer;
 }
 
+@-moz-document url-prefix() {
+  input[type="number"] {
+    max-width: 75px;
+  }
+}
+
 label[for] {
   cursor: pointer;
 }
@@ -56,4 +64,16 @@ label[for] {
 }
 .ticked-slider-datalist > * {
   padding: 0;
+}
+
+/* Styling the printed page */
+@page {
+  size: auto;
+  margin: 20mm;
+}
+
+.btn,
+.card,
+.nav-link {
+  border-radius: 0 !important;
 }

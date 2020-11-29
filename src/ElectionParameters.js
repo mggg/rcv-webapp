@@ -1,14 +1,15 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import GenericInput from "./inputs/GenericInput";
+import { electionInputs } from "./model/electionData";
 
-function ElectionParameters({ formData, setFormData, formInputs }) {
+function ElectionParameters({ formData, setFormData }) {
   return (
     <>
       <h1>Election Parameters</h1>
       <Card className="parameter-container flex-grow-1">
         <Card.Body className="d-flex flex-wrap align-content-start">
-          {formInputs.map((param) => {
+          {electionInputs.map((param) => {
             return (
               <GenericInput
                 key={param.id}
@@ -24,4 +25,4 @@ function ElectionParameters({ formData, setFormData, formInputs }) {
   );
 }
 
-export default ElectionParameters;
+export default React.memo(ElectionParameters);

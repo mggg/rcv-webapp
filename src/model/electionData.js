@@ -131,18 +131,6 @@ const electionInputs = [
     helperText: `Max 99%`,
   },
   {
-    id: `percentageMinMinSupport`,
-    dataid: `percentageMinMinSupport`,
-    type: "slider",
-    step: 1,
-    min: 1,
-    max: 99,
-    minLabel: `1%`,
-    maxLabel: `99%`,
-    label: `${mmLabels.min} voters typically vote for ${mmLabels.min} candidates this percent of the time...`,
-    helperText: `Max 99%`,
-  },
-  {
     id: `percentageMajMinSupport`,
     dataid: `percentageMajMajSupport`,
     type: "anti-slider",
@@ -159,6 +147,18 @@ const electionInputs = [
     // `,
   },
   {
+    id: `percentageMinMinSupport`,
+    dataid: `percentageMinMinSupport`,
+    type: "slider",
+    step: 1,
+    min: 1,
+    max: 99,
+    minLabel: `1%`,
+    maxLabel: `99%`,
+    label: `${mmLabels.min} voters typically vote for ${mmLabels.min} candidates this percent of the time...`,
+    helperText: `Max 99%`,
+  },
+  {
     id: `percentageMinMajSupport`,
     dataid: `percentageMinMinSupport`,
     type: "anti-slider",
@@ -173,4 +173,8 @@ const electionInputs = [
   },
 ];
 
-export { electionParams, electionInputs };
+function getSeats(formData) {
+  return parseInt(formData["seatsOpen"]);
+}
+
+export { electionParams, electionInputs, getSeats };

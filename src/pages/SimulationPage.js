@@ -3,66 +3,78 @@ import { Container, Row, Col } from "react-bootstrap";
 import ElectionParameters from "../ElectionParameters";
 import ModelParameters from "../ModelParameters";
 import SimulationResults from "../SimulationResults";
+import { electionParams, getSeats } from "../model/electionData";
 import {
-  models,
-  modelParams,
-  modelInputs,
-  filterInputsByModelType,
-} from "../model/rcvModelData";
-import { electionParams, electionInputs } from "../model/electionData";
-import { simulationParams, simulationInputs } from "../model/simulationData";
-
-// A common lookup table for Majority-Minority labels
+  simulationParams,
+  getElectionSimulationCount,
+} from "../model/simulationData";
+import { models, modelParams } from "../model/rcvModelData";
 
 function SimulationPage() {
-  const paramKeys = [].concat(
-    electionParams.map((p) => ({
-      dataid: p.dataid,
-      value: p.initialValue,
-    })),
-    modelParams.map((p) => ({
-      dataid: p.dataid,
-      value: p.initialValue,
-    })),
-    simulationParams.map((p) => ({
-      dataid: p.dataid,
-      value: p.initialValue,
-    }))
+  // Set the state of the various parameters
+  const initialElectionState = electionParams.reduce((accum, p) => {
+    accum[p.dataid] = p.initialValue;
+    return accum;
+  }, {});
+  const initialModelState = modelParams.reduce((accum, p) => {
+    accum[p.dataid] = p.initialValue;
+    return accum;
+  }, {});
+  const initialSimulationState = simulationParams.reduce((accum, p) => {
+    accum[p.dataid] = p.initialValue;
+    return accum;
+  }, {});
+  const [electionState, setElectionState] = useState(initialElectionState);
+  const [modelState, setModelState] = useState(initialModelState);
+  const [simulationState, setSimulationState] = useState(
+    initialSimulationState
   );
-  // Iterate over all params to set our initial values appropriately
-  const initialState = {};
-  paramKeys.forEach((p) => {
-    initialState[p.dataid] = p.value;
-  });
-  const [formData, setFormData] = useState(initialState);
-  const [simulationResults, setSimulationResults] = useState({});
+
+  // Store the currently selected model
+  const [selectedModelDataid, setSelectedModelDataid] = useState(
+    models[0].dataid
+  );
+
+  // Combine separate input states
+  const combineFormData = () => {
+    return {
+      ...electionState,
+      ...modelState,
+      ...simulationState,
+    };
+  };
+
+  const getSeatsFromState = () => {
+    return getSeats(electionState);
+  };
+  const getElectionSimulationCountFromState = () => {
+    return getElectionSimulationCount(simulationState);
+  };
 
   return (
     <Container fluid>
       <Row style={{ height: "max" }}>
-        <Col className="pt-2 d-flex flex-column">
+        <Col className="pb-2 d-flex flex-column">
           <ElectionParameters
-            formData={formData}
-            setFormData={setFormData}
-            formInputs={electionInputs}
+            formData={electionState}
+            setFormData={setElectionState}
           />
-        </Col>
-        <Col className="pt-2 d-flex flex-column">
           <ModelParameters
             models={models}
-            formData={formData}
-            setFormData={setFormData}
-            formInputs={modelInputs}
-            filterInputsByModelType={filterInputsByModelType}
+            selectedModelDataid={selectedModelDataid}
+            setSelectedModelDataid={setSelectedModelDataid}
+            formData={modelState}
+            setFormData={setModelState}
           />
         </Col>
-        <Col xl={12} className="pt-2 d-flex flex-column">
+        <Col md={5} className="pb-2 d-flex flex-column">
           <SimulationResults
-            formData={formData}
-            setFormData={setFormData}
-            formInputs={simulationInputs}
-            simulationResults={simulationResults}
-            setSimulationResults={setSimulationResults}
+            combineFormData={combineFormData}
+            formData={simulationState}
+            getSeats={getSeatsFromState}
+            getElectionSimulationCount={getElectionSimulationCountFromState}
+            setFormData={setSimulationState}
+            selectedModelDataid={selectedModelDataid}
           />
         </Col>
       </Row>

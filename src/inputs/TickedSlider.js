@@ -12,13 +12,16 @@ function TickedSlider({
   maxLabel,
   min,
   minLabel,
-  value,
+  padding = true,
   step = 1,
+  value,
 }) {
   const ticks = _.range(min, max + step, step);
   const widthClass = fullWidth ? " col-12 " : " col-sm-6 ";
+  const paddingClass = padding ? " pr-2 pl-2 " : "";
+
   return (
-    <div className={`pr-2 pl-2 ${widthClass}`}>
+    <div className={`${paddingClass} ${widthClass}`}>
       <label className="input-label">{label}</label>
       <div className="d-flex justify-content-between">
         <span className="input-helper-text align-self-center mr-1 text-left">
