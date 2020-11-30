@@ -17,7 +17,7 @@ const models = [
   {
     id: "alternatingCrossover",
     dataid: "alternatingCrossover",
-    display: "Alternating-Crossover",
+    display: "Alternating Crossover",
     apiEndpoint: "alternatingCrossover",
   },
   {

@@ -3,7 +3,7 @@ import _ from "lodash";
 import {
   VictoryChart,
   VictoryHistogram,
-  VictoryVoronoiContainer,
+  // VictoryVoronoiContainer,
   VictoryAxis,
   VictoryLabel,
   VictoryTooltip,
@@ -32,22 +32,21 @@ class SimulationVisualization extends React.Component {
     }
 
     const bins = _.range(0, maxSeats + 2, 1);
-    console.log("bins", bins);
     return (
       <VictoryChart
-        style={{ fontSize: 12 }}
+        style={{ parent: { fontSize: 12 } }}
         // Define hover behavior
-        containerComponent={
-          <VictoryVoronoiContainer
-            voronoiDimension="x"
-            labelComponent={<VictoryTooltip constrainToVisibleArea />}
-            labels={({ datum }) =>
-              `# Elections with ${datum.x - 0.5} ${mmLabels.min} winner(s)\n${
-                datum.y
-              }`
-            }
-          />
-        }
+        // containerComponent={
+        //   <VictoryVoronoiContainer
+        //     voronoiDimension="x"
+        //     labelComponent={<VictoryTooltip constrainToVisibleArea />}
+        //     labels={({ datum }) =>
+        //       `# Elections with ${datum.x - 0.5} ${mmLabels.min} winner(s)\n${
+        //         datum.y
+        //       }`
+        //     }
+        //   />
+        // }
       >
         {/* Display data */}
         <VictoryHistogram
@@ -55,10 +54,20 @@ class SimulationVisualization extends React.Component {
           cornerRadius={0}
           data={data}
           bins={bins}
+          labelComponent={<VictoryTooltip constrainToVisibleArea />}
+          labels={({ datum }) =>
+            `# Elections with ${datum.x - 0.5} ${mmLabels.min} winner(s)\n${
+              datum.y
+            }`
+          }
         />
         {/* Chart Title */}
         <VictoryLabel
-          text={`${mmLabels.min} Candidates Elected \n Across ${electionSimulations} Election(s) `}
+          text={
+            _.isUndefined(electionSimulations)
+              ? `No Data`
+              : `${mmLabels.min} Candidates Elected \n Across ${electionSimulations} Election(s) `
+          }
           x={225}
           y={18}
           textAnchor="middle"
