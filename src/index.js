@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "fontsource-open-sans";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 

@@ -3,7 +3,7 @@ import _ from "lodash";
 import {
   VictoryChart,
   VictoryHistogram,
-  // VictoryVoronoiContainer,
+  VictoryContainer,
   VictoryAxis,
   VictoryLabel,
   VictoryTooltip,
@@ -11,6 +11,13 @@ import {
 import { mmLabels } from "./model/constants";
 
 class SimulationVisualization extends React.Component {
+  constructor(props) {
+    super(props);
+    this.chartRef = React.createRef(null);
+    this.setChartRef = (ref) => {
+      this.chartRef = ref;
+    };
+  }
   // Only re-render when the simulationResults are new
   shouldComponentUpdate(nextProps, nextState) {
     return nextProps.simulationResults !== this.props.simulationResults;
@@ -33,60 +40,63 @@ class SimulationVisualization extends React.Component {
 
     const bins = _.range(0, maxSeats + 2, 1);
     return (
-      <VictoryChart
-        style={{ parent: { fontSize: 12 } }}
-        // Define hover behavior
-        // containerComponent={
-        //   <VictoryVoronoiContainer
-        //     voronoiDimension="x"
-        //     labelComponent={<VictoryTooltip constrainToVisibleArea />}
-        //     labels={({ datum }) =>
-        //       `# Elections with ${datum.x - 0.5} ${mmLabels.min} winner(s)\n${
-        //         datum.y
-        //       }`
-        //     }
-        //   />
-        // }
-      >
-        {/* Display data */}
-        <VictoryHistogram
-          style={{ labels: { fill: "black" } }}
-          cornerRadius={0}
-          data={data}
-          bins={bins}
-          labelComponent={<VictoryTooltip constrainToVisibleArea />}
-          labels={({ datum }) =>
-            `# Elections with ${datum.x - 0.5} ${mmLabels.min} winner(s)\n${
-              datum.y
-            }`
+      <>
+        <button
+          onClick={() => {
+            console.log(this.chartRef);
+            console.log(this.chartRef.svgRef);
+          }}
+        >
+          Log ref
+        </button>
+        <VictoryChart
+          style={{ parent: { fontSize: 12 } }}
+          containerRef={this.chartRef}
+          // Define hover behavior
+          containerComponent={
+            <VictoryContainer containerRef={this.setChartRef} />
           }
-        />
-        {/* Chart Title */}
-        <VictoryLabel
-          text={
-            _.isUndefined(electionSimulations)
-              ? `No Data`
-              : `${mmLabels.min} Candidates Elected \n Across ${electionSimulations} Election(s) `
-          }
-          x={225}
-          y={18}
-          textAnchor="middle"
-        />
-        {/* X axis */}
-        <VictoryAxis
-          label={`Frequency of outcome`}
-          textAnchor="middle"
-          axisLabelComponent={<VictoryLabel dy={-12} />}
-          dependentAxis
-        />
-        {/* Y Axis */}
-        <VictoryAxis
-          label={`Number of ${mmLabels.min} candidates elected`}
-          tickLabelComponent={<VictoryLabel dy={-5} dx={200 / bins.length} />}
-          // tickCount={maxSeats}
-          tickValues={bins.slice(0, bins.length - 1)}
-        />
-      </VictoryChart>
+        >
+          {/* Display data */}
+          <VictoryHistogram
+            style={{ labels: { fill: "black" } }}
+            cornerRadius={0}
+            data={data}
+            bins={bins}
+            labelComponent={<VictoryTooltip constrainToVisibleArea />}
+            labels={({ datum }) =>
+              `# Elections with ${datum.x - 0.5} ${mmLabels.min} winner(s)\n${
+                datum.y
+              }`
+            }
+          />
+          {/* Chart Title */}
+          <VictoryLabel
+            text={
+              _.isUndefined(electionSimulations)
+                ? `No Data`
+                : `${mmLabels.min} Candidates Elected \n Across ${electionSimulations} Election(s) `
+            }
+            x={225}
+            y={18}
+            textAnchor="middle"
+          />
+          {/* X axis */}
+          <VictoryAxis
+            label={`Frequency of outcome`}
+            textAnchor="middle"
+            axisLabelComponent={<VictoryLabel dy={-12} />}
+            dependentAxis
+          />
+          {/* Y Axis */}
+          <VictoryAxis
+            label={`Number of ${mmLabels.min} candidates elected`}
+            tickLabelComponent={<VictoryLabel dy={-5} dx={200 / bins.length} />}
+            // tickCount={maxSeats}
+            tickValues={bins.slice(0, bins.length - 1)}
+          />
+        </VictoryChart>
+      </>
     );
   }
 }
