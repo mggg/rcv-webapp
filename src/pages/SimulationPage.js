@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ElectionParameters from "../ElectionParameters";
 import ModelParameters from "../ModelParameters";
@@ -9,6 +9,7 @@ import {
   getElectionSimulationCount,
 } from "../model/simulationData";
 import { models, modelParams } from "../model/rcvModelData";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 function SimulationPage() {
   // Set the state of the various parameters
@@ -24,17 +25,24 @@ function SimulationPage() {
     accum[p.dataid] = p.initialValue;
     return accum;
   }, {});
-  const [electionState, setElectionState] = useState(initialElectionState);
-  const [modelState, setModelState] = useState(initialModelState);
-  const [simulationState, setSimulationState] = useState(
+  const [electionState, setElectionState] = useLocalStorage(
+    "electionState",
+    initialElectionState
+  );
+  const [modelState, setModelState] = useLocalStorage(
+    "modelState",
+    initialModelState
+  );
+  const [simulationState, setSimulationState] = useLocalStorage(
+    "simulationState",
     initialSimulationState
   );
 
   // Store the currently selected model
-  const [selectedModelDataid, setSelectedModelDataid] = useState(
-    models[0].dataid
+  const [selectedModel, setSelectedModel] = useLocalStorage(
+    "selectedModel",
+    models[0].display
   );
-
   // Combine separate input states
   const combineFormData = () => {
     return {
@@ -58,13 +66,15 @@ function SimulationPage() {
           <ElectionParameters
             formData={electionState}
             setFormData={setElectionState}
+            resetData={() => setElectionState(initialElectionState)}
           />
           <ModelParameters
             models={models}
-            selectedModelDataid={selectedModelDataid}
-            setSelectedModelDataid={setSelectedModelDataid}
+            selectedModel={selectedModel}
+            setSelectedModel={setSelectedModel}
             formData={modelState}
             setFormData={setModelState}
+            resetData={() => setModelState(initialModelState)}
           />
         </Col>
         <Col md={5} className="pb-2 d-flex flex-column">
@@ -74,7 +84,7 @@ function SimulationPage() {
             getSeats={getSeatsFromState}
             getElectionSimulationCount={getElectionSimulationCountFromState}
             setFormData={setSimulationState}
-            selectedModelDataid={selectedModelDataid}
+            selectedModel={selectedModel}
           />
         </Col>
       </Row>

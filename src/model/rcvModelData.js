@@ -259,24 +259,6 @@ const modelInputs = [
     ],
   },
   {
-    id: `minMinCandidateAgreement-alternatingCrossover`,
-    dataid: `minMinCandidateAgreement-alternatingCrossover`,
-    type: "radio",
-    label: `Among ${mmLabels.min} voters, does everyone rank ${mmLabels.min} candidates the same way?`,
-    options: [
-      {
-        id: "uniform-minMinCandidateAgreement-alternatingCrossover",
-        value: 1,
-        label: `Yes, ${mmLabels.min} voters rank ${mmLabels.min} candidates the same way`,
-      },
-      {
-        id: "random-minMinCandidateAgreement-alternatingCrossover",
-        value: 0,
-        label: `No, ${mmLabels.min} voters rank ${mmLabels.min} candidates differently`,
-      },
-    ],
-  },
-  {
     id: `minMajCandidateAgreement-alternatingCrossover`,
     dataid: `minMajCandidateAgreement-alternatingCrossover`,
     type: "radio",
@@ -291,6 +273,24 @@ const modelInputs = [
         id: "random-minMajCandidateAgreement-alternatingCrossover",
         value: 0,
         label: `No, ${mmLabels.min} voters rank ${mmLabels.maj} candidates differently`,
+      },
+    ],
+  },
+  {
+    id: `minMinCandidateAgreement-alternatingCrossover`,
+    dataid: `minMinCandidateAgreement-alternatingCrossover`,
+    type: "radio",
+    label: `Among ${mmLabels.min} voters, does everyone rank ${mmLabels.min} candidates the same way?`,
+    options: [
+      {
+        id: "uniform-minMinCandidateAgreement-alternatingCrossover",
+        value: 1,
+        label: `Yes, ${mmLabels.min} voters rank ${mmLabels.min} candidates the same way`,
+      },
+      {
+        id: "random-minMinCandidateAgreement-alternatingCrossover",
+        value: 0,
+        label: `No, ${mmLabels.min} voters rank ${mmLabels.min} candidates differently`,
       },
     ],
   },
@@ -333,24 +333,6 @@ const modelInputs = [
     ],
   },
   {
-    id: `minMinCandidateAgreement-cambridgeSampler`,
-    dataid: `minMinCandidateAgreement-cambridgeSampler`,
-    type: "radio",
-    label: `Among ${mmLabels.min} voters, does everyone rank ${mmLabels.min} candidates the same way?`,
-    options: [
-      {
-        id: "uniform-minMinCandidateAgreement-cambridgeSampler",
-        value: 1,
-        label: `Yes, ${mmLabels.min} voters rank ${mmLabels.min} candidates the same way`,
-      },
-      {
-        id: "random-minMinCandidateAgreement-cambridgeSampler",
-        value: 0,
-        label: `No, ${mmLabels.min} voters rank ${mmLabels.min} candidates differently`,
-      },
-    ],
-  },
-  {
     id: `minMajCandidateAgreement-cambridgeSampler`,
     dataid: `minMajCandidateAgreement-cambridgeSampler`,
     type: "radio",
@@ -368,20 +350,40 @@ const modelInputs = [
       },
     ],
   },
+  {
+    id: `minMinCandidateAgreement-cambridgeSampler`,
+    dataid: `minMinCandidateAgreement-cambridgeSampler`,
+    type: "radio",
+    label: `Among ${mmLabels.min} voters, does everyone rank ${mmLabels.min} candidates the same way?`,
+    options: [
+      {
+        id: "uniform-minMinCandidateAgreement-cambridgeSampler",
+        value: 1,
+        label: `Yes, ${mmLabels.min} voters rank ${mmLabels.min} candidates the same way`,
+      },
+      {
+        id: "random-minMinCandidateAgreement-cambridgeSampler",
+        value: 0,
+        label: `No, ${mmLabels.min} voters rank ${mmLabels.min} candidates differently`,
+      },
+    ],
+  },
 ];
 
 // Given a list of inputs, filter down to only those that have a given modelType
 function filterInputsByModelType(inputs, modelType) {
+  const modelDataid = getModelFromDisplay(modelType).dataid;
   return inputs.filter((input) => {
     const id = input.id;
     const idSplitFromType = id.split("-");
     const hasModelType = Boolean(idSplitFromType[1]);
-    return hasModelType && idSplitFromType[1] === modelType;
+    return hasModelType && idSplitFromType[1] === modelDataid;
   });
 }
 
 // Given a formDataObject, filter down to inputs that have no modelType or have a given modelType
 function filterDataByModelTypes(formObject, modelType) {
+  const modelDataid = getModelFromDisplay(modelType).dataid;
   return _.pick(
     formObject,
     Object.keys(formObject).filter((key) => {
@@ -390,15 +392,17 @@ function filterDataByModelTypes(formObject, modelType) {
       // Get keys that either don't have a model type
       //  or have a model type that matches this modelType
       return (
-        !hasModelType || (hasModelType && keySplitFromType[1] === modelType)
+        !hasModelType || (hasModelType && keySplitFromType[1] === modelDataid)
       );
     })
   );
 }
+function getModelFromDisplay(selectedModelDisplay) {
+  return models.find((model) => model.display === selectedModelDisplay);
+}
 
-function getApiEndpoint(selectedModelDataid) {
-  return models.find((model) => model.dataid === selectedModelDataid)
-    .apiEndpoint;
+function getApiEndpoint(selectedModel) {
+  return getModelFromDisplay(selectedModel).apiEndpoint;
 }
 
 export {

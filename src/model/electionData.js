@@ -127,7 +127,7 @@ const electionInputs = [
     max: 99,
     minLabel: `1%`,
     maxLabel: `99%`,
-    label: `${mmLabels.maj} voters typically vote for ${mmLabels.maj} candidates this percent of the time...`,
+    label: `${mmLabels.maj} voters vote for ${mmLabels.maj} candidates this percent of the time...`,
     helperText: `Max 99%`,
   },
   {
@@ -140,7 +140,7 @@ const electionInputs = [
     updateTransform: (value) => 100 - value,
     minLabel: `1%`,
     maxLabel: `99%`,
-    label: `${mmLabels.maj} voters occasionally vote for ${mmLabels.min} candidates this percent of the time...`,
+    label: `${mmLabels.maj} voters vote for ${mmLabels.min} candidates this percent of the time...`,
     helperText: `Max 99%`,
     // info: `Assuming all members of the population vote for either ${mmLabels.min}
     // or ${mmLabels.min}, which percentage votes for ${mmLabels.min}
@@ -156,7 +156,7 @@ const electionInputs = [
     updateTransform: (value) => 100 - value,
     minLabel: `1%`,
     maxLabel: `99%`,
-    label: `${mmLabels.min} voters occasionally vote for ${mmLabels.maj} candidates this percent of the time...`,
+    label: `${mmLabels.min} voters vote for ${mmLabels.maj} candidates this percent of the time...`,
     helperText: `Max 99%`,
   },
   {
@@ -168,7 +168,7 @@ const electionInputs = [
     max: 99,
     minLabel: `1%`,
     maxLabel: `99%`,
-    label: `${mmLabels.min} voters typically vote for ${mmLabels.min} candidates this percent of the time...`,
+    label: `${mmLabels.min} voters vote for ${mmLabels.min} candidates this percent of the time...`,
     helperText: `Max 99%`,
   },
 ];

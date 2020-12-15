@@ -1,14 +1,56 @@
 import React, { useRef } from "react";
 import axios from "axios";
 import { Button, Card } from "react-bootstrap";
-import ReactToPrint from "react-to-print";
-// import EmptyPlaceholder from "./EmptyPlaceholder";
-import Spinner from "./Spinner";
-import SimulationVisualization from "./SimulationVisualization";
+import { Download, Play, Loader } from "react-feather";
+import { exportComponentAsPNG } from "react-component-export-image";
+
+import Spinner from "./components/Spinner";
+import SimulationVisualization from "./components/SimulationVisualization";
 import useAsync from "./hooks/useAsync";
 import GenericInput from "./inputs/GenericInput";
 import { getApiEndpoint, filterDataByModelTypes } from "./model/rcvModelData";
 import { simulationInputs } from "./model/simulationData";
+
+function DownloadSaveButtons({ status, simulationResultsRef }) {
+  return (
+    status === "success" && (
+      <div className="d-flex justify-content-between">
+        <Button
+          onClick={() => {
+            exportComponentAsPNG(simulationResultsRef);
+          }}
+          className="d-flex justify-content-center align-items-center"
+          size="sm"
+        >
+          <Download size={18} className="mr-1" />
+          Save Results
+        </Button>
+      </div>
+    )
+  );
+}
+
+function RunButton({ execute, status }) {
+  return (
+    <Button
+      onClick={execute}
+      className="mr-0 mt-2 mb-2 d-flex justify-content-center align-items-center"
+      disabled={status === "pending"}
+    >
+      {status !== "pending" ? (
+        <>
+          <Play size={18} className="mr-1" />
+          Run Simulation
+        </>
+      ) : (
+        <>
+          <Loader size={18} className="mr-1" />
+          Loading...
+        </>
+      )}
+    </Button>
+  );
+}
 
 function SimulationResults({
   combineFormData,
@@ -16,22 +58,25 @@ function SimulationResults({
   getSeats,
   getElectionSimulationCount,
   setFormData,
-  selectedModelDataid,
+  selectedModel,
 }) {
   // Get the API Endpoint for the selected model
-  const selectedModelEndpoint = getApiEndpoint(selectedModelDataid);
-
+  const selectedModelEndpoint = getApiEndpoint(selectedModel);
   // Build the API URL
   const apiURL =
     process.env.REACT_APP_API_BASEURL +
     process.env.REACT_APP_API_SLUG +
     selectedModelEndpoint;
 
-  // Build the function that gets simulation results and
+  // Get relevant params, and define the function that gets simulation results
+  const relevantParams = filterDataByModelTypes(
+    combineFormData(),
+    selectedModel
+  );
   const fetchData = async () => {
     const response = await axios.get(apiURL, {
-      // Filter all the query params by the selectedModelDataid
-      params: filterDataByModelTypes(combineFormData(), selectedModelDataid),
+      // Filter all the query params by the selectedModel
+      params: relevantParams,
     });
     return response.data;
   };
@@ -44,9 +89,12 @@ function SimulationResults({
 
   return (
     <>
-      <h1>Simulations</h1>
+      <div className="d-flex justify-content-between">
+        <h1>Simulations</h1>
+        <RunButton execute={execute} status={status} />
+      </div>
       <Card className="parameter-container flex-grow-1">
-        <Card.Body className="d-flex  flex-column align-content-start">
+        <Card.Body className="d-flex flex-column align-content-start">
           {/* First div: the inputs in the form of a row, and the button to trigger sims */}
           <div>
             {simulationInputs.map((param) => {
@@ -60,13 +108,17 @@ function SimulationResults({
                 />
               );
             })}
-            <Button onClick={execute} disabled={status === "pending"}>
-              {status !== "pending" ? "Run Simulation" : "Loading..."}
-            </Button>
           </div>
           {/* Second div: the results of the current simulation */}
-          <div className="d-flex flex-column">
-            <h4 className="w-100">Results</h4>
+          <div className="d-flex flex-wrap">
+            <div className="d-flex justify-content-between w-100">
+              <h4>Results</h4>
+              {/* Download and save buttons */}
+              <DownloadSaveButtons
+                status={status}
+                simulationResultsRef={simulationResultsRef}
+              />
+            </div>
             {/* When errors are present, log them to the console */}
             {status === "error" && (
               <div>
@@ -76,8 +128,10 @@ function SimulationResults({
             )}
             {/* While loading, display a spinner */}
             {status === "pending" && (
-              <div style={{ height: "300px" }}>
-                <Spinner />
+              <div className="d-flex flex-column w-100">
+                <div style={{ height: "300px" }}>
+                  <Spinner />
+                </div>
               </div>
             )}
             {/* Show an empty viz when no simulations have been triggered or completed  */}
@@ -91,10 +145,8 @@ function SimulationResults({
                   maxSeats={getSeats()}
                   electionSimulations={getElectionSimulationCount()}
                   simulationResults={value}
-                />
-                <ReactToPrint
-                  trigger={() => <Button>Print Results</Button>}
-                  content={() => simulationResultsRef.current}
+                  simulationParams={relevantParams}
+                  selectedModel={selectedModel}
                 />
               </>
             )}
@@ -102,7 +154,7 @@ function SimulationResults({
           {/* TODO: Implement local history of simulations in order to compare and contrast over time */}
           {/* <div>
             <h4>History of Simulations</h4>
-            <EmptyPlaceholder />
+            <EmptyPlceholder />
           </div> */}
         </Card.Body>
       </Card>

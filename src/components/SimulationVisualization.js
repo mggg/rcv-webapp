@@ -1,23 +1,17 @@
 import React from "react";
 import _ from "lodash";
 import {
-  VictoryChart,
-  VictoryHistogram,
-  VictoryContainer,
   VictoryAxis,
+  VictoryChart,
+  VictoryContainer,
+  VictoryHistogram,
   VictoryLabel,
   VictoryTooltip,
 } from "victory";
-import { mmLabels } from "./model/constants";
+import { mmLabels } from "../model/constants";
+import SimulationStatsTable from "./SimulationStatsTable";
 
 class SimulationVisualization extends React.Component {
-  constructor(props) {
-    super(props);
-    this.chartRef = React.createRef(null);
-    this.setChartRef = (ref) => {
-      this.chartRef = ref;
-    };
-  }
   // Only re-render when the simulationResults are new
   shouldComponentUpdate(nextProps, nextState) {
     return nextProps.simulationResults !== this.props.simulationResults;
@@ -25,9 +19,11 @@ class SimulationVisualization extends React.Component {
 
   render() {
     const {
-      simulationResults = {},
-      maxSeats = 1,
       electionSimulations,
+      maxSeats = 1,
+      selectedModel = "",
+      simulationParams = {},
+      simulationResults = {},
     } = this.props;
     const values = simulationResults.poc_elected_rcv;
     const data = (values || []).map((val) => ({ x: val }));
@@ -40,21 +36,14 @@ class SimulationVisualization extends React.Component {
 
     const bins = _.range(0, maxSeats + 2, 1);
     return (
-      <>
-        <button
-          onClick={() => {
-            console.log(this.chartRef);
-            console.log(this.chartRef.svgRef);
-          }}
-        >
-          Log ref
-        </button>
+      <div className="w-100">
         <VictoryChart
           style={{ parent: { fontSize: 12 } }}
-          containerRef={this.chartRef}
-          // Define hover behavior
           containerComponent={
-            <VictoryContainer containerRef={this.setChartRef} />
+            <VictoryContainer
+              className="pt-2 pb-2"
+              style={{ height: "auto", maxWidth: 400, margin: "auto" }}
+            />
           }
         >
           {/* Display data */}
@@ -75,7 +64,7 @@ class SimulationVisualization extends React.Component {
             text={
               _.isUndefined(electionSimulations)
                 ? `No Data`
-                : `${mmLabels.min} Candidates Elected \n Across ${electionSimulations} Election(s) `
+                : `${mmLabels.min} Candidates Elected \n Across ${electionSimulations} ${selectedModel} Election(s) `
             }
             x={225}
             y={18}
@@ -96,7 +85,8 @@ class SimulationVisualization extends React.Component {
             tickValues={bins.slice(0, bins.length - 1)}
           />
         </VictoryChart>
-      </>
+        <SimulationStatsTable data={data} simulationParams={simulationParams} />
+      </div>
     );
   }
 }

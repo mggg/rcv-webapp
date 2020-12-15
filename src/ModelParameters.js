@@ -1,5 +1,7 @@
 import React from "react";
 import { Nav, Card } from "react-bootstrap";
+
+import ResetButton from "./components/ResetButton";
 import GenericInput from "./inputs/GenericInput";
 import {
   models,
@@ -9,40 +11,42 @@ import {
 
 function ModelParameters({
   formData,
-  selectedModelDataid,
+  resetData,
+  selectedModel,
   setFormData,
-  setSelectedModelDataid,
+  setSelectedModel,
 }) {
   return (
     <>
-      <h1>Model Parameters</h1>
+      <div className="d-flex justify-content-between">
+        <h1>Model Parameters</h1>
+        <ResetButton onClick={resetData} />
+      </div>
       <Card className="parameter-container flex-grow-1">
         <Card.Header>
           <Nav
             variant="tabs"
-            defaultActiveKey={selectedModelDataid}
+            defaultActiveKey={selectedModel}
             onSelect={(k) => {
-              setSelectedModelDataid(k);
+              setSelectedModel(k);
             }}
           >
             {models.map((model) => (
               <Nav.Item key={model.id}>
-                <Nav.Link eventKey={model.dataid}>{model.display}</Nav.Link>
+                <Nav.Link eventKey={model.display}>{model.display}</Nav.Link>
               </Nav.Item>
             ))}
           </Nav>
         </Card.Header>
         <Card.Body className="d-flex flex-wrap align-content-start">
-          {filterInputsByModelType(modelInputs, selectedModelDataid).map(
-            (param) => (
-              <GenericInput
-                key={param.id}
-                param={param}
-                formData={formData}
-                setFormData={setFormData}
-              />
-            )
-          )}
+          {filterInputsByModelType(modelInputs, selectedModel).map((param) => (
+            <GenericInput
+              key={param.id}
+              param={param}
+              formData={formData}
+              setFormData={setFormData}
+            />
+          ))}
         </Card.Body>
       </Card>
     </>

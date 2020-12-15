@@ -1,3 +1,8 @@
+// Variables
+@import "_variables.scss";
+// Core bootstrap
+@import "~bootstrap/scss/bootstrap.scss";
+
 html {
   font-size: 14px;
 }
@@ -70,6 +75,9 @@ label[for] {
 @page {
   size: auto;
   margin: 20mm;
+  svg {
+    height: 100%;
+  }
 }
 
 .btn,
@@ -80,4 +88,30 @@ label[for] {
 
 .navbar-brand {
   font-size: 1.75rem;
+}
+
+///////////////////////////////
+//// Stats Table vars
+.stats-table-title {
+  line-height: 0.1rem;
+  border-bottom: 1px solid $gray-600;
+  margin: 1rem 1rem 1rem 0;
+  width: 100%;
+  .literal-title {
+    padding-right: 5px;
+    background-color: $white;
+  }
+}
+
+.kv-table {
+  font-size: 0.7rem;
+
+  .table-key {
+    font-style: italic;
+    word-break: break-word;
+  }
+  .table-value {
+    font-size: 0.8rem;
+    text-align: right;
+  }
 }

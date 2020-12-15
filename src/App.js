@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppHeader from "./AppHeader";
-import { routes } from "./routes";
-import "./App.css";
+import { routes } from "./pages/routes";
+import "./styles/App.scss";
 
 function App() {
   return (
