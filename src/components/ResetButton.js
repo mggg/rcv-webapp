@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 import { RefreshCw } from "react-feather";
 
 function ResetButton({ onClick }) {
