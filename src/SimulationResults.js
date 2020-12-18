@@ -13,20 +13,18 @@ import { simulationInputs } from "./model/simulationData";
 
 function DownloadSaveButtons({ status, simulationResultsRef }) {
   return (
-    status === "success" && (
-      <div className="d-flex justify-content-between">
-        <Button
-          onClick={() => {
-            exportComponentAsPNG(simulationResultsRef);
-          }}
-          className="d-flex justify-content-center align-items-center"
-          size="sm"
-        >
-          <Download size={18} className="mr-1" />
-          Save Results
-        </Button>
-      </div>
-    )
+    <div className="d-flex justify-content-between">
+      <Button
+        onClick={() => {
+          exportComponentAsPNG(simulationResultsRef);
+        }}
+        className="d-flex justify-content-center align-items-center"
+        size="sm"
+      >
+        <Download size={16} className="mr-1" />
+        Save
+      </Button>
+    </div>
   );
 }
 
@@ -34,17 +32,18 @@ function RunButton({ execute, status }) {
   return (
     <Button
       onClick={execute}
-      className="mr-0 mt-2 mb-2 d-flex justify-content-center align-items-center"
+      className="d-flex ml-1 justify-content-center align-items-center"
+      size="sm"
       disabled={status === "pending"}
     >
       {status !== "pending" ? (
         <>
-          <Play size={18} className="mr-1" />
-          Run Simulation
+          <Play size={16} className="mr-1" />
+          Run
         </>
       ) : (
         <>
-          <Loader size={18} className="mr-1" />
+          <Loader size={16} className="mr-1" />
           Loading...
         </>
       )}
@@ -91,7 +90,6 @@ function SimulationResults({
     <>
       <div className="d-flex justify-content-between">
         <h1>Simulations</h1>
-        <RunButton execute={execute} status={status} />
       </div>
       <Card className="parameter-container flex-grow-1">
         <Card.Body className="d-flex flex-column align-content-start">
@@ -112,12 +110,17 @@ function SimulationResults({
           {/* Second div: the results of the current simulation */}
           <div className="d-flex flex-wrap">
             <div className="d-flex justify-content-between w-100">
-              <h4>Results</h4>
+              <h4>Simulation Results</h4>
               {/* Download and save buttons */}
-              <DownloadSaveButtons
-                status={status}
-                simulationResultsRef={simulationResultsRef}
-              />
+              <div className="d-flex">
+                {status === "success" && (
+                  <DownloadSaveButtons
+                    status={status}
+                    simulationResultsRef={simulationResultsRef}
+                  />
+                )}
+                <RunButton execute={execute} status={status} />
+              </div>
             </div>
             {/* When errors are present, log them to the console */}
             {status === "error" && (

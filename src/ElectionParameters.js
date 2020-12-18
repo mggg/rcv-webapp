@@ -8,7 +8,7 @@ import { electionInputs } from "./model/electionData";
 function ElectionParameters({ formData, setFormData, resetData }) {
   return (
     <>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex">
         <h1>Election Parameters</h1>
         <ResetButton onClick={resetData} />
       </div>

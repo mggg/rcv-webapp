@@ -4,13 +4,14 @@ import { RefreshCw } from "react-feather";
 
 function ResetButton({ onClick }) {
   return (
-    <Button
+    <button
       onClick={onClick}
-      className="mr-0 mt-2 mb-2 d-flex justify-content-center align-items-center"
+      // variant="outline-primary"
+      className="btn mr-0 ml-1 mt-2 mb-2 d-flex justify-content-center align-items-center"
     >
       <RefreshCw size={18} className="mr-1" />
       Reset
-    </Button>
+    </button>
   );
 }
 

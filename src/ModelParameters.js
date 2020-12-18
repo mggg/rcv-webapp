@@ -18,7 +18,7 @@ function ModelParameters({
 }) {
   return (
     <>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex">
         <h1>Model Parameters</h1>
         <ResetButton onClick={resetData} />
       </div>
