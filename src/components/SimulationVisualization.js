@@ -64,7 +64,7 @@ class SimulationVisualization extends React.Component {
             text={
               _.isUndefined(electionSimulations)
                 ? `No Data`
-                : `${mmLabels.min} Candidates Elected \n Across ${electionSimulations} ${selectedModel} Election(s) `
+                : `${mmLabels.min} Candidates Elected \n Across ${electionSimulations} ${selectedModel} Simulation(s) `
             }
             x={225}
             y={18}

@@ -37,13 +37,13 @@ function SimulationStatsTable({ data = [], simulationParams }) {
   console.log("stats", stats);
   return (
     <Row className="m-0">
-      <Col sm={6} className="pr-1 pl-1">
+      {/* <Col sm={6} className="pr-1 pl-1">
         <h5 className="stats-table-title">
           <span className="literal-title">Parameters</span>
         </h5>
         <KeyValueTable kv={simulationParams} />
-      </Col>
-      <Col sm={6} className="pr-1 pl-1">
+      </Col> */}
+      <Col sm={12} className="pr-1 pl-1">
         <h5 className="stats-table-title">
           <span className="literal-title">Statistics</span>
         </h5>

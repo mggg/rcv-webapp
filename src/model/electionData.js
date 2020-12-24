@@ -59,7 +59,7 @@ const electionInputs = [
     step: 1,
     min: 1,
     max: 20,
-    label: "Seats open For election",
+    label: "Seats open for election",
     helperText: "Max 20",
     info: "The number of open seats open for election in each simulation",
   },
