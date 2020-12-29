@@ -1,9 +1,11 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import VoterParameters from "../VoterParameters";
 import ElectionParameters from "../ElectionParameters";
 import ModelParameters from "../ModelParameters";
 import SimulationResults from "../SimulationResults";
 import { electionParams, getSeats } from "../model/electionData";
+import { voterParams } from "../model/voterData";
 import {
   simulationParams,
   getElectionSimulationCount,
@@ -12,16 +14,8 @@ import { models, modelParams } from "../model/rcvModelData";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 function SimulationPage() {
-  // Set the state of the various parameters
+  // Set the initial ElectionState
   const initialElectionState = electionParams.reduce((accum, p) => {
-    accum[p.dataid] = p.initialValue;
-    return accum;
-  }, {});
-  const initialModelState = modelParams.reduce((accum, p) => {
-    accum[p.dataid] = p.initialValue;
-    return accum;
-  }, {});
-  const initialSimulationState = simulationParams.reduce((accum, p) => {
     accum[p.dataid] = p.initialValue;
     return accum;
   }, {});
@@ -29,10 +23,29 @@ function SimulationPage() {
     "electionState",
     initialElectionState
   );
+  // Set the initial VoterState
+  const initialVoterState = voterParams.reduce((accum, p) => {
+    accum[p.dataid] = p.initialValue;
+    return accum;
+  }, {});
+  const [voterState, setVoterState] = useLocalStorage(
+    "voterState",
+    initialVoterState
+  );
+  // Set the initial ModelState
+  const initialModelState = modelParams.reduce((accum, p) => {
+    accum[p.dataid] = p.initialValue;
+    return accum;
+  }, {});
   const [modelState, setModelState] = useLocalStorage(
     "modelState",
     initialModelState
   );
+  // Set the initial Simulation
+  const initialSimulationState = simulationParams.reduce((accum, p) => {
+    accum[p.dataid] = p.initialValue;
+    return accum;
+  }, {});
   const [simulationState, setSimulationState] = useLocalStorage(
     "simulationState",
     initialSimulationState
@@ -47,6 +60,7 @@ function SimulationPage() {
   const combineFormData = () => {
     return {
       ...electionState,
+      ...voterState,
       ...modelState,
       ...simulationState,
     };
@@ -67,6 +81,11 @@ function SimulationPage() {
             formData={electionState}
             setFormData={setElectionState}
             resetData={() => setElectionState(initialElectionState)}
+          />
+          <VoterParameters
+            formData={voterState}
+            setFormData={setVoterState}
+            resetData={() => setVoterState(initialVoterState)}
           />
           <ModelParameters
             models={models}

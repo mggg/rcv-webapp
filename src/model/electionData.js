@@ -7,11 +7,6 @@ const electionParams = [
     initialValue: 1000,
   },
   {
-    id: `popMajParty`,
-    dataid: `popMajParty`,
-    initialValue: 70,
-  },
-  {
     id: "seatsOpen",
     dataid: "seatsOpen",
     initialValue: 5,
@@ -26,20 +21,9 @@ const electionParams = [
     dataid: `minCandidates`,
     initialValue: 6,
   },
-  {
-    id: `percentageMajMajSupport`,
-    dataid: `percentageMajMajSupport`,
-    initialValue: 70,
-  },
-  {
-    id: `percentageMinMinSupport`,
-    dataid: `percentageMinMinSupport`,
-    initialValue: 70,
-  },
 ];
 
 const electionInputs = [
-  // Information about the number of voters and the population demographics
   {
     id: "ballots",
     dataid: "ballots",
@@ -63,7 +47,6 @@ const electionInputs = [
     helperText: "Max 20",
     info: "The number of open seats open for election in each simulation",
   },
-  // Information about the maj candidates and maj-voter support
   {
     id: `majCandidates`,
     dataid: `majCandidates`,
@@ -85,91 +68,6 @@ const electionInputs = [
     helperText: "Max 15",
     label: `Number of ${mmLabels.min} candidates`,
     info: `The number of ${mmLabels.min} candidates running for election in each simulation`,
-  },
-
-  {
-    id: `popMajParty`,
-    dataid: `popMajParty`,
-    type: "slider",
-    step: 1,
-    min: 0,
-    max: 100,
-    minLabel: `0%`,
-    maxLabel: `100%`,
-    label: `Percent of voters who are ${mmLabels.maj}`,
-    helperText: `Max 100%`,
-    info: `Assuming all members of the population vote for either ${mmLabels.maj}
-    or ${mmLabels.min}, which percentage votes for ${mmLabels.maj}
-    `,
-  },
-  {
-    id: `popMinParty`,
-    dataid: `popMajParty`,
-    type: "anti-slider",
-    step: 1,
-    min: 0,
-    max: 100,
-    updateTransform: (value) => 100 - value,
-    minLabel: `0%`,
-    maxLabel: `100%`,
-    label: `Percent of voters who are ${mmLabels.min}`,
-    helperText: `Max 100%`,
-    info: `Assuming all members of the population vote for either ${mmLabels.min}
-    or ${mmLabels.min}, which percentage votes for ${mmLabels.min}
-    `,
-  },
-  {
-    id: `percentageMajMajSupport`,
-    dataid: `percentageMajMajSupport`,
-    type: "slider",
-    step: 1,
-    min: 0,
-    max: 100,
-    minLabel: `0%`,
-    maxLabel: `100%`,
-    label: `${mmLabels.maj} voters vote for ${mmLabels.maj} candidates this percent of the time...`,
-    helperText: `Max 100%`,
-  },
-  {
-    id: `percentageMajMinSupport`,
-    dataid: `percentageMajMajSupport`,
-    type: "anti-slider",
-    step: 1,
-    min: 0,
-    max: 100,
-    updateTransform: (value) => 100 - value,
-    minLabel: `0%`,
-    maxLabel: `100%`,
-    label: `${mmLabels.maj} voters vote for ${mmLabels.min} candidates this percent of the time...`,
-    helperText: `Max 100%`,
-    // info: `Assuming all members of the population vote for either ${mmLabels.min}
-    // or ${mmLabels.min}, which percentage votes for ${mmLabels.min}
-    // `,
-  },
-  {
-    id: `percentageMinMajSupport`,
-    dataid: `percentageMinMinSupport`,
-    type: "anti-slider",
-    step: 1,
-    min: 0,
-    max: 100,
-    updateTransform: (value) => 100 - value,
-    minLabel: `0%`,
-    maxLabel: `100%`,
-    label: `${mmLabels.min} voters vote for ${mmLabels.maj} candidates this percent of the time...`,
-    helperText: `Max 100%`,
-  },
-  {
-    id: `percentageMinMinSupport`,
-    dataid: `percentageMinMinSupport`,
-    type: "slider",
-    step: 1,
-    min: 0,
-    max: 100,
-    minLabel: `0%`,
-    maxLabel: `100%`,
-    label: `${mmLabels.min} voters vote for ${mmLabels.min} candidates this percent of the time...`,
-    helperText: `Max 100%`,
   },
 ];
 
