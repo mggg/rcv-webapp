@@ -4,7 +4,7 @@ import { Navbar, Nav } from "react-bootstrap";
 
 function AppHeader(props) {
   return (
-    <Navbar className="nav-header" expand="md">
+    <Navbar className="nav-header" variant="dark" expand="md">
       <Navbar.Brand>
         Modeling Representation <br className="d-xs-block d-sm-none" /> with
         Ranked Choice Voting

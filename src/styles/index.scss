@@ -2,6 +2,8 @@
 @import "_variables.scss";
 // Core bootstrap
 @import "~bootstrap/scss/bootstrap.scss";
+@import "~react-rangeslider/lib/index.css";
+@import "slider.scss";
 
 ///////////////////////////////////
 //// Global styles
@@ -45,8 +47,7 @@ h1 {
 ////////////////////////////
 //// Nav Header
 .nav-header {
-  background-color: #ececec;
-  border: 1px solid #e6e6e6;
+  background-image: linear-gradient(to bottom right, $green, $purple);
 }
 
 .navbar-brand {
@@ -59,6 +60,12 @@ h1 {
 /* Give inputs a hover text */
 input:hover {
   cursor: pointer;
+}
+
+input {
+  background-color: $body-bg;
+  border: 1px solid grey;
+  border-radius: 2px;
 }
 
 @-moz-document url-prefix() {

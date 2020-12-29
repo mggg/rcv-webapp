@@ -1,6 +1,9 @@
 import React from "react";
+import Slider from "react-rangeslider";
+// To include the default styles
 
-function Slider({
+function TestSlider({
+  className,
   dataid,
   fullWidth,
   handleChange,
@@ -42,17 +45,28 @@ function Slider({
           {maxLabel}
         </span>
       </div>
-      <input
+      {/* <input
         type="range"
-        className="w-100"
+        className="w-100 green-purple-slider"
         onChange={handleChange}
         value={value}
         min={min}
         max={max}
         step={step}
+      /> */}
+      <Slider
+        value={Number(value)}
+        min={min}
+        max={max}
+        step={step}
+        orientation="horizontal"
+        onChange={(val, event) => {
+          event.target.value = val;
+          return handleChange(event);
+        }}
       />
     </div>
   );
 }
 
-export default Slider;
+export default TestSlider;
