@@ -130,7 +130,7 @@ class SimulationVisualization extends React.Component {
             className="results-demographic-flip mt-0"
             value={this.state.displayMajResults}
             onChange={this.toggleMajResults}
-            label={`View ${switchWillVisualize}`}
+            label={`View ${switchWillVisualize} results`}
           />
         )}
         <SimulationResultsHistogram
