@@ -25,7 +25,7 @@ function RadioInput({
                 type="radio"
                 id={option.id}
                 name={dataid}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e.target.value)}
                 value={option.value}
                 checked={option.value === parseInt(value)}
                 className="d-inline"

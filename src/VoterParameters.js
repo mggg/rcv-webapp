@@ -5,11 +5,11 @@ import ResetButton from "./components/ResetButton";
 import GenericInput from "./inputs/GenericInput";
 import { voterInputs } from "./model/voterData";
 
-function ElectionParameters({ formData, setFormData, resetData }) {
+function VoterParameters({ formData, setFormData, resetData }) {
   return (
     <>
       <div className="d-flex">
-        <h1>Voter Parameters</h1>
+        <h1>Voter Behaviors</h1>
         <ResetButton onClick={resetData} />
       </div>
       <Card className="parameter-container flex-grow-1">
@@ -30,4 +30,4 @@ function ElectionParameters({ formData, setFormData, resetData }) {
   );
 }
 
-export default React.memo(ElectionParameters);
+export default React.memo(VoterParameters);

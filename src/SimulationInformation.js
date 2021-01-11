@@ -11,12 +11,12 @@ import GenericInput from "./inputs/GenericInput";
 import { getApiEndpoint, filterDataByModelTypes } from "./model/rcvModelData";
 import { simulationInputs } from "./model/simulationData";
 
-function DownloadSaveButtons({ status, simulationResultsRef }) {
+function SaveButton({ status, simulationVisualizationRef }) {
   return (
     <div className="d-flex justify-content-between">
       <Button
         onClick={() => {
-          exportComponentAsPNG(simulationResultsRef);
+          exportComponentAsPNG(simulationVisualizationRef);
         }}
         className="d-flex justify-content-center align-items-center"
         size="sm"
@@ -51,7 +51,7 @@ function RunButton({ execute, status }) {
   );
 }
 
-function SimulationResults({
+function SimulationInformation({
   combineFormData,
   formData,
   getSeats,
@@ -83,8 +83,8 @@ function SimulationResults({
   // Store the results of simulations in state, as well as request status/error
   const { execute, status, value, error } = useAsync(fetchData, false);
 
-  // Create a ref to the simulationResults
-  const simulationResultsRef = useRef();
+  // Create a ref to the SimulationInformation
+  const simulationVisualizationRef = useRef();
 
   return (
     <>
@@ -92,68 +92,62 @@ function SimulationResults({
         <h1>Simulations</h1>
       </div>
       <Card className="parameter-container flex-grow-1">
-        <Card.Body className="d-flex flex-column align-content-start">
+        <Card.Body>
           {/* First div: the inputs in the form of a row, and the button to trigger sims */}
-          <div>
-            {simulationInputs.map((param) => {
-              return (
-                <GenericInput
-                  key={param.id}
-                  param={param}
-                  formData={formData}
-                  padding={false}
-                  setFormData={setFormData}
-                />
-              );
-            })}
-          </div>
+          {simulationInputs.map((param) => {
+            return (
+              <GenericInput
+                key={param.id}
+                param={param}
+                formData={formData}
+                padding={false}
+                setFormData={setFormData}
+              />
+            );
+          })}
           {/* Second div: the results of the current simulation */}
-          <div className="d-flex flex-wrap">
-            <div className="d-flex justify-content-between w-100">
-              <h4>Simulation Results</h4>
-              {/* Download and save buttons */}
-              <div className="d-flex">
-                {status === "success" && (
-                  <DownloadSaveButtons
-                    status={status}
-                    simulationResultsRef={simulationResultsRef}
-                  />
-                )}
-                <RunButton execute={execute} status={status} />
+          <div className="d-flex justify-content-between">
+            <h4>Election Results</h4>
+            {/* Download and save buttons */}
+            <div className="d-flex">
+              {status === "success" && (
+                <SaveButton
+                  status={status}
+                  simulationVisualizationRef={simulationVisualizationRef}
+                />
+              )}
+              <RunButton execute={execute} status={status} />
+            </div>
+          </div>
+          {/* When errors are present, log them to the console */}
+          {status === "error" && (
+            <p>
+              There was an error processing those simulations.
+              {console.error(error)}
+            </p>
+          )}
+          {/* While loading, display a spinner */}
+          {status === "pending" && (
+            <div className="d-flex flex-column w-100">
+              <div style={{ height: "300px" }}>
+                <Spinner />
               </div>
             </div>
-            {/* When errors are present, log them to the console */}
-            {status === "error" && (
-              <div>
-                There was an error processing those simulations.
-                {console.error(error)}
-              </div>
-            )}
-            {/* While loading, display a spinner */}
-            {status === "pending" && (
-              <div className="d-flex flex-column w-100">
-                <div style={{ height: "300px" }}>
-                  <Spinner />
-                </div>
-              </div>
-            )}
-            {/* Show an empty viz when no simulations have been triggered or completed  */}
-            {status === "idle" && (
-              <SimulationVisualization maxBins={getSeats()} />
-            )}
-            {status === "success" && (
-              <>
-                <SimulationVisualization
-                  ref={simulationResultsRef}
-                  maxSeats={getSeats()}
-                  electionSimulations={getElectionSimulationCount()}
-                  simulationResults={value}
-                  simulationParams={relevantParams}
-                  selectedModel={selectedModel}
-                />
-              </>
-            )}
-          </div>
+          )}
+          {/* Show an empty viz when no simulations have been triggered or completed  */}
+          {status === "idle" && (
+            <SimulationVisualization maxBins={getSeats()} />
+          )}
+          {status === "success" && (
+            <SimulationVisualization
+              ref={simulationVisualizationRef}
+              maxSeats={getSeats()}
+              electionSimulations={getElectionSimulationCount()}
+              simulationResults={value}
+              simulationParams={relevantParams}
+              selectedModel={selectedModel}
+            />
+          )}
           {/* TODO: Implement local history of simulations in order to compare and contrast over time */}
           {/* <div>
             <h4>History of Simulations</h4>
@@ -165,4 +159,4 @@ function SimulationResults({
   );
 }
 
-export default React.memo(SimulationResults);
+export default React.memo(SimulationInformation);

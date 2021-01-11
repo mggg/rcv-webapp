@@ -5,13 +5,22 @@ $light-grey: #f9f9f9;
 $table-accent-bg: $light-grey;
 $green: rgb(75, 148, 96);
 $purple: rgb(75, 63, 114);
+// $triadic: rgb(166, 132, 82);
+$triadic: rgb(192, 140, 51);
+
 $green-orig: rgb(197, 224, 180);
 $purple-orig: rgb(199, 138, 198);
-$linen: hsl(36, 33%, 97%);
+$linen: hsl(33, 15%, 97%);
 
-// $white: $linen;
-$white: white;
-$primary: $purple;
+$white: $linen;
+// $white: white;
+$primary: $triadic;
 
 $card-bg: $white;
 $table-accent-bg: darken($white, 5%);
+
+:export {
+  primary: $primary;
+  green: $green;
+  purple: $purple;
+}

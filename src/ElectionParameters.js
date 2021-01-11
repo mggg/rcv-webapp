@@ -9,7 +9,7 @@ function ElectionParameters({ formData, setFormData, resetData }) {
   return (
     <>
       <div className="d-flex">
-        <h1>Election Parameters</h1>
+        <h1>Election Details</h1>
         <ResetButton onClick={resetData} />
       </div>
       <Card className="parameter-container flex-grow-1">

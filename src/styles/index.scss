@@ -4,6 +4,7 @@
 @import "~bootstrap/scss/bootstrap.scss";
 @import "~react-rangeslider/lib/index.css";
 @import "slider.scss";
+@import "tickedSlider.scss";
 
 ///////////////////////////////////
 //// Global styles
@@ -30,10 +31,15 @@ h1 {
   border-radius: 0 !important;
 }
 
+label {
+  margin-bottom: 0.2rem;
+}
+
 .parameter-container .input-label {
   font-size: 1.1rem;
   display: block;
   max-width: 75%;
+  max-width: 1600px;
 }
 .parameter-container > .card-body {
   padding: 0.85rem;
@@ -41,7 +47,7 @@ h1 {
 }
 
 .parameter-container > .card-body > * {
-  margin-top: 0.85rem;
+  margin-top: 0.5rem;
 }
 
 ////////////////////////////
@@ -124,5 +130,17 @@ label[for] {
   .table-value {
     font-size: 1.1rem;
     text-align: right;
+  }
+}
+
+.results-demographic-flip .custom-control-input {
+  & ~ .custom-control-label::before {
+    border-color: $purple;
+    background-color: $purple;
+  }
+
+  &:checked ~ .custom-control-label::before {
+    border-color: $green;
+    background-color: $green;
   }
 }

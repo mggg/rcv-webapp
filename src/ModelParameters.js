@@ -19,7 +19,7 @@ function ModelParameters({
   return (
     <>
       <div className="d-flex">
-        <h1>Model Parameters</h1>
+        <h1>Model Settings</h1>
         <ResetButton onClick={resetData} />
       </div>
       <Card className="parameter-container flex-grow-1">
@@ -27,8 +27,8 @@ function ModelParameters({
           <Nav
             variant="tabs"
             defaultActiveKey={selectedModel}
-            onSelect={(k) => {
-              setSelectedModel(k);
+            onSelect={(keyForEachModel) => {
+              setSelectedModel(keyForEachModel);
             }}
           >
             {models.map((model) => (

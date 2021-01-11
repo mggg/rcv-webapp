@@ -21,7 +21,7 @@ function NumberInput({
       <label className="input-label">{label}</label>
       <input
         type="number"
-        onChange={handleChange}
+        onChange={(e) => handleChange(e.target.value)}
         value={value}
         step={step}
         min={min}

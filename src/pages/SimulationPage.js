@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import VoterParameters from "../VoterParameters";
 import ElectionParameters from "../ElectionParameters";
 import ModelParameters from "../ModelParameters";
-import SimulationResults from "../SimulationResults";
+import SimulationInformation from "../SimulationInformation";
 import { electionParams, getSeats } from "../model/electionData";
 import { voterParams } from "../model/voterData";
 import {
@@ -76,7 +76,7 @@ function SimulationPage() {
   return (
     <Container fluid>
       <Row style={{ height: "max" }}>
-        <Col className="pb-2 d-flex flex-column">
+        <Col md={7} className="pb-2 d-flex flex-column">
           <ElectionParameters
             formData={electionState}
             setFormData={setElectionState}
@@ -97,7 +97,7 @@ function SimulationPage() {
           />
         </Col>
         <Col md={5} className="pb-2 d-flex flex-column">
-          <SimulationResults
+          <SimulationInformation
             combineFormData={combineFormData}
             formData={simulationState}
             getSeats={getSeatsFromState}

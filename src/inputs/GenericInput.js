@@ -1,15 +1,15 @@
 import React from "react";
 import NumberInput from "./NumberInput";
 import RadioInput from "./RadioInput";
-import Slider from "./Slider";
+import Slider from "./SplitSlider";
 import TickedSlider from "./TickedSlider";
 
 function GenericInput({ param, formData, setFormData, formInputs }) {
-  const handleChange = (param) => (event) => {
+  const handleChange = (param) => (value) => {
     const transformFunction = param.updateTransform || ((arg) => arg);
     const formDataCopy = { ...formData };
     formDataCopy[param.dataid] = transformFunction(
-      event.target.value,
+      value,
       param.dataid,
       formDataCopy
     );
@@ -26,17 +26,7 @@ function GenericInput({ param, formData, setFormData, formInputs }) {
           value={formData[param.dataid]}
         />
       );
-
-    case "anti-number":
-      return (
-        <NumberInput
-          {...param}
-          max={param.maxVariable ? formData[param.maxVariable] : param.max}
-          handleChange={handleChange(param)}
-          value={formData[param.maxVariable] - formData[param.dataid]}
-        />
-      );
-    case "slider":
+    case "split-slider":
       return (
         <Slider
           {...param}
@@ -50,14 +40,6 @@ function GenericInput({ param, formData, setFormData, formInputs }) {
           {...param}
           handleChange={handleChange(param)}
           value={formData[param.dataid]}
-        />
-      );
-    case "anti-slider":
-      return (
-        <Slider
-          {...param}
-          handleChange={handleChange(param)}
-          value={param.max - formData[param.dataid] + param.min}
         />
       );
     case "radio":

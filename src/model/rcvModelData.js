@@ -29,92 +29,56 @@ const models = [
 ];
 
 const modelParams = [
-  ////////////////////////////
-  // PlackettLuce
+  ////////////////////////////////
+  // PlackettLuce & BradleyTerry
   {
-    id: `majMajAffinity-plackettLuce`,
-    dataid: `majMajAffinity-plackettLuce`,
+    id: `majMajAffinity`,
+    modelsUsed: ["bradleyTerry", "plackettLuce"],
+    dataid: `majMajAffinity`,
     initialValue: 0,
   },
   {
-    id: `majMinAffinity-plackettLuce`,
-    dataid: `majMinAffinity-plackettLuce`,
+    id: `majMinAffinity`,
+    modelsUsed: ["bradleyTerry", "plackettLuce"],
+    dataid: `majMinAffinity`,
     initialValue: 0,
   },
   {
-    id: `minMinAffinity-plackettLuce`,
-    dataid: `minMinAffinity-plackettLuce`,
+    id: `minMinAffinity`,
+    modelsUsed: ["bradleyTerry", "plackettLuce"],
+    dataid: `minMinAffinity`,
     initialValue: 0,
   },
   {
-    id: `minMajAffinity-plackettLuce`,
-    dataid: `minMajAffinity-plackettLuce`,
+    id: `minMajAffinity`,
+    modelsUsed: ["bradleyTerry", "plackettLuce"],
+    dataid: `minMajAffinity`,
     initialValue: 0,
   },
-  ////////////////////////////
-  // BradleyTerry
+  ////////////////////////////////////////////
+  // AlternatingCrossover & CambridgeSampler
   {
-    id: `majMajAffinity-bradleyTerry`,
-    dataid: `majMajAffinity-bradleyTerry`,
-    initialValue: 0,
-  },
-  {
-    id: `majMinAffinity-bradleyTerry`,
-    dataid: `majMinAffinity-bradleyTerry`,
-    initialValue: 0,
-  },
-  {
-    id: `minMinAffinity-bradleyTerry`,
-    dataid: `minMinAffinity-bradleyTerry`,
-    initialValue: 0,
-  },
-  {
-    id: `minMajAffinity-bradleyTerry`,
-    dataid: `minMajAffinity-bradleyTerry`,
-    initialValue: 0,
-  },
-  ////////////////////////////
-  // AlternatingCrossover
-  {
-    id: `majMajCandidateAgreement-alternatingCrossover`,
-    dataid: `majMajCandidateAgreement-alternatingCrossover`,
+    id: `majMajCandidateAgreement`,
+    modelsUsed: ["alternatingCrossover", "cambridgeSampler"],
+    dataid: `majMajCandidateAgreement`,
     initialValue: 1,
   },
   {
-    id: `majMinCandidateAgreement-alternatingCrossover`,
-    dataid: `majMinCandidateAgreement-alternatingCrossover`,
+    id: `majMinCandidateAgreement`,
+    modelsUsed: ["alternatingCrossover", "cambridgeSampler"],
+    dataid: `majMinCandidateAgreement`,
     initialValue: 1,
   },
   {
-    id: `minMinCandidateAgreement-alternatingCrossover`,
-    dataid: `minMinCandidateAgreement-alternatingCrossover`,
+    id: `minMinCandidateAgreement`,
+    modelsUsed: ["alternatingCrossover", "cambridgeSampler"],
+    dataid: `minMinCandidateAgreement`,
     initialValue: 1,
   },
   {
-    id: `minMajCandidateAgreement-alternatingCrossover`,
-    dataid: `minMajCandidateAgreement-alternatingCrossover`,
-    initialValue: 1,
-  },
-  ////////////////////////////
-  // CambridgeSampler
-  {
-    id: `majMajCandidateAgreement-cambridgeSampler`,
-    dataid: `majMajCandidateAgreement-cambridgeSampler`,
-    initialValue: 1,
-  },
-  {
-    id: `majMinCandidateAgreement-cambridgeSampler`,
-    dataid: `majMinCandidateAgreement-cambridgeSampler`,
-    initialValue: 1,
-  },
-  {
-    id: `minMinCandidateAgreement-cambridgeSampler`,
-    dataid: `minMinCandidateAgreement-cambridgeSampler`,
-    initialValue: 1,
-  },
-  {
-    id: `minMajCandidateAgreement-cambridgeSampler`,
-    dataid: `minMajCandidateAgreement-cambridgeSampler`,
+    id: `minMajCandidateAgreement`,
+    modelsUsed: ["alternatingCrossover", "cambridgeSampler"],
+    dataid: `minMajCandidateAgreement`,
     initialValue: 1,
   },
 ];
@@ -123,8 +87,9 @@ const modelInputs = [
   ////////////////////////////
   // PlackettLuce
   {
-    id: `majMajAffinity-plackettLuce`,
-    dataid: `majMajAffinity-plackettLuce`,
+    id: `majMajAffinity`,
+    modelsUsed: ["bradleyTerry", "plackettLuce"],
+    dataid: `majMajAffinity`,
     type: "ticked-slider",
     fullWidth: true,
     step: 0.5,
@@ -135,8 +100,9 @@ const modelInputs = [
     maxLabel: "Leaning towards one candidate",
   },
   {
-    id: `majMinAffinity-plackettLuce`,
-    dataid: `majMinAffinity-plackettLuce`,
+    id: `majMinAffinity`,
+    modelsUsed: ["bradleyTerry", "plackettLuce"],
+    dataid: `majMinAffinity`,
     type: "ticked-slider",
     fullWidth: true,
     step: 0.5,
@@ -147,8 +113,9 @@ const modelInputs = [
     maxLabel: "Leaning towards one candidate",
   },
   {
-    id: `minMinAffinity-plackettLuce`,
-    dataid: `minMinAffinity-plackettLuce`,
+    id: `minMinAffinity`,
+    modelsUsed: ["bradleyTerry", "plackettLuce"],
+    dataid: `minMinAffinity`,
     type: "ticked-slider",
     fullWidth: true,
     step: 0.5,
@@ -159,58 +126,9 @@ const modelInputs = [
     maxLabel: "Leaning towards one candidate",
   },
   {
-    id: `minMajAffinity-plackettLuce`,
-    dataid: `minMajAffinity-plackettLuce`,
-    type: "ticked-slider",
-    fullWidth: true,
-    step: 0.5,
-    min: -1,
-    max: 1,
-    label: `Among ${mmLabels.min} voters, support for ${mmLabels.maj} candidates is...`,
-    minLabel: "Split evenly",
-    maxLabel: "Leaning towards one candidate",
-  },
-  ////////////////////////////
-  // BradleyTerry
-  {
-    id: `majMajAffinity-bradleyTerry`,
-    dataid: `majMajAffinity-bradleyTerry`,
-    type: "ticked-slider",
-    fullWidth: true,
-    step: 0.5,
-    min: -1,
-    max: 1.0,
-    label: `Among ${mmLabels.maj} voters, support for ${mmLabels.maj} candidates is...`,
-    minLabel: "Split evenly",
-    maxLabel: "Leaning towards one candidate",
-  },
-  {
-    id: `majMinAffinity-bradleyTerry`,
-    dataid: `majMinAffinity-bradleyTerry`,
-    type: "ticked-slider",
-    fullWidth: true,
-    step: 0.5,
-    min: -1,
-    max: 1,
-    label: `Among ${mmLabels.maj} voters, support for ${mmLabels.min} candidates is...`,
-    minLabel: "Split evenly",
-    maxLabel: "Leaning towards one candidate",
-  },
-  {
-    id: `minMinAffinity-bradleyTerry`,
-    dataid: `minMinAffinity-bradleyTerry`,
-    type: "ticked-slider",
-    fullWidth: true,
-    step: 0.5,
-    min: -1,
-    max: 1,
-    label: `Among ${mmLabels.min} voters, support for ${mmLabels.min} candidates is...`,
-    minLabel: "Split evenly",
-    maxLabel: "Leaning towards one candidate",
-  },
-  {
-    id: `minMajAffinity-bradleyTerry`,
-    dataid: `minMajAffinity-bradleyTerry`,
+    id: `minMajAffinity`,
+    modelsUsed: ["bradleyTerry", "plackettLuce"],
+    dataid: `minMajAffinity`,
     type: "ticked-slider",
     fullWidth: true,
     step: 0.5,
@@ -223,148 +141,78 @@ const modelInputs = [
   ////////////////////////////
   // AlternatingCrossover
   {
-    id: `majMajCandidateAgreement-alternatingCrossover`,
-    dataid: `majMajCandidateAgreement-alternatingCrossover`,
+    id: `majMajCandidateAgreement`,
+    modelsUsed: ["alternatingCrossover", "cambridgeSampler"],
+    dataid: `majMajCandidateAgreement`,
     type: "radio",
     label: `Among ${mmLabels.maj} voters, does everyone rank ${mmLabels.maj} candidates the same way?`,
     options: [
       {
-        id: "uniform-majMajCandidateAgreement-alternatingCrossover",
+        id: "uniform-majMajCandidateAgreement",
         value: 1,
         label: `Yes, ${mmLabels.maj} voters rank ${mmLabels.maj} candidates the same way`,
       },
       {
-        id: "random-majMajCandidateAgreement-alternatingCrossover",
+        id: "random-majMajCandidateAgreement",
         value: 0,
-        label: `No, ${mmLabels.maj} voters rank ${mmLabels.maj} candidates differently`,
+        label: `No, ${mmLabels.maj} voters rank ${mmLabels.maj} candidates randomly`,
       },
     ],
   },
   {
-    id: `majMinCandidateAgreement-alternatingCrossover`,
-    dataid: `majMinCandidateAgreement-alternatingCrossover`,
+    id: `majMinCandidateAgreement`,
+    modelsUsed: ["alternatingCrossover", "cambridgeSampler"],
+    dataid: `majMinCandidateAgreement`,
     type: "radio",
     label: `Among ${mmLabels.maj} voters, does everyone rank ${mmLabels.min} candidates the same way?`,
     options: [
       {
-        id: "uniform-majMinCandidateAgreement-alternatingCrossover",
+        id: "uniform-majMinCandidateAgreement",
         value: 1,
         label: `Yes, ${mmLabels.maj} voters rank ${mmLabels.min} candidates the same way`,
       },
       {
-        id: "random-majMinCandidateAgreement-alternatingCrossover",
+        id: "random-majMinCandidateAgreement",
         value: 0,
-        label: `No, ${mmLabels.maj} voters rank ${mmLabels.min} candidates differently`,
+        label: `No, ${mmLabels.maj} voters rank ${mmLabels.min} candidates randomly`,
       },
     ],
   },
   {
-    id: `minMajCandidateAgreement-alternatingCrossover`,
-    dataid: `minMajCandidateAgreement-alternatingCrossover`,
+    id: `minMajCandidateAgreement`,
+    modelsUsed: ["alternatingCrossover", "cambridgeSampler"],
+    dataid: `minMajCandidateAgreement`,
     type: "radio",
     label: `Among ${mmLabels.min} voters, does everyone rank ${mmLabels.maj} candidates the same way?`,
     options: [
       {
-        id: "uniform-minMajCandidateAgreement-alternatingCrossover",
+        id: "uniform-minMajCandidateAgreement",
         value: 1,
         label: `Yes, ${mmLabels.min} voters rank ${mmLabels.maj} candidates the same way`,
       },
       {
-        id: "random-minMajCandidateAgreement-alternatingCrossover",
+        id: "random-minMajCandidateAgreement",
         value: 0,
-        label: `No, ${mmLabels.min} voters rank ${mmLabels.maj} candidates differently`,
+        label: `No, ${mmLabels.min} voters rank ${mmLabels.maj} candidates randomly`,
       },
     ],
   },
   {
-    id: `minMinCandidateAgreement-alternatingCrossover`,
-    dataid: `minMinCandidateAgreement-alternatingCrossover`,
+    id: `minMinCandidateAgreement`,
+    modelsUsed: ["alternatingCrossover", "cambridgeSampler"],
+    dataid: `minMinCandidateAgreement`,
     type: "radio",
     label: `Among ${mmLabels.min} voters, does everyone rank ${mmLabels.min} candidates the same way?`,
     options: [
       {
-        id: "uniform-minMinCandidateAgreement-alternatingCrossover",
+        id: "uniform-minMinCandidateAgreement",
         value: 1,
         label: `Yes, ${mmLabels.min} voters rank ${mmLabels.min} candidates the same way`,
       },
       {
-        id: "random-minMinCandidateAgreement-alternatingCrossover",
+        id: "random-minMinCandidateAgreement",
         value: 0,
-        label: `No, ${mmLabels.min} voters rank ${mmLabels.min} candidates differently`,
-      },
-    ],
-  },
-  /////////////1//////////////
-  // Cambridge-Sampler
-  {
-    id: `majMajCandidateAgreement-cambridgeSampler`,
-    dataid: `majMajCandidateAgreement-cambridgeSampler`,
-    type: "radio",
-    label: `Among ${mmLabels.maj} voters, does everyone rank ${mmLabels.maj} candidates the same way?`,
-    options: [
-      {
-        id: "uniform-majMajCandidateAgreement-cambridgeSampler",
-        value: 1,
-        label: `Yes, ${mmLabels.maj} voters rank ${mmLabels.maj} candidates the same way`,
-      },
-      {
-        id: "random-majMajCandidateAgreement-cambridgeSampler",
-        value: 0,
-        label: `No, ${mmLabels.maj} voters rank ${mmLabels.maj} candidates differently`,
-      },
-    ],
-  },
-  {
-    id: `majMinCandidateAgreement-cambridgeSampler`,
-    dataid: `majMinCandidateAgreement-cambridgeSampler`,
-    type: "radio",
-    label: `Among ${mmLabels.maj} voters, does everyone rank ${mmLabels.min} candidates the same way?`,
-    options: [
-      {
-        id: "uniform-majMinCandidateAgreement-cambridgeSampler",
-        value: 1,
-        label: `Yes, ${mmLabels.maj} voters rank ${mmLabels.min} candidates the same way`,
-      },
-      {
-        id: "random-majMinCandidateAgreement-cambridgeSampler",
-        value: 0,
-        label: `No, ${mmLabels.maj} voters rank ${mmLabels.min} candidates differently`,
-      },
-    ],
-  },
-  {
-    id: `minMajCandidateAgreement-cambridgeSampler`,
-    dataid: `minMajCandidateAgreement-cambridgeSampler`,
-    type: "radio",
-    label: `Among ${mmLabels.min} voters, does everyone rank ${mmLabels.maj} candidates the same way?`,
-    options: [
-      {
-        id: "uniform-minMajCandidateAgreement-cambridgeSampler",
-        value: 1,
-        label: `Yes, ${mmLabels.min} voters rank ${mmLabels.maj} candidates the same way`,
-      },
-      {
-        id: "random-minMajCandidateAgreement-cambridgeSampler",
-        value: 0,
-        label: `No, ${mmLabels.min} voters rank ${mmLabels.maj} candidates differently`,
-      },
-    ],
-  },
-  {
-    id: `minMinCandidateAgreement-cambridgeSampler`,
-    dataid: `minMinCandidateAgreement-cambridgeSampler`,
-    type: "radio",
-    label: `Among ${mmLabels.min} voters, does everyone rank ${mmLabels.min} candidates the same way?`,
-    options: [
-      {
-        id: "uniform-minMinCandidateAgreement-cambridgeSampler",
-        value: 1,
-        label: `Yes, ${mmLabels.min} voters rank ${mmLabels.min} candidates the same way`,
-      },
-      {
-        id: "random-minMinCandidateAgreement-cambridgeSampler",
-        value: 0,
-        label: `No, ${mmLabels.min} voters rank ${mmLabels.min} candidates differently`,
+        label: `No, ${mmLabels.min} voters rank ${mmLabels.min} candidates randomly`,
       },
     ],
   },
@@ -374,10 +222,7 @@ const modelInputs = [
 function filterInputsByModelType(inputs, modelType) {
   const modelDataid = getModelFromDisplay(modelType).dataid;
   return inputs.filter((input) => {
-    const id = input.id;
-    const idSplitFromType = id.split("-");
-    const hasModelType = Boolean(idSplitFromType[1]);
-    return hasModelType && idSplitFromType[1] === modelDataid;
+    return input.modelsUsed.includes(modelDataid);
   });
 }
 
