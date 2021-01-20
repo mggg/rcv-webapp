@@ -10,9 +10,14 @@ const routes = [
   },
   {
     path: `/`,
+    isHome: "true",
     display: "Home",
     component: SimulationPage,
   },
 ];
 
-export { routes };
+function getHomePath(routes) {
+  return routes.find((route) => route.isHome).path;
+}
+
+export { routes, getHomePath };

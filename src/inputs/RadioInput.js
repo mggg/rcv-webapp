@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/radioInput.scss";
 
 function RadioInput({
   dataid,
@@ -30,7 +31,7 @@ function RadioInput({
                 checked={option.value === parseInt(value)}
                 className="d-inline"
               />
-              <label htmlFor={option.id} className="input-option-text">
+              <label htmlFor={option.id} className="radio-option-text">
                 {option.label}
               </label>
             </div>

@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
+import { getHomePath } from "./pages/routes.js";
 
 function AppHeader(props) {
   return (
     <Navbar className="nav-header" variant="dark" expand="md">
-      <Navbar.Brand>
+      <Navbar.Brand href={getHomePath(props.routes)}>
         Modeling Representation <br className="d-xs-block d-sm-none" /> with
         Ranked Choice Voting
       </Navbar.Brand>
