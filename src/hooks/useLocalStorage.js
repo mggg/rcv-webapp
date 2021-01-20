@@ -1,15 +1,28 @@
+import _ from "lodash";
 import { useState } from "react";
 
 // Hook
-function useLocalStorage(key, initialValue) {
+function useLocalStorage(stateObjectName, initialValue) {
   // State to store our value
   // Pass initial state function to useState so logic is only executed once
   const [storedValue, setStoredValue] = useState(() => {
     try {
-      // Get from local storage by key
-      const item = window.localStorage.getItem(key);
-      // Parse stored json or if none return initialValue
-      return item ? JSON.parse(item) : initialValue;
+      // Get from local storage by stateObjectName
+      const storedState = window.localStorage.getItem(stateObjectName);
+      // Return initialValue if this is new to localStorage
+      if (_.isNull(storedState)) {
+        return initialValue;
+      }
+      // If the keys on the storedState match the current one, use the storedState;
+      // else, clear it and use the current state
+      const parsedStoredState = JSON.parse(storedState);
+      const validStateObjectKeys = Object.keys(initialValue);
+      const storedStateKeys = Object.keys(parsedStoredState);
+      if (_.isEqual(storedStateKeys, validStateObjectKeys)) {
+        return parsedStoredState;
+      }
+      window.localStorage.removeItem(stateObjectName);
+      return initialValue;
     } catch (error) {
       // If error also return initialValue
       console.log(error);
@@ -27,7 +40,10 @@ function useLocalStorage(key, initialValue) {
       // Save state
       setStoredValue(valueToStore);
       // Save to local storage
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      window.localStorage.setItem(
+        stateObjectName,
+        JSON.stringify(valueToStore)
+      );
     } catch (error) {
       // A more advanced implementation would handle the error case
       console.log(error);
