@@ -6,6 +6,8 @@ import TickedSlider from "./TickedSlider";
 
 function GenericInput({ param, formData, setFormData, formInputs }) {
   const handleChange = (param) => (value) => {
+    // If the parameter has a transform to apply before updating, us it;
+    // else have the transform be a noop
     const transformFunction = param.updateTransform || ((arg) => arg);
     const formDataCopy = { ...formData };
     formDataCopy[param.dataid] = transformFunction(

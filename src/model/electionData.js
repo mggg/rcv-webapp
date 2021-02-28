@@ -29,7 +29,7 @@ const electionInputs = [
     dataid: "ballots",
     type: "number",
     step: 10,
-    min: 1,
+    min: 0,
     max: 10000,
     // fullWidth: true,
     label: "Ballots cast",
@@ -55,7 +55,7 @@ const electionInputs = [
     min: 0,
     max: 15,
     helperText: "Max 15",
-    label: `Number of ${mmLabels.maj} candidates`,
+    label: `${mmLabels.maj} candidates`,
     info: `The number of ${mmLabels.maj} candidates running for election in each simulation`,
   },
   {
@@ -66,7 +66,7 @@ const electionInputs = [
     min: 0,
     max: 15,
     helperText: "Max 15",
-    label: `Number of ${mmLabels.min} candidates`,
+    label: `${mmLabels.min} candidates`,
     info: `The number of ${mmLabels.min} candidates running for election in each simulation`,
   },
 ];

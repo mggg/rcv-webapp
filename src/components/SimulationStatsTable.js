@@ -24,7 +24,7 @@ function KeyValueTable({ kv = {} }) {
   );
 }
 
-function SimulationStatsTable({ data = [], maxSeats }) {
+function SimulationStatsTable({ data = [], maxSeats = 1 }) {
   const stats = !_.isEmpty(data) && {
     Min: min(data),
     Max: max(data),

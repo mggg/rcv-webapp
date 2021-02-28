@@ -135,13 +135,10 @@ function SimulationInformation({
             </div>
           )}
           {/* Show an empty viz when no simulations have been triggered or completed  */}
-          {status === "idle" && (
-            <SimulationVisualization maxBins={getSeats()} />
-          )}
+          {status === "idle" && <SimulationVisualization />}
           {status === "success" && (
             <SimulationVisualization
               ref={simulationVisualizationRef}
-              maxSeats={getSeats()}
               electionSimulations={getElectionSimulationCount()}
               simulationResults={value}
               simulationParams={relevantParams}

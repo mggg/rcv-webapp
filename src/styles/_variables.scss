@@ -15,6 +15,7 @@ $linen: hsl(33, 15%, 97%);
 $white: $linen;
 // $white: white;
 $primary: $triadic;
+$primary-emph: lighten($triadic, 20%);
 
 $card-bg: $white;
 $table-accent-bg: darken($white, 5%);
@@ -23,4 +24,5 @@ $table-accent-bg: darken($white, 5%);
   primary: $primary;
   green: $green;
   purple: $purple;
+  primary-emph: $primary-emph;
 }

@@ -75,7 +75,7 @@ function SimulationPage() {
 
   return (
     <Container fluid>
-      <Row style={{ height: "max" }}>
+      <Row>
         <Col md={7} className="pb-2 d-flex flex-column">
           <ElectionParameters
             formData={electionState}

@@ -1,87 +1,9 @@
 import React from "react";
-import _ from "lodash";
 import { Form } from "react-bootstrap";
-import {
-  VictoryAxis,
-  VictoryChart,
-  VictoryContainer,
-  VictoryHistogram,
-  VictoryLabel,
-  VictoryTooltip,
-} from "victory";
+import _ from "lodash";
 import { mmLabels } from "../model/constants";
 import SimulationStatsTable from "./SimulationStatsTable";
-import variables from "../styles/_variables.scss";
-
-function SimulationResultsHistogram({
-  displayMajResults,
-  electionSimulations,
-  maxSeats,
-  selectedModel,
-  data,
-}) {
-  const pocData = (data || []).map((val) => ({ x: val }));
-  // Determine the number of elections with no POC winners
-  const electionWithoutRelevantWinners =
-    data && data.length ? electionSimulations - data.length : 0;
-  for (let i = 0; i < electionWithoutRelevantWinners; i++) {
-    pocData.push({ x: 0 });
-  }
-
-  const bins = _.range(0, maxSeats + 2, 1);
-  const barColor = displayMajResults ? variables.green : variables.purple;
-  const demographicVisualized = displayMajResults ? mmLabels.maj : mmLabels.min;
-
-  return (
-    <VictoryChart
-      style={{ parent: { fontSize: 12 } }}
-      containerComponent={
-        <VictoryContainer
-          className="pt-2 pb-2"
-          style={{ height: "auto", maxWidth: 400, margin: "auto" }}
-        />
-      }
-    >
-      {/* Display pocData */}
-      <VictoryHistogram
-        style={{ labels: { fill: "black" }, data: { fill: barColor } }}
-        cornerRadius={0}
-        data={pocData}
-        bins={bins}
-        labelComponent={<VictoryTooltip constrainToVisibleArea />}
-        labels={({ datum }) =>
-          `# Elections with ${
-            datum.x - 0.5
-          } ${demographicVisualized} winner(s)\n${datum.y}`
-        }
-      />
-      {/* Chart Title */}
-      <VictoryLabel
-        text={
-          _.isUndefined(electionSimulations)
-            ? `No Data`
-            : `${demographicVisualized} Candidates Elected \n Across ${electionSimulations} ${selectedModel} Simulation(s) `
-        }
-        x={225}
-        y={18}
-        textAnchor="middle"
-      />
-      {/* X axis */}
-      <VictoryAxis
-        label={`Frequency of outcome`}
-        textAnchor="middle"
-        axisLabelComponent={<VictoryLabel dy={-12} />}
-        dependentAxis
-      />
-      {/* Y Axis */}
-      <VictoryAxis
-        label={`Number of ${demographicVisualized} candidates elected`}
-        tickLabelComponent={<VictoryLabel dy={-5} dx={200 / bins.length} />}
-        tickValues={bins.slice(0, bins.length - 1)}
-      />
-    </VictoryChart>
-  );
-}
+import SimulationResultsHistogram from "./SimulationResultsHistogram";
 
 class SimulationVisualization extends React.Component {
   constructor(props) {
@@ -108,12 +30,12 @@ class SimulationVisualization extends React.Component {
   render() {
     const {
       electionSimulations,
-      maxSeats = 1,
       selectedModel = "",
       simulationParams = {},
       simulationResults = {},
     } = this.props;
     const pocElected = simulationResults.poc_elected_rcv;
+    const maxSeats = simulationResults.seats_open;
     const relevantElected = this.state.displayMajResults
       ? pocElected.map((pocWinners) => maxSeats - pocWinners)
       : pocElected;
