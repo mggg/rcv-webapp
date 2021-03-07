@@ -2,7 +2,6 @@
 @import "_variables.scss";
 // Core bootstrap
 @import "~bootstrap/scss/bootstrap.scss";
-@import "~react-rangeslider/lib/index.css";
 @import "slider.scss";
 @import "tickedSlider.scss";
 
@@ -22,6 +21,7 @@ body {
 
 h1 {
   font-size: 1.85rem;
+  margin-bottom: 0.25rem;
   padding-top: 0.5rem;
 }
 
@@ -53,7 +53,7 @@ label {
 ////////////////////////////
 //// Nav Header
 .nav-header {
-  background-image: linear-gradient(to bottom right, $green, $purple);
+  background-image: linear-gradient(to bottom right, $maj-color, $min-color);
 }
 
 .navbar-brand {
@@ -121,12 +121,12 @@ label[for] {
 
 .results-demographic-flip .custom-control-input {
   & ~ .custom-control-label::before {
-    border-color: $purple;
-    background-color: $purple;
+    border-color: $min-color;
+    background-color: $min-color;
   }
 
   &:checked ~ .custom-control-label::before {
-    border-color: $green;
-    background-color: $green;
+    border-color: $maj-color;
+    background-color: $maj-color;
   }
 }

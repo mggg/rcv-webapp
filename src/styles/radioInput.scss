@@ -1,18 +1,22 @@
 @import "variables.scss";
 
+// Radio option text styling
 label.radio-option-text {
   font-size: 0.85rem;
   margin-bottom: 0;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   margin-left: 0rem;
 }
 
+// Disable default radio styling
 input[type="radio"] {
-  /* Hide original inputs */
-  visibility: hidden;
   position: absolute;
+  width: 0;
+  height: 0;
 }
+
+// Default custom radio styling
 input[type="radio"] + label:before {
   height: 12px;
   width: 12px;
@@ -22,9 +26,19 @@ input[type="radio"] + label:before {
   vertical-align: middle;
   border: 1px solid #777;
 }
+
+// Checked styling
 input[type="radio"]:checked + label:before {
   background: $triadic;
   box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 1) inset;
+}
+
+// Focus and hover styling
+input[type="radio"]:checked:focus + label:before,
+input[type="radio"]:checked:hover + label:before,
+input[type="radio"]:not(:checked):hover + label:before {
+  box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 1) inset,
+    0px 0px 2px 2px $triadic;
 }
 
 /* CUSTOM RADIO AND CHECKBOX STYLES */

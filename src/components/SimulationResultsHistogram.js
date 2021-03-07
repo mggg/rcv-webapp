@@ -25,12 +25,13 @@ function SimulationResultsHistogram({
   // The number of possible bins for our results
   const bins = _.range(0, maxSeats + 2, 1);
   // Color of the bar changes to reflect the demographic charted
-  const barColor = displayMajResults ? variables.green : variables.purple;
+  const barColor = displayMajResults
+    ? variables["maj-color"]
+    : variables["min-color"];
   //  Text-label for the demographic charted
   const demographicVisualized = displayMajResults ? mmLabels.maj : mmLabels.min;
   // Mean number of elections won
   const meanCandidateElected = _.isEmpty(data) ? undefined : mean(data);
-  console.log("meanCandidateElected", meanCandidateElected);
 
   return (
     <VictoryChart

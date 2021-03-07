@@ -17,27 +17,25 @@ function RadioInput({
 
   return (
     <div className={`${paddingClass} ${widthClass}`}>
-      <label className="input-label">{label}</label>
-      <fieldset id={dataid}>
-        {options.map((option) => {
-          return (
-            <div className="d-flex align-items-center pb-1" key={option.id}>
-              <input
-                type="radio"
-                id={option.id}
-                name={dataid}
-                onChange={(e) => handleChange(e.target.value)}
-                value={option.value}
-                checked={option.value === parseInt(value)}
-                className="d-inline"
-              />
-              <label htmlFor={option.id} className="radio-option-text">
-                {option.label}
-              </label>
-            </div>
-          );
-        })}
-      </fieldset>
+      <div className="input-label pb-1">{label}</div>
+      {options.map((option) => {
+        return (
+          <div key={option.id} className="pb-1">
+            <input
+              type="radio"
+              id={option.id}
+              name={dataid}
+              onChange={(e) => handleChange(e.target.value)}
+              value={option.value}
+              checked={option.value === parseInt(value)}
+              className="d-inline"
+            />
+            <label htmlFor={option.id} className="radio-option-text">
+              {option.label}
+            </label>
+          </div>
+        );
+      })}
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import { mmLabels } from "./constants";
 import _ from "lodash";
 
+const ENSEMBLE_API_ENDPOINT = "ensemble";
+
 const models = [
   {
     id: "plackettLuce",
@@ -228,6 +230,9 @@ function filterInputsByModelType(inputs, modelType) {
 
 // Given a formDataObject, filter down to inputs that have no modelType or have a given modelType
 function filterDataByModelTypes(formObject, modelType) {
+  if (!modelType) {
+    return formObject;
+  }
   const modelDataid = getModelFromDisplay(modelType).dataid;
   return _.pick(
     formObject,
@@ -247,7 +252,13 @@ function getModelFromDisplay(selectedModelDisplay) {
 }
 
 function getApiEndpoint(selectedModel) {
-  return getModelFromDisplay(selectedModel).apiEndpoint;
+  console.log(
+    "🚀 ~ file: rcvModelData.js ~ line 255 ~ getApiEndpoint ~ selectedModel",
+    selectedModel
+  );
+  return selectedModel
+    ? getModelFromDisplay(selectedModel).apiEndpoint
+    : ENSEMBLE_API_ENDPOINT;
 }
 
 export {

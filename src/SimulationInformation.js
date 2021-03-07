@@ -1,60 +1,19 @@
 import React, { useRef } from "react";
 import axios from "axios";
-import { Button, Card } from "react-bootstrap";
-import { Download, Play, Loader } from "react-feather";
-import { exportComponentAsPNG } from "react-component-export-image";
-
+import { Card } from "react-bootstrap";
 import Spinner from "./components/Spinner";
 import SimulationVisualization from "./components/SimulationVisualization";
+import SaveButton from "./components/SaveButton";
+import RunButton from "./components/RunButton";
+import LoadingButton from "./components/LoadingButton";
 import useAsync from "./hooks/useAsync";
 import GenericInput from "./inputs/GenericInput";
 import { getApiEndpoint, filterDataByModelTypes } from "./model/rcvModelData";
 import { simulationInputs } from "./model/simulationData";
 
-function SaveButton({ status, simulationVisualizationRef }) {
-  return (
-    <div className="d-flex justify-content-between">
-      <Button
-        onClick={() => {
-          exportComponentAsPNG(simulationVisualizationRef);
-        }}
-        className="d-flex justify-content-center align-items-center"
-        size="sm"
-      >
-        <Download size={16} className="mr-1" />
-        Save
-      </Button>
-    </div>
-  );
-}
-
-function RunButton({ execute, status }) {
-  return (
-    <Button
-      onClick={execute}
-      className="d-flex ml-1 justify-content-center align-items-center"
-      size="sm"
-      disabled={status === "pending"}
-    >
-      {status !== "pending" ? (
-        <>
-          <Play size={16} className="mr-1" />
-          Run
-        </>
-      ) : (
-        <>
-          <Loader size={16} className="mr-1" />
-          Loading...
-        </>
-      )}
-    </Button>
-  );
-}
-
 function SimulationInformation({
   combineFormData,
   formData,
-  getSeats,
   getElectionSimulationCount,
   setFormData,
   selectedModel,
@@ -111,14 +70,16 @@ function SimulationInformation({
             {/* Download and save buttons */}
             <div className="d-flex">
               {status === "success" && (
-                <SaveButton
-                  status={status}
-                  simulationVisualizationRef={simulationVisualizationRef}
-                />
+                <SaveButton refToSave={simulationVisualizationRef} />
               )}
-              <RunButton execute={execute} status={status} />
+              {status !== "pending" ? (
+                <RunButton onClick={execute} />
+              ) : (
+                <LoadingButton />
+              )}
             </div>
           </div>
+          {/* Results of the simulation */}
           {/* When errors are present, log them to the console */}
           {status === "error" && (
             <p>
@@ -136,6 +97,7 @@ function SimulationInformation({
           )}
           {/* Show an empty viz when no simulations have been triggered or completed  */}
           {status === "idle" && <SimulationVisualization />}
+          {/* Display the results of the simulation when completed */}
           {status === "success" && (
             <SimulationVisualization
               ref={simulationVisualizationRef}
@@ -145,11 +107,6 @@ function SimulationInformation({
               selectedModel={selectedModel}
             />
           )}
-          {/* TODO: Implement local history of simulations in order to compare and contrast over time */}
-          {/* <div>
-            <h4>History of Simulations</h4>
-            <EmptyPlceholder />
-          </div> */}
         </Card.Body>
       </Card>
     </>

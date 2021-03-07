@@ -43,13 +43,9 @@ function TickedSlider({
         renderTrack={({ props, children }) => (
           <div
             {...props}
+            className="slider-track"
             style={{
               ...props.style,
-              height: "6px",
-              width: "100%",
-              borderRadius: "10px",
-              boxShadow: "inset 0 1px 3px rgba(0, 0, 0, 0.4)",
-              marginBottom: "6px",
               background: getTrackBackground({
                 values: [value],
                 colors: [variables.primary, "#ccc"],
@@ -61,7 +57,7 @@ function TickedSlider({
             {children}
           </div>
         )}
-        renderThumb={({ props }) => <div {...props} className="ticked_thumb" />}
+        renderThumb={({ props }) => <div {...props} className="slider-thumb" />}
         renderMark={({ props }) => <div {...props} className="ticked_mark" />}
       />
     </div>

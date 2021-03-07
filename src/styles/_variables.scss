@@ -16,13 +16,15 @@ $white: $linen;
 // $white: white;
 $primary: $triadic;
 $primary-emph: lighten($triadic, 20%);
+$maj-color: $green;
+$min-color: $purple;
 
 $card-bg: $white;
 $table-accent-bg: darken($white, 5%);
 
 :export {
   primary: $primary;
-  green: $green;
-  purple: $purple;
+  maj-color: $maj-color;
+  min-color: $min-color;
   primary-emph: $primary-emph;
 }
