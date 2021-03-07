@@ -30,12 +30,10 @@ function Slider({ value, min, max, step, onChange, labelFormat }) {
         </div>
       )}
       renderThumb={({ props, isDragged }) => (
-        <>
-          <div {...props} className="slider-thumb">
-            {/* Render the tooltip when being dragged */}
-            {isDragged && <div className="slider-tooltip">{labelFormat()}</div>}
-          </div>
-        </>
+        <div {...props} className="slider-thumb">
+          {/* Render the tooltip when being dragged */}
+          {isDragged && <div className="slider-tooltip">{labelFormat()}</div>}
+        </div>
       )}
     />
   );

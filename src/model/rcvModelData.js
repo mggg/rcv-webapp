@@ -252,10 +252,6 @@ function getModelFromDisplay(selectedModelDisplay) {
 }
 
 function getApiEndpoint(selectedModel) {
-  console.log(
-    "🚀 ~ file: rcvModelData.js ~ line 255 ~ getApiEndpoint ~ selectedModel",
-    selectedModel
-  );
   return selectedModel
     ? getModelFromDisplay(selectedModel).apiEndpoint
     : ENSEMBLE_API_ENDPOINT;
