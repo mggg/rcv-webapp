@@ -51,7 +51,7 @@ const voterInputs = [
     id: `percentageMinCohesion`,
     dataid: `percentageMinCohesion`,
     type: "split-slider",
-    colorFlip: true,
+    minColorFirst: true,
     fullWidth: true,
     step: 1,
     min: 0,

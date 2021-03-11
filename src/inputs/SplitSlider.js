@@ -4,7 +4,15 @@ import { Range, getTrackBackground } from "react-range";
 import variables from "../styles/_variables.scss";
 // To include the default styles
 
-function Slider({ value, min, max, step, onChange, labelFormat }) {
+function Slider({
+  minColorFirst,
+  value,
+  min,
+  max,
+  step,
+  onChange,
+  labelFormat,
+}) {
   return (
     <Range
       onChange={(values) => onChange(values[0])}
@@ -20,7 +28,9 @@ function Slider({ value, min, max, step, onChange, labelFormat }) {
             ...props.style,
             background: getTrackBackground({
               values: [value],
-              colors: [variables["maj-color"], variables["min-color"]],
+              colors: minColorFirst
+                ? [variables["min-color"], variables["maj-color"]]
+                : [variables["maj-color"], variables["min-color"]],
               min: min,
               max: max,
             }),
@@ -41,7 +51,7 @@ function Slider({ value, min, max, step, onChange, labelFormat }) {
 
 function SplitSlider({
   className,
-  colorFlip,
+  minColorFirst,
   fullWidth,
   handleChange,
   id,
@@ -74,7 +84,7 @@ function SplitSlider({
         {/* Slider */}
         <span className="pl-3 pr-3 w-100">
           <Slider
-            className={colorFlip && "color-flip"}
+            minColorFirst={minColorFirst}
             value={Number(value)}
             min={min}
             max={max}
