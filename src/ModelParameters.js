@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Card } from "react-bootstrap";
+import { Nav, Card, Row } from "react-bootstrap";
 
 import ResetButton from "./components/ResetButton";
 import GenericInput from "./inputs/GenericInput";
@@ -38,7 +38,7 @@ function ModelParameters({
             ))}
           </Nav>
         </Card.Header>
-        <Card.Body className="d-flex flex-wrap align-content-start">
+        <Row as={Card.Body} noGutters className="align-content-start">
           {filterInputsByModelType(modelInputs, selectedModel).map((param) => (
             <GenericInput
               key={param.id}
@@ -47,7 +47,7 @@ function ModelParameters({
               setFormData={setFormData}
             />
           ))}
-        </Card.Body>
+        </Row>
       </Card>
     </>
   );

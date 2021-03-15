@@ -15,7 +15,6 @@ import variables from "../styles/_variables.scss";
 
 function SimulationResultsHistogram({
   displayMajResults,
-  electionSimulations,
   maxSeats = 0,
   selectedModel,
   data,
@@ -51,9 +50,9 @@ function SimulationResultsHistogram({
       {/* Chart Title */}
       <VictoryLabel
         text={
-          _.isUndefined(electionSimulations)
+          _.isEmpty(data)
             ? `No Data`
-            : `${demographicVisualized} Candidates Elected \n Across ${electionSimulations} ${selectedModel} Simulation(s) `
+            : `${demographicVisualized} Candidates Elected \n Across ${data.length} ${selectedModel} Simulation(s) `
         }
         x={225}
         y={18}

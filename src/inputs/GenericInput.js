@@ -1,6 +1,7 @@
 import React from "react";
 import NumberInput from "./NumberInput";
 import RadioInput from "./RadioInput";
+import CheckboxInput from "./CheckboxInput";
 import Slider from "./SplitSlider";
 import TickedSlider from "./TickedSlider";
 
@@ -47,6 +48,15 @@ function GenericInput({ param, formData, setFormData, formInputs }) {
     case "radio":
       return (
         <RadioInput
+          {...param}
+          handleChange={handleChange(param)}
+          value={formData[param.dataid]}
+          formData={formData}
+        />
+      );
+    case "checkbox":
+      return (
+        <CheckboxInput
           {...param}
           handleChange={handleChange(param)}
           value={formData[param.dataid]}

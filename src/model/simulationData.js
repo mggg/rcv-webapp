@@ -21,8 +21,4 @@ const simulationInputs = [
   },
 ];
 
-function getElectionSimulationCount(formData) {
-  return parseInt(formData["numElectionsEachSimulation"]);
-}
-
-export { simulationParams, simulationInputs, getElectionSimulationCount };
+export { simulationParams, simulationInputs };

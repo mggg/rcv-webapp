@@ -29,7 +29,6 @@ class SimulationVisualization extends React.Component {
 
   render() {
     const {
-      electionSimulations,
       selectedModel = "",
       simulationParams = {},
       simulationResults = {},
@@ -45,7 +44,7 @@ class SimulationVisualization extends React.Component {
 
     return (
       <>
-        {!_.isUndefined(electionSimulations) && (
+        {!_.isEmpty(simulationResults) && (
           <Form.Check
             type="switch"
             id="custom-switch"
@@ -56,7 +55,6 @@ class SimulationVisualization extends React.Component {
           />
         )}
         <SimulationResultsHistogram
-          electionSimulations={electionSimulations}
           maxSeats={maxSeats}
           displayMajResults={this.state.displayMajResults}
           data={relevantElected}

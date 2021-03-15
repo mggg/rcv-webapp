@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Row } from "react-bootstrap";
 import ResetButton from "./components/ResetButton";
 
 import GenericInput from "./inputs/GenericInput";
@@ -13,7 +13,7 @@ function ElectionParameters({ formData, setFormData, resetData }) {
         <ResetButton onClick={resetData} />
       </div>
       <Card className="parameter-container flex-grow-1">
-        <Card.Body className="d-flex flex-wrap align-content-start">
+        <Row as={Card.Body} noGutters className="align-content-start">
           {electionInputs.map((param) => {
             return (
               <GenericInput
@@ -24,7 +24,7 @@ function ElectionParameters({ formData, setFormData, resetData }) {
               />
             );
           })}
-        </Card.Body>
+        </Row>
       </Card>
     </>
   );

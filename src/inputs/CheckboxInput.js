@@ -1,4 +1,5 @@
 import React from "react";
+import { Form } from "react-bootstrap";
 import "../styles/radioInput.scss";
 
 function RadioInput({
@@ -9,7 +10,6 @@ function RadioInput({
   label,
   options,
   padding = true,
-  type,
   value,
 }) {
   const widthClass = fullWidth ? " col-12 " : " col-sm-6 ";
@@ -21,16 +21,17 @@ function RadioInput({
       {options.map((option) => {
         return (
           <div key={option.id} className="pb-1">
-            <input
-              type="radio"
+            <Form.Check
+              custom
+              type="checkbox"
               id={option.id}
               name={dataid}
               onChange={(e) => handleChange(e.target.value)}
               value={option.value}
-              checked={option.value === parseInt(value)}
+              checked={value.includes(option.value)}
               className="d-inline"
             />
-            <label htmlFor={option.id} className="radio-option-text">
+            <label htmlFor={option.id} className="checkbox-option-text">
               {option.label}
             </label>
           </div>

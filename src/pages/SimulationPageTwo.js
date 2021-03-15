@@ -7,8 +7,8 @@ import { electionParams, getSeats } from "../model/electionData";
 import { voterParams } from "../model/voterData";
 import {
   simulationParams,
-  getElectionSimulationCount,
-} from "../model/simulationData";
+  simulationInputs,
+} from "../model/simulationEnsembleData";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 function SimulationPage() {
@@ -52,9 +52,6 @@ function SimulationPage() {
   const getSeatsFromState = () => {
     return getSeats(electionState);
   };
-  const getElectionSimulationCountFromState = () => {
-    return getElectionSimulationCount(simulationState);
-  };
 
   return (
     <Container fluid>
@@ -75,8 +72,8 @@ function SimulationPage() {
           <SimulationInformation
             combineFormData={combineFormData}
             formData={simulationState}
+            formInputs={simulationInputs}
             getSeats={getSeatsFromState}
-            getElectionSimulationCount={getElectionSimulationCountFromState}
             setFormData={setSimulationState}
           />
         </Col>

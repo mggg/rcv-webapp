@@ -20,7 +20,7 @@ function TickedSlider({
 }) {
   const ticks = _.range(min, max + step, step);
   const widthClass = fullWidth ? " col-12 " : " col-sm-6 ";
-  const paddingClass = padding ? " pr-2 pl-2 " : "";
+  const paddingClass = padding ? " pr-2 pl-2 " : "p-0";
 
   return (
     <div className={`${paddingClass} ${widthClass}`}>
