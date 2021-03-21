@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import qs from "qs";
 import axios from "axios";
 import { Card, Row } from "react-bootstrap";
 import Spinner from "./components/Spinner";
@@ -30,10 +31,18 @@ function SimulationInformation({
     combineFormData(),
     selectedModel ? selectedModel : undefined
   );
+  console.log("relevantParams", relevantParams);
+  console.log(
+    "qs.stringify(params)",
+    qs.stringify(relevantParams, { arrayFormat: "repeat" })
+  );
   const fetchData = async () => {
     const response = await axios.get(apiURL, {
       // Filter all the query params by the selectedModel
       params: relevantParams,
+      paramsSerializer: (params) => {
+        return qs.stringify(params, { arrayFormat: "repeat" });
+      },
     });
     return response.data;
   };
