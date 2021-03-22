@@ -22,7 +22,7 @@ function ModelParameters({
         <h1>Model Settings</h1>
         <ResetButton onClick={resetData} />
       </div>
-      <Card className="parameter-container flex-grow-1">
+      <Card className="parameter-container">
         <Card.Header>
           <Nav
             variant="tabs"

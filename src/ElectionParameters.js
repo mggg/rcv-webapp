@@ -12,7 +12,7 @@ function ElectionParameters({ formData, setFormData, resetData }) {
         <h1>Election Details</h1>
         <ResetButton onClick={resetData} />
       </div>
-      <Card className="parameter-container flex-grow-1">
+      <Card className="parameter-container">
         <Row as={Card.Body} noGutters className="align-content-start">
           {electionInputs.map((param) => {
             return (

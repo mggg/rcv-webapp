@@ -9,7 +9,7 @@ function KeyValueTable({ kv = {} }) {
   return Object.keys(kv).length === 0 ? (
     <EmptyPlaceholder />
   ) : (
-    <Table striped borderless hover className="kv-table">
+    <Table striped borderless className="kv-table">
       <tbody>
         {Object.entries(kv).map(([k, v]) => {
           return (
@@ -42,16 +42,16 @@ function SimulationStatsTable({ data = [], maxSeats = 1 }) {
   };
 
   const statsDisplay = !_.isEmpty(statsMarginalized) && {
-    Min: `${(statsMarginalized.Min * 100).toFixed(2)}% (${
+    Min: `${(statsMarginalized.Min * 100).toFixed(0)}% of seats (${
       stats.Min
     } / ${maxSeats})`,
-    Max: `${(statsMarginalized.Max * 100).toFixed(2)}% (${
+    Max: `${(statsMarginalized.Max * 100).toFixed(0)}% of seats (${
       stats.Max
     } / ${maxSeats})`,
-    Mode: `${(statsMarginalized.Mode * 100).toFixed(2)}% (${
+    Mode: `${(statsMarginalized.Mode * 100).toFixed(0)}% of seats (${
       stats.Mode
     } / ${maxSeats})`,
-    Mean: `${(statsMarginalized.Mean * 100).toFixed(2)}% (${
+    Mean: `${(statsMarginalized.Mean * 100).toFixed(0)}% of seats (${
       stats.Mean
     } / ${maxSeats})`,
     "Standard Deviation": `${statsMarginalized["Standard Deviation"] * 100}% (${

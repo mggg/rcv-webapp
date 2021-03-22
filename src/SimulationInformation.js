@@ -31,11 +31,7 @@ function SimulationInformation({
     combineFormData(),
     selectedModel ? selectedModel : undefined
   );
-  console.log("relevantParams", relevantParams);
-  console.log(
-    "qs.stringify(params)",
-    qs.stringify(relevantParams, { arrayFormat: "repeat" })
-  );
+
   const fetchData = async () => {
     const response = await axios.get(apiURL, {
       // Filter all the query params by the selectedModel
@@ -58,7 +54,7 @@ function SimulationInformation({
       <div className="d-flex justify-content-between">
         <h1>Simulations</h1>
       </div>
-      <Card className="parameter-container flex-grow-1">
+      <Card className="parameter-container">
         <Card.Body>
           {/* First div: the inputs in the form of a row, and the button to trigger sims */}
           <Row noGutters className="align-content-start">
