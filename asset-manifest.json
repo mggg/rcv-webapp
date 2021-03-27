@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/rcv-webapp/static/css/main.1ef220b7.chunk.css",
-    "main.js": "/rcv-webapp/static/js/main.7fbc28a0.chunk.js",
-    "main.js.map": "/rcv-webapp/static/js/main.7fbc28a0.chunk.js.map",
+    "main.css": "/rcv-webapp/static/css/main.a919741a.chunk.css",
+    "main.js": "/rcv-webapp/static/js/main.d35292c3.chunk.js",
+    "main.js.map": "/rcv-webapp/static/js/main.d35292c3.chunk.js.map",
     "runtime-main.js": "/rcv-webapp/static/js/runtime-main.3cf5c632.js",
     "runtime-main.js.map": "/rcv-webapp/static/js/runtime-main.3cf5c632.js.map",
-    "static/js/2.13b431d8.chunk.js": "/rcv-webapp/static/js/2.13b431d8.chunk.js",
-    "static/js/2.13b431d8.chunk.js.map": "/rcv-webapp/static/js/2.13b431d8.chunk.js.map",
+    "static/js/2.7eb2d242.chunk.js": "/rcv-webapp/static/js/2.7eb2d242.chunk.js",
+    "static/js/2.7eb2d242.chunk.js.map": "/rcv-webapp/static/js/2.7eb2d242.chunk.js.map",
     "index.html": "/rcv-webapp/index.html",
-    "precache-manifest.6b1e1502b9263631c2bea1fb291f69db.js": "/rcv-webapp/precache-manifest.6b1e1502b9263631c2bea1fb291f69db.js",
+    "precache-manifest.5d557ddf9bbb3d6feaa77b96cc1ad83e.js": "/rcv-webapp/precache-manifest.5d557ddf9bbb3d6feaa77b96cc1ad83e.js",
     "service-worker.js": "/rcv-webapp/service-worker.js",
-    "static/css/main.1ef220b7.chunk.css.map": "/rcv-webapp/static/css/main.1ef220b7.chunk.css.map",
-    "static/js/2.13b431d8.chunk.js.LICENSE.txt": "/rcv-webapp/static/js/2.13b431d8.chunk.js.LICENSE.txt"
+    "static/css/main.a919741a.chunk.css.map": "/rcv-webapp/static/css/main.a919741a.chunk.css.map",
+    "static/js/2.7eb2d242.chunk.js.LICENSE.txt": "/rcv-webapp/static/js/2.7eb2d242.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3cf5c632.js",
-    "static/js/2.13b431d8.chunk.js",
-    "static/css/main.1ef220b7.chunk.css",
-    "static/js/main.7fbc28a0.chunk.js"
+    "static/js/2.7eb2d242.chunk.js",
+    "static/css/main.a919741a.chunk.css",
+    "static/js/main.d35292c3.chunk.js"
   ]
 }
