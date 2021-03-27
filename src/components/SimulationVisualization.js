@@ -43,7 +43,7 @@ class SimulationVisualization extends React.Component {
       : mmLabels.min;
 
     return (
-      <>
+      <section>
         {!_.isEmpty(simulationResults) && (
           <Form.Check
             type="switch"
@@ -65,7 +65,7 @@ class SimulationVisualization extends React.Component {
           maxSeats={maxSeats}
           simulationParams={simulationParams}
         />
-      </>
+      </section>
     );
   }
 }

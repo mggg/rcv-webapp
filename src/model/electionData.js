@@ -71,8 +71,4 @@ const electionInputs = [
   },
 ];
 
-function getSeats(formData) {
-  return parseInt(formData["seatsOpen"]);
-}
-
-export { electionParams, electionInputs, getSeats };
+export { electionParams, electionInputs };

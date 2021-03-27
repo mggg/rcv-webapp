@@ -1,5 +1,5 @@
 import SimulationPage from "./SimulationPage";
-import SimulationPageTwo from "./SimulationPageTwo";
+import EnsembleSimulationPage from "./EnsembleSimulationPage";
 import AboutPage from "./AboutPage";
 
 // Config file serving as a single point of truth for all application routes
@@ -12,7 +12,7 @@ const routes = [
   {
     path: `/ensemble`,
     display: "Ensemble",
-    component: SimulationPageTwo,
+    component: EnsembleSimulationPage,
   },
   {
     path: `/`,

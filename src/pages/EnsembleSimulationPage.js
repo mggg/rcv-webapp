@@ -1,15 +1,15 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import VoterParameters from "../VoterParameters";
-import ElectionParameters from "../ElectionParameters";
+import InputParametersCard from "../components/InputParametersCard";
 import SimulationInformation from "../SimulationInformation";
-import { electionParams, getSeats } from "../model/electionData";
-import { voterParams } from "../model/voterData";
+import { electionParams, electionInputs } from "../model/electionData";
+import { voterParams, voterInputs } from "../model/voterEnsembleData";
 import {
   simulationParams,
   simulationInputs,
 } from "../model/simulationEnsembleData";
 import useLocalStorage from "../hooks/useLocalStorage";
+console.log("voterParams", voterParams);
 
 function SimulationPage() {
   // Set the initial ElectionState
@@ -49,20 +49,20 @@ function SimulationPage() {
     };
   };
 
-  const getSeatsFromState = () => {
-    return getSeats(electionState);
-  };
-
   return (
     <Container fluid>
       <Row>
         <Col md={7} className="pb-2 d-flex flex-column">
-          <ElectionParameters
+          <InputParametersCard
+            formTitle={"Election Details"}
+            formInputs={electionInputs}
             formData={electionState}
             setFormData={setElectionState}
             resetData={() => setElectionState(initialElectionState)}
           />
-          <VoterParameters
+          <InputParametersCard
+            formTitle={"Voter Behaviors"}
+            formInputs={voterInputs}
             formData={voterState}
             setFormData={setVoterState}
             resetData={() => setVoterState(initialVoterState)}
@@ -73,7 +73,6 @@ function SimulationPage() {
             combineFormData={combineFormData}
             formData={simulationState}
             formInputs={simulationInputs}
-            getSeats={getSeatsFromState}
             setFormData={setSimulationState}
           />
         </Col>

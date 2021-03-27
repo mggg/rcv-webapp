@@ -1,20 +1,25 @@
 import React from "react";
 import { Card, Row } from "react-bootstrap";
-import ResetButton from "./components/ResetButton";
+import ResetButton from "./ResetButton";
 
-import GenericInput from "./inputs/GenericInput";
-import { electionInputs } from "./model/electionData";
+import GenericInput from "../inputs/GenericInput";
 
-function ElectionParameters({ formData, setFormData, resetData }) {
+function InputParametersCard({
+  formTitle,
+  formData,
+  formInputs,
+  setFormData,
+  resetData,
+}) {
   return (
     <>
       <div className="d-flex">
-        <h1>Election Details</h1>
+        <h1>{formTitle}</h1>
         <ResetButton onClick={resetData} />
       </div>
       <Card className="parameter-container">
         <Row as={Card.Body} noGutters className="align-content-start">
-          {electionInputs.map((param) => {
+          {formInputs.map((param) => {
             return (
               <GenericInput
                 key={param.id}
@@ -30,4 +35,4 @@ function ElectionParameters({ formData, setFormData, resetData }) {
   );
 }
 
-export default React.memo(ElectionParameters);
+export default React.memo(InputParametersCard);
