@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Modal,
-  Button,
-  Image,
-} from "react-bootstrap";
+import { Container, Row, Col, Card, Modal, Button } from "react-bootstrap";
 import { GitHub } from "react-feather";
 // Images
 import ac from "../images/ac.png";

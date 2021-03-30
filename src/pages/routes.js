@@ -1,7 +1,7 @@
 import SimulationPage from "./SimulationPage";
 import EnsembleSimulationPage from "./EnsembleSimulationPage";
 import NewAboutPage from "./NewAboutPage";
-import AboutPage from "./AboutPage";
+// import AboutPage from "./AboutPage";
 
 // Config file serving as a single point of truth for all application routes
 const routes = [
