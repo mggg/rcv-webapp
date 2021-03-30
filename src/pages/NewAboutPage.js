@@ -17,6 +17,8 @@ function ContributionComponent({ link, title, children, className }) {
       <a
         className="d-flex justify-content-center flex-wrap text-center"
         href={link}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         {children}
         <div className="w-100">
