@@ -5,7 +5,7 @@ import { routes } from "./pages/routes";
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router basename={"/"}>
       <AppHeader routes={routes} />
       <Switch>
         {routes.map((route, i) => (
