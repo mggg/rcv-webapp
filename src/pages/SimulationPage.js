@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import InputParametersCard from "../components/InputParametersCard";
 import TabbedInputParametersCard from "../components/TabbedInputParametersCard";
@@ -15,6 +15,8 @@ import {
 import useLocalStorage from "../hooks/useLocalStorage";
 
 function SimulationPage() {
+  const appRef = useRef();
+
   // Set the initial ElectionState
   const initialElectionState = electionParams.reduce((accum, p) => {
     accum[p.dataid] = p.initialValue;
@@ -68,7 +70,7 @@ function SimulationPage() {
   };
 
   return (
-    <Container fluid>
+    <Container fluid ref={appRef}>
       <Row>
         <Col md={7} className="pb-2 d-flex flex-column">
           <InputParametersCard
@@ -99,6 +101,7 @@ function SimulationPage() {
         </Col>
         <Col md={5} className="pb-2 d-flex flex-column">
           <SimulationInformation
+            appRef={appRef}
             combineFormData={combineFormData}
             formData={simulationState}
             formInputs={simulationInputs}

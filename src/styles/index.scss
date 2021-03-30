@@ -12,10 +12,6 @@ html {
 }
 
 body {
-  /* font-family: "Castoro" !important; */
-  /* font-family: "Open Sans" !important; */
-  /* font-family: "Lato" !important; */
-  font-family: "Source Sans Pro" !important;
   margin: 0;
 }
 
@@ -27,8 +23,8 @@ h1 {
 
 .btn,
 .card,
-.nav-link {
-  border-radius: 0 !important;
+.nav-tabs .nav-link {
+  border-radius: 0;
 }
 
 label {
@@ -62,6 +58,11 @@ label {
 
 .navbar-brand {
   font-size: 1.75rem;
+  font-family: $headings-font-family;
+}
+
+.navbar .nav-link {
+  text-transform: uppercase;
 }
 
 ///////////////////////////////////

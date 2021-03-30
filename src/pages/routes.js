@@ -1,13 +1,19 @@
 import SimulationPage from "./SimulationPage";
 import EnsembleSimulationPage from "./EnsembleSimulationPage";
+import NewAboutPage from "./NewAboutPage";
 import AboutPage from "./AboutPage";
 
 // Config file serving as a single point of truth for all application routes
 const routes = [
   {
+    path: `/oldabout`,
+    display: "OldAbout",
+    component: AboutPage,
+  },
+  {
     path: `/about`,
     display: "About",
-    component: AboutPage,
+    component: NewAboutPage,
   },
   {
     path: `/ensemble`,

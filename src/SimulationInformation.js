@@ -12,12 +12,14 @@ import GenericInput from "./inputs/GenericInput";
 import { getApiEndpoint, filterDataByModelTypes } from "./model/rcvModelData";
 
 function SimulationInformation({
+  appRef,
   combineFormData,
   formData,
   formInputs,
   setFormData,
   selectedModel,
 }) {
+  console.log("appRef", appRef);
   // Get the API Endpoint for the selected model
   const selectedModelEndpoint = getApiEndpoint(selectedModel);
   // Build the API URL
@@ -46,9 +48,6 @@ function SimulationInformation({
   // Store the results of simulations in state, as well as request status/error
   const { execute, status, value, error } = useAsync(fetchData, false);
 
-  // Create a ref to the SimulationInformation
-  const simulationVisualizationRef = useRef();
-
   return (
     <>
       <div className="d-flex justify-content-between">
@@ -75,9 +74,7 @@ function SimulationInformation({
               <h4>Election Results</h4>
               {/* Download and save buttons */}
               <div className="d-flex">
-                {status === "success" && (
-                  <SaveButton refToSave={simulationVisualizationRef} />
-                )}
+                {status === "success" && <SaveButton refToSave={appRef} />}
                 {status !== "pending" ? (
                   <RunButton onClick={execute} />
                 ) : (
@@ -106,7 +103,6 @@ function SimulationInformation({
             {/* Display the results of the simulation when completed */}
             {status === "success" && (
               <SimulationVisualization
-                ref={simulationVisualizationRef}
                 simulationResults={value}
                 simulationParams={relevantParams}
                 selectedModel={selectedModel}

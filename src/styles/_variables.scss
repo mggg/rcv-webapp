@@ -1,3 +1,4 @@
+// Exploring Colors
 // $primary: #543c31;
 // $secondary: green;
 // $table-accent-bg: blue
@@ -7,18 +8,25 @@ $green: rgb(75, 148, 96);
 $purple: rgb(75, 63, 114);
 // $triadic: rgb(166, 132, 82);
 $triadic: rgb(192, 140, 51);
-
-$green-orig: rgb(197, 224, 180);
-$purple-orig: rgb(199, 138, 198);
 $linen: hsl(33, 15%, 97%);
 
-$white: $linen;
-// $white: white;
-$primary: $triadic;
-$primary-emph: lighten($triadic, 20%);
+// Storing original colors from paper
+$green-orig: rgb(197, 224, 180);
+$purple-orig: rgb(199, 138, 198);
+
+//  App-specific color variables
 $maj-color: $green;
 $min-color: $purple;
 
+//  Override bootstrap variables
+$font-family-sans-serif: "Source Sans Pro";
+$white: $linen;
+$primary: $triadic;
+$primary-emph: lighten($triadic, 20%);
+// $headings-font-family: "Playfair Display";
+// $headings-font-family: "Lato";
+// $headings-font-family: "EB Garamond";
+$headings-font-family: "Crimson Text";
 $card-bg: $white;
 $table-accent-bg: darken($white, 5%);
 

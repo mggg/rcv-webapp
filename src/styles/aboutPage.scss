@@ -1,0 +1,30 @@
+@import "variables.scss";
+#wave-container {
+  margin-left: calc((100vw - 100%) / -2) !important;
+  margin-right: calc((100vw - 100%) / -2) !important;
+}
+
+#learn-more {
+  margin-top: -10%;
+  color: $white;
+  background-color: opacify($color: $min-color, $amount: 0.7);
+  margin-left: calc((100vw - 100%) / -2) !important;
+  padding-left: calc((100vw - 100%) / 2);
+  margin-right: calc((100vw - 100%) / -2) !important;
+  padding-right: calc((100vw - 100%) / 2);
+  p {
+    font-size: 18px;
+  }
+  a {
+    color: $white;
+  }
+}
+
+.model-card {
+  border: 1px solid black;
+  max-height: 300px;
+  width: 250px;
+  &:hover {
+    cursor: pointer;
+  }
+}
