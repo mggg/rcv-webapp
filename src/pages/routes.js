@@ -1,30 +1,24 @@
-import SimulationPage from "./SimulationPage";
 import EnsembleSimulationPage from "./EnsembleSimulationPage";
-import NewAboutPage from "./NewAboutPage";
-// import AboutPage from "./AboutPage";
+import AboutPage from "./AboutPage";
+// import SimulationPage from "./SimulationPage";
 
 // Config file serving as a single point of truth for all application routes
 const routes = [
-  // {
-  //   path: `/oldabout`,
-  //   display: "OldAbout",
-  //   component: AboutPage,
-  // },
   {
     path: `/about`,
     display: "About",
-    component: NewAboutPage,
+    component: AboutPage,
   },
-  {
-    path: `/ensemble`,
-    display: "Ensemble",
-    component: EnsembleSimulationPage,
-  },
+  // {
+  //   path: `/oldSimulations`,
+  //   display: "Old Simulation",
+  //   component: SimulationPage,
+  // },
   {
     path: `/`,
     isHome: "true",
     display: "Home",
-    component: SimulationPage,
+    component: EnsembleSimulationPage,
   },
 ];
 

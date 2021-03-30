@@ -147,17 +147,17 @@ const modelInputs = [
     modelsUsed: ["alternatingCrossover", "cambridgeSampler"],
     dataid: `majMajCandidateAgreement`,
     type: "radio",
-    label: `Among ${mmLabels.maj} voters, does everyone rank ${mmLabels.maj} candidates the same way?`,
+    label: `Among ${mmLabels.maj} voters, does everyone tend to rank ${mmLabels.maj} candidates the same way?`,
     options: [
       {
         id: "uniform-majMajCandidateAgreement",
         value: 1,
-        label: `Yes, ${mmLabels.maj} voters rank ${mmLabels.maj} candidates the same way`,
+        label: `Yes, ${mmLabels.maj} voters tend to rank ${mmLabels.maj} candidates the same way`,
       },
       {
         id: "random-majMajCandidateAgreement",
         value: 0,
-        label: `No, ${mmLabels.maj} voters rank ${mmLabels.maj} candidates randomly`,
+        label: `No, ${mmLabels.maj} voters tend to rank ${mmLabels.maj} candidates randomly`,
       },
     ],
   },
@@ -166,17 +166,17 @@ const modelInputs = [
     modelsUsed: ["alternatingCrossover", "cambridgeSampler"],
     dataid: `majMinCandidateAgreement`,
     type: "radio",
-    label: `Among ${mmLabels.maj} voters, does everyone rank ${mmLabels.min} candidates the same way?`,
+    label: `Among ${mmLabels.maj} voters, does everyone tend to rank ${mmLabels.min} candidates the same way?`,
     options: [
       {
         id: "uniform-majMinCandidateAgreement",
         value: 1,
-        label: `Yes, ${mmLabels.maj} voters rank ${mmLabels.min} candidates the same way`,
+        label: `Yes, ${mmLabels.maj} voters tend to rank ${mmLabels.min} candidates the same way`,
       },
       {
         id: "random-majMinCandidateAgreement",
         value: 0,
-        label: `No, ${mmLabels.maj} voters rank ${mmLabels.min} candidates randomly`,
+        label: `No, ${mmLabels.maj} voters tend to rank ${mmLabels.min} candidates randomly`,
       },
     ],
   },
@@ -185,17 +185,17 @@ const modelInputs = [
     modelsUsed: ["alternatingCrossover", "cambridgeSampler"],
     dataid: `minMajCandidateAgreement`,
     type: "radio",
-    label: `Among ${mmLabels.min} voters, does everyone rank ${mmLabels.maj} candidates the same way?`,
+    label: `Among ${mmLabels.min} voters, does everyone tend to rank ${mmLabels.maj} candidates the same way?`,
     options: [
       {
         id: "uniform-minMajCandidateAgreement",
         value: 1,
-        label: `Yes, ${mmLabels.min} voters rank ${mmLabels.maj} candidates the same way`,
+        label: `Yes, ${mmLabels.min} voters tend to rank ${mmLabels.maj} candidates the same way`,
       },
       {
         id: "random-minMajCandidateAgreement",
         value: 0,
-        label: `No, ${mmLabels.min} voters rank ${mmLabels.maj} candidates randomly`,
+        label: `No, ${mmLabels.min} voters tend to rank ${mmLabels.maj} candidates randomly`,
       },
     ],
   },
@@ -204,17 +204,17 @@ const modelInputs = [
     modelsUsed: ["alternatingCrossover", "cambridgeSampler"],
     dataid: `minMinCandidateAgreement`,
     type: "radio",
-    label: `Among ${mmLabels.min} voters, does everyone rank ${mmLabels.min} candidates the same way?`,
+    label: `Among ${mmLabels.min} voters, does everyone tend to rank ${mmLabels.min} candidates the same way?`,
     options: [
       {
         id: "uniform-minMinCandidateAgreement",
         value: 1,
-        label: `Yes, ${mmLabels.min} voters rank ${mmLabels.min} candidates the same way`,
+        label: `Yes, ${mmLabels.min} voters tend to rank ${mmLabels.min} candidates the same way`,
       },
       {
         id: "random-minMinCandidateAgreement",
         value: 0,
-        label: `No, ${mmLabels.min} voters rank ${mmLabels.min} candidates randomly`,
+        label: `No, ${mmLabels.min} voters tend to rank ${mmLabels.min} candidates randomly`,
       },
     ],
   },
