@@ -1,30 +1,73 @@
 @import "variables.scss";
-#wave-container {
-  margin-left: calc((100vw - 100%) / -2) !important;
-  margin-right: calc((100vw - 100%) / -2) !important;
-}
 
-#learn-more {
-  margin-top: -10%;
-  color: $white;
-  background-color: opacify($color: $min-color, $amount: 0.7);
-  margin-left: calc((100vw - 100%) / -2) !important;
-  padding-left: calc((100vw - 100%) / 2);
-  margin-right: calc((100vw - 100%) / -2) !important;
-  padding-right: calc((100vw - 100%) / 2);
+#about-page {
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-top: 0;
+    margin-top: 2rem;
+  }
   p {
     font-size: 18px;
   }
-  a {
+
+  #wave-container {
+    margin-left: calc((100vw - 100%) / -2) !important;
+    margin-right: calc((100vw - 100%) / -2) !important;
+  }
+
+  #learn-more {
+    margin-top: -10%;
     color: $white;
+    background-color: opacify($color: $min-color, $amount: 0.7);
+    margin-left: calc((100vw - 100%) / -2) !important;
+    padding-left: calc((100vw - 100%) / 2);
+    margin-right: calc((100vw - 100%) / -2) !important;
+    padding-right: calc((100vw - 100%) / 2);
+
+    a {
+      color: $white;
+    }
+  }
+
+  #models {
+    .model-card {
+      border: 1px solid black;
+      max-height: 315px;
+      width: 450px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }
 
-.model-card {
-  border: 1px solid black;
-  max-height: 300px;
-  width: 250px;
-  &:hover {
-    cursor: pointer;
+.model-card-image {
+  width: 500px;
+  height: 300px;
+  margin: 10px 10px 10px 0;
+  border: 1px solid $light-grey;
+}
+@media only screen and (max-width: 1000px) {
+  #models {
+    #model-cards {
+      margin-left: calc((100vw - 100%) / -2) !important;
+      margin-right: calc((100vw - 100%) / -2) !important;
+    }
+  }
+}
+@media only screen and (max-width: 992px) {
+  .model-card-image {
+    width: 250px;
+    height: 150px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .model-card-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 !important;
   }
 }

@@ -8,10 +8,6 @@ function SaveButton({ refToSave }) {
     <div className="d-flex justify-content-between">
       <Button
         onClick={() => {
-          console.log(
-            "🚀 ~ file: SaveButton.js ~ line 12 ~ SaveButton ~ refToSave",
-            refToSave
-          );
           exportComponentAsPNG(refToSave);
         }}
         className="d-flex justify-content-center align-items-center"

@@ -9,7 +9,6 @@ import {
   simulationInputs,
 } from "../model/simulationEnsembleData";
 import useLocalStorage from "../hooks/useLocalStorage";
-console.log("voterParams", voterParams);
 
 function SimulationPage() {
   const appRef = useRef();

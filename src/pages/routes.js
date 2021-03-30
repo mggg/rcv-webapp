@@ -5,11 +5,11 @@ import AboutPage from "./AboutPage";
 
 // Config file serving as a single point of truth for all application routes
 const routes = [
-  {
-    path: `/oldabout`,
-    display: "OldAbout",
-    component: AboutPage,
-  },
+  // {
+  //   path: `/oldabout`,
+  //   display: "OldAbout",
+  //   component: AboutPage,
+  // },
   {
     path: `/about`,
     display: "About",

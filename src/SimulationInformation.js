@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import qs from "qs";
 import axios from "axios";
 import { Card, Row } from "react-bootstrap";
@@ -19,7 +19,6 @@ function SimulationInformation({
   setFormData,
   selectedModel,
 }) {
-  console.log("appRef", appRef);
   // Get the API Endpoint for the selected model
   const selectedModelEndpoint = getApiEndpoint(selectedModel);
   // Build the API URL
