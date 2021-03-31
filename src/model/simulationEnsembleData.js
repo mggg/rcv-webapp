@@ -24,10 +24,10 @@ const simulationInputs = [
     dataid: "numElectionsEachSimulation",
     type: "number",
     min: 1,
-    max: 15,
+    max: 6,
     // padding: false,
-    label: "Elections to Simulate",
-    helperText: "Max 15",
+    label: "Elections to simulate, per model",
+    helperText: "Max 6",
     info: "The number of elections to simulate with these parameters",
   },
   {
@@ -35,7 +35,7 @@ const simulationInputs = [
     dataid: "modelsToSimulate",
     // padding: false,
     type: "checkbox",
-    label: `RCV Models to Use`,
+    label: `RCV models to use`,
     updateTransform: (newValue, id, formData) => {
       // Need to convert incoming value to int
       const intValue = parseInt(newValue);

@@ -5,7 +5,6 @@ import { mmLabels } from "../model/constants";
 import SelectInput from "./SelectInput";
 import SimulationStatsTable from "./SimulationStatsTable";
 import SimulationResultsHistogram from "./SimulationResultsHistogram";
-import { modelTypeEnum } from "../model/simulationEnsembleData";
 const dataTypesToVisualize = [
   {
     id: "all",
