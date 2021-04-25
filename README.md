@@ -6,7 +6,7 @@ _This project was bootstrapped with [Create React App](https://github.com/facebo
 
 ## Before getting started
 
-Ensure that you are running this application with node version `~v14.15.1`. It is not currently known if earlier versions of node are compatible with the application, but it has been observed that one critical package, `node-sass`, encounters issues with node `^v15.2.1` as of Winter 2020.
+Ensure that you are running this application with node version `~v15.13.0`.
 
 To install all required packages, run:
 
