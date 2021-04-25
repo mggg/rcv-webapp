@@ -11,7 +11,7 @@ import {
   VictoryTooltip,
 } from "victory";
 import { mmLabels } from "../model/constants";
-import variables from "../styles/_variables.scss";
+import variables from "../styles/temp-variables.js";
 
 function SimulationResultsHistogram({
   displayMajResults,
@@ -25,8 +25,8 @@ function SimulationResultsHistogram({
   const bins = _.range(0, maxSeats + 2, 1);
   // Color of the bar changes to reflect the demographic charted
   const barColor = displayMajResults
-    ? variables["maj-color"]
-    : variables["min-color"];
+    ? variables["majColor"]
+    : variables["minColor"];
   //  Text-label for the demographic charted
   const demographicVisualized = displayMajResults ? mmLabels.maj : mmLabels.min;
   // Mean number of elections won
@@ -75,7 +75,7 @@ function SimulationResultsHistogram({
       {meanCandidateElected >= 0 && (
         <VictoryLine
           style={{
-            data: { stroke: variables["primary-emph"], strokeDasharray: "5" },
+            data: { stroke: variables["primaryEmph"], strokeDasharray: "5" },
           }}
           x={() => meanCandidateElected + 0.01}
         />

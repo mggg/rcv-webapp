@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Range, getTrackBackground } from "react-range";
-import variables from "../styles/_variables.scss";
+import variables from "../styles/temp-variables.js";
 // To include the default styles
 
 function Slider({
@@ -13,6 +13,7 @@ function Slider({
   onChange,
   labelFormat,
 }) {
+  console.log("variables", variables);
   return (
     <Range
       onChange={(values) => onChange(values[0])}
@@ -29,8 +30,8 @@ function Slider({
             background: getTrackBackground({
               values: [value],
               colors: minColorFirst
-                ? [variables["min-color"], variables["maj-color"]]
-                : [variables["maj-color"], variables["min-color"]],
+                ? [variables["minColor"], variables["majColor"]]
+                : [variables["majColor"], variables["minColor"]],
               min: min,
               max: max,
             }),
