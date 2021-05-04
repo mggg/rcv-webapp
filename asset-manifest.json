@@ -1,27 +1,25 @@
 {
   "files": {
-    "main.css": "/rcv-webapp/static/css/main.4db56b45.chunk.css",
-    "main.js": "/rcv-webapp/static/js/main.96bc6d6a.chunk.js",
-    "main.js.map": "/rcv-webapp/static/js/main.96bc6d6a.chunk.js.map",
-    "runtime-main.js": "/rcv-webapp/static/js/runtime-main.3cf5c632.js",
-    "runtime-main.js.map": "/rcv-webapp/static/js/runtime-main.3cf5c632.js.map",
-    "static/js/2.a4af0eaf.chunk.js": "/rcv-webapp/static/js/2.a4af0eaf.chunk.js",
-    "static/js/2.a4af0eaf.chunk.js.map": "/rcv-webapp/static/js/2.a4af0eaf.chunk.js.map",
+    "main.css": "/rcv-webapp/static/css/main.48e44244.chunk.css",
+    "main.js": "/rcv-webapp/static/js/main.0374e3c4.chunk.js",
+    "main.js.map": "/rcv-webapp/static/js/main.0374e3c4.chunk.js.map",
+    "runtime-main.js": "/rcv-webapp/static/js/runtime-main.a1ff5c21.js",
+    "runtime-main.js.map": "/rcv-webapp/static/js/runtime-main.a1ff5c21.js.map",
+    "static/js/2.825cb898.chunk.js": "/rcv-webapp/static/js/2.825cb898.chunk.js",
+    "static/js/2.825cb898.chunk.js.map": "/rcv-webapp/static/js/2.825cb898.chunk.js.map",
     "index.html": "/rcv-webapp/index.html",
-    "precache-manifest.76487a2341c0bed2ba21156d22e3a467.js": "/rcv-webapp/precache-manifest.76487a2341c0bed2ba21156d22e3a467.js",
-    "service-worker.js": "/rcv-webapp/service-worker.js",
-    "static/css/main.4db56b45.chunk.css.map": "/rcv-webapp/static/css/main.4db56b45.chunk.css.map",
-    "static/js/2.a4af0eaf.chunk.js.LICENSE.txt": "/rcv-webapp/static/js/2.a4af0eaf.chunk.js.LICENSE.txt",
-    "static/media/ac.png": "/rcv-webapp/static/media/ac.c7a97092.png",
-    "static/media/cs.png": "/rcv-webapp/static/media/cs.59234129.png",
-    "static/media/mggg.5691b2a9.svg": "/rcv-webapp/static/media/mggg.5691b2a9.svg",
-    "static/media/pl-bt.png": "/rcv-webapp/static/media/pl-bt.4f44d058.png",
-    "static/media/swoop.50277d20.svg": "/rcv-webapp/static/media/swoop.50277d20.svg"
+    "static/css/main.48e44244.chunk.css.map": "/rcv-webapp/static/css/main.48e44244.chunk.css.map",
+    "static/js/2.825cb898.chunk.js.LICENSE.txt": "/rcv-webapp/static/js/2.825cb898.chunk.js.LICENSE.txt",
+    "static/media/ac.03835d34.png": "/rcv-webapp/static/media/ac.03835d34.png",
+    "static/media/cs.ff9c2349.png": "/rcv-webapp/static/media/cs.ff9c2349.png",
+    "static/media/mggg.69a3b576.svg": "/rcv-webapp/static/media/mggg.69a3b576.svg",
+    "static/media/pl-bt.1f22c059.png": "/rcv-webapp/static/media/pl-bt.1f22c059.png",
+    "static/media/swoop.52f7b361.svg": "/rcv-webapp/static/media/swoop.52f7b361.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.3cf5c632.js",
-    "static/js/2.a4af0eaf.chunk.js",
-    "static/css/main.4db56b45.chunk.css",
-    "static/js/main.96bc6d6a.chunk.js"
+    "static/js/runtime-main.a1ff5c21.js",
+    "static/js/2.825cb898.chunk.js",
+    "static/css/main.48e44244.chunk.css",
+    "static/js/main.0374e3c4.chunk.js"
   ]
 }
