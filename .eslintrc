@@ -4,18 +4,36 @@
     "es6": true,
     "jest": true
   },
+  "plugins": [
+    "prettier"
+  ],
   "extends": [
     "react-app",
-    "plugin:prettier/recommended"
+    "prettier"
   ],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "indent": ["error", 2, { "SwitchCase": 1 }],
-    "max-len": ["error", { "code": 200 }],
-    "semi": ["error", "always"]
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 200
+      }
+    ],
+    "semi": [
+      "error",
+      "always"
+    ]
   }
 }
