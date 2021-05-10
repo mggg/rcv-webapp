@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/rcv-webapp/static/css/main.48e44244.chunk.css",
-    "main.js": "/rcv-webapp/static/js/main.0374e3c4.chunk.js",
-    "main.js.map": "/rcv-webapp/static/js/main.0374e3c4.chunk.js.map",
+    "main.css": "/rcv-webapp/static/css/main.ad04fcca.chunk.css",
+    "main.js": "/rcv-webapp/static/js/main.9a737cc0.chunk.js",
+    "main.js.map": "/rcv-webapp/static/js/main.9a737cc0.chunk.js.map",
     "runtime-main.js": "/rcv-webapp/static/js/runtime-main.a1ff5c21.js",
     "runtime-main.js.map": "/rcv-webapp/static/js/runtime-main.a1ff5c21.js.map",
     "static/js/2.825cb898.chunk.js": "/rcv-webapp/static/js/2.825cb898.chunk.js",
     "static/js/2.825cb898.chunk.js.map": "/rcv-webapp/static/js/2.825cb898.chunk.js.map",
     "index.html": "/rcv-webapp/index.html",
-    "static/css/main.48e44244.chunk.css.map": "/rcv-webapp/static/css/main.48e44244.chunk.css.map",
+    "static/css/main.ad04fcca.chunk.css.map": "/rcv-webapp/static/css/main.ad04fcca.chunk.css.map",
     "static/js/2.825cb898.chunk.js.LICENSE.txt": "/rcv-webapp/static/js/2.825cb898.chunk.js.LICENSE.txt",
     "static/media/ac.03835d34.png": "/rcv-webapp/static/media/ac.03835d34.png",
     "static/media/cs.ff9c2349.png": "/rcv-webapp/static/media/cs.ff9c2349.png",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.a1ff5c21.js",
     "static/js/2.825cb898.chunk.js",
-    "static/css/main.48e44244.chunk.css",
-    "static/js/main.0374e3c4.chunk.js"
+    "static/css/main.ad04fcca.chunk.css",
+    "static/js/main.9a737cc0.chunk.js"
   ]
 }
