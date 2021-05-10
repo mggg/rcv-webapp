@@ -166,7 +166,7 @@ function LearnMoreSection() {
         </p>
         <Row className="mt-4">
           <ContributionComponent
-            link="https://github.com/dtphelan1/RCV_Basics"
+            link="https://github.com/mggg/RCV_Basics"
             title="RCV Model Backend"
           >
             <GitHub size={60} />
@@ -178,7 +178,7 @@ function LearnMoreSection() {
             <MGGGLogo width="150px" className="pt-3 pb-3" />
           </ContributionComponent>
           <ContributionComponent
-            link="https://github.com/dtphelan1/rcv-webapp"
+            link="https://github.com/mggg/rcv-webapp"
             title="RCV Webapp Frontend"
           >
             <GitHub size={60} />
