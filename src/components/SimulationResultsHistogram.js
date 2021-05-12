@@ -8,6 +8,7 @@ import {
   VictoryHistogram,
   VictoryLine,
   VictoryLabel,
+  VictoryStack,
   VictoryTooltip,
 } from "victory";
 import { mmLabels } from "../model/constants";
@@ -17,9 +18,14 @@ function SimulationResultsHistogram({
   displayMajResults,
   maxSeats = 0,
   selectedModel,
-  data,
+  data = [[]],
+  dataLabels = [],
 }) {
-  const chartData = (data || []).map((val) => ({ x: val }));
+  const chartData = data.map((ty) => ty.map((val) => ({ x: val })));
+  console.log(
+    "🚀 ~ file: SimulationResultsHistogram.js ~ line 24 ~ chartData",
+    chartData
+  );
 
   // The number of possible bins for our results
   const bins = _.range(0, maxSeats + 2, 1);
@@ -50,7 +56,7 @@ function SimulationResultsHistogram({
       {/* Chart Title */}
       <VictoryLabel
         text={
-          _.isEmpty(data)
+          _.isEmpty(data[0])
             ? `No Data`
             : `${demographicVisualized} Candidates Elected \n Across ${data.length} ${selectedModel} Simulation(s) `
         }
@@ -59,18 +65,27 @@ function SimulationResultsHistogram({
         textAnchor="middle"
       />
       {/* Display chartData */}
-      <VictoryHistogram
-        style={{ labels: { fill: "black" }, data: { fill: barColor } }}
-        cornerRadius={0}
-        data={chartData}
-        bins={bins}
-        labelComponent={<VictoryTooltip constrainToVisibleArea />}
-        labels={({ datum }) =>
-          `# Elections with ${
-            datum.x - 0.5
-          }\n ${demographicVisualized} candidate(s) elected:\n${datum.y}`
-        }
-      />
+      <VictoryStack>
+        {chartData.map((dataPerModel, i) => (
+          <VictoryHistogram
+            style={{
+              data: { fill: barColor, fillOpacity: `${25 * (4 - i)}%` },
+            }}
+            // style={{ backgroundColor: barColor, opacity: 15 * i }}
+            cornerRadius={0}
+            data={dataPerModel}
+            bins={bins}
+            labelComponent={<VictoryTooltip constrainToVisibleArea />}
+            labels={({ datum }) =>
+              `# ${dataLabels[i]} Elections with ${
+                datum.x - 0.5
+              }\n ${demographicVisualized} candidate${
+                datum.x > 1 ? "(s)" : ""
+              } elected:\n${datum.y}`
+            }
+          />
+        ))}
+      </VictoryStack>
       {/* Line for Mean Outcome */}
       {meanCandidateElected >= 0 && (
         <VictoryLine
