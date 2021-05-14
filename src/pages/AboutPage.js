@@ -164,7 +164,7 @@ function LearnMoreSection() {
           bugs you encounter, features you'd like, and how you are using our RCV
           simulation application.
         </p>
-        <Row className="mt-4">
+        <Row className="mt-4 mb-5">
           <ContributionComponent
             link="https://github.com/mggg/RCV_Basics"
             title="RCV Model Backend"

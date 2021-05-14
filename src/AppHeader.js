@@ -6,11 +6,7 @@ import { getHomePath } from "./pages/routes.js";
 function AppHeader(props) {
   return (
     <Navbar className="nav-header" variant="dark" expand="md">
-      <Navbar.Brand
-        as={Link}
-        to={getHomePath(props.routes)}
-        className="font-italic"
-      >
+      <Navbar.Brand as={Link} to={getHomePath(props.routes)}>
         Modeling Representation <br className="d-xs-block d-sm-none" /> with
         Ranked Choice Voting
       </Navbar.Brand>
