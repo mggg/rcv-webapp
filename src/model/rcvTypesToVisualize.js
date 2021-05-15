@@ -2,7 +2,7 @@ const rcvTypesToVisualize = [
   {
     id: "pl",
     display: "Plackett-Luce",
-    getPocElected: (simulationResults) => simulationResults.ac_poc_elected_rcv,
+    getPocElected: (simulationResults) => simulationResults.pl_poc_elected_rcv,
   },
   {
     id: "bt",
@@ -12,7 +12,7 @@ const rcvTypesToVisualize = [
   {
     id: "ac",
     display: "Alternating Crossover",
-    getPocElected: (simulationResults) => simulationResults.pl_poc_elected_rcv,
+    getPocElected: (simulationResults) => simulationResults.ac_poc_elected_rcv,
   },
   {
     id: "cs",

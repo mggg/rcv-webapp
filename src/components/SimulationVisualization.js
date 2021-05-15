@@ -18,29 +18,25 @@ class SimulationVisualization extends React.Component {
       simulationParams = {},
       simulationResults = {},
     } = this.props;
-    // Translate the result of running a simluation
-
     const { seatsOpen, rcvTypeLabels, rcvTypeResults } = simulationResults;
-    // NOTE: Now that we only visualize purple results, no need for ternary exp.
-    const relevantElected = rcvTypeResults;
-    // const relevantElected = this.state.displayMajResults
-    //   ? simulationResults.map((dataPerModel) =>
-    //       dataPerModel.map((pocWinners) => maxSeats - pocWinners)
-    //     )
-    //   : simulationResults;
-
+    console.log("rcvTypeLabels", rcvTypeLabels);
+    const relevantLabels =
+      rcvTypeLabels &&
+      rcvTypeLabels.filter((label, i) => !_.isEmpty(rcvTypeResults[i]));
+    const relevantTypeResults =
+      rcvTypeResults && rcvTypeResults.filter((results) => !_.isEmpty(results));
     return (
       <section>
         <SimulationResultsHistogram
           maxSeats={seatsOpen}
           // displayMajResults={this.state.displayMajResults}
           displayMajResults={false}
-          data={relevantElected}
-          dataLabels={rcvTypeLabels}
+          data={relevantTypeResults}
+          dataLabels={relevantLabels}
           selectedModel={selectedModel}
         />
         <SimulationStatsTable
-          data={relevantElected}
+          data={relevantTypeResults}
           maxSeats={seatsOpen}
           simulationParams={simulationParams}
         />
