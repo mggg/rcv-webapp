@@ -62,18 +62,3 @@
     margin-top: -10%;
   }
 }
-@media only screen and (max-width: 992px) {
-  .model-card-image {
-    width: 250px;
-    height: 150px;
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .model-card-image {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 0 !important;
-  }
-}
