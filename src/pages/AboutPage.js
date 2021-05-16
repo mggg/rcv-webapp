@@ -48,15 +48,15 @@ function ModelCard({ image, title, description }) {
         {/* Modal with detailed information */}
       </Card>
       <Modal show={show} size="lg" onHide={handleClose}>
-        <Modal.Header closeButton>
+        <img
+          alt={`Schematic of the ${title} model`}
+          src={image}
+          className="float-left border model-card-image"
+        />
+        <Modal.Header className="border-0 pb-0">
           <Modal.Title>{title} Model Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <img
-            alt={`Schematic of the ${title} model`}
-            src={image}
-            className="float-left border model-card-image"
-          />
           <p>{description}</p>
         </Modal.Body>
         <Modal.Footer>
