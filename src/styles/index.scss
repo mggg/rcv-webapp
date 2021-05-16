@@ -142,3 +142,7 @@ select {
     background-color: $maj-color;
   }
 }
+
+* > footer {
+  background-color: inherit;
+}
