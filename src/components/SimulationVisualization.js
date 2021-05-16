@@ -1,11 +1,7 @@
 import React from "react";
-import { Form } from "react-bootstrap";
 import _ from "lodash";
-import { mmLabels } from "../model/constants";
-import SelectInput from "./SelectInput";
 import SimulationStatsTable from "./SimulationStatsTable";
 import SimulationResultsHistogram from "./SimulationResultsHistogram";
-import { rcvTypesToVisualize } from "../model/rcvTypesToVisualize";
 class SimulationVisualization extends React.Component {
   // Only re-render when the simulationResults are new or if the displayMajResults has changed
   shouldComponentUpdate(nextProps, nextState) {
@@ -19,7 +15,6 @@ class SimulationVisualization extends React.Component {
       simulationResults = {},
     } = this.props;
     const { seatsOpen, rcvTypeLabels, rcvTypeResults } = simulationResults;
-    console.log("rcvTypeLabels", rcvTypeLabels);
     const relevantLabels =
       rcvTypeLabels &&
       rcvTypeLabels.filter((label, i) => !_.isEmpty(rcvTypeResults[i]));
@@ -37,6 +32,7 @@ class SimulationVisualization extends React.Component {
         />
         <SimulationStatsTable
           data={relevantTypeResults}
+          electionTypes={relevantLabels}
           maxSeats={seatsOpen}
           simulationParams={simulationParams}
         />

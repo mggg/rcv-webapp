@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import _ from "lodash";
 import { Table, Col, Row } from "react-bootstrap";
 import { min, max, mean, modeFast, standardDeviation } from "simple-statistics";
+import SelectInput from "./SelectInput";
 
 import EmptyPlaceholder from "./EmptyPlaceholder";
 
@@ -24,13 +25,23 @@ function KeyValueTable({ kv = {} }) {
   );
 }
 
-function SimulationStatsTable({ data = [], maxSeats = 1 }) {
-  const stats = !_.isEmpty(data) && {
-    Min: min(data),
-    Max: max(data),
-    Mode: modeFast(data),
-    Mean: mean(data).toFixed(2),
-    "Standard Deviation": standardDeviation(data).toFixed(2),
+function SimulationStatsTable({ data = [], electionTypes = [], maxSeats = 1 }) {
+  const defaultModelValue = "All Models";
+  const [selectedModel, setSelectedModel] = useState(defaultModelValue);
+
+  const filteredData =
+    selectedModel === defaultModelValue
+      ? _.flatten(data)
+      : _.flatten(
+          data.filter((modelType, i) => electionTypes[i] === selectedModel)
+        );
+
+  const stats = !_.isEmpty(filteredData) && {
+    Min: min(filteredData),
+    Max: max(filteredData),
+    Mode: modeFast(filteredData),
+    Mean: mean(filteredData).toFixed(2),
+    "Standard Deviation": standardDeviation(filteredData).toFixed(2),
   };
 
   const statsMarginalized = !_.isEmpty(stats) && {
@@ -41,6 +52,7 @@ function SimulationStatsTable({ data = [], maxSeats = 1 }) {
     "Standard Deviation": (stats["Standard Deviation"] / maxSeats).toFixed(2),
   };
 
+  // Create a Key-Value paired object to be fed to our TableComponent
   const statsDisplay = !_.isEmpty(statsMarginalized) && {
     Min: `${(statsMarginalized.Min * 100).toFixed(0)}% of seats (${
       stats.Min
@@ -54,18 +66,31 @@ function SimulationStatsTable({ data = [], maxSeats = 1 }) {
     Mean: `${(statsMarginalized.Mean * 100).toFixed(0)}% of seats (${
       stats.Mean
     } / ${maxSeats})`,
-    "Standard Deviation": `${statsMarginalized["Standard Deviation"] * 100}% (${
-      stats["Standard Deviation"]
-    } / ${maxSeats})`,
+    "Standard Deviation": `${(
+      statsMarginalized["Standard Deviation"] * 100
+    ).toFixed(0)}% (${stats["Standard Deviation"]} / ${maxSeats})`,
   };
 
   return (
     <Row className="m-0">
       <Col sm={12} className="pr-1 pl-1">
-        <h5 className="stats-table-title">
+        <h5 className="stats-table-title d-flex justify-content-between align-items-center">
           <span className="literal-title">Statistics</span>
+          {!_.isEmpty(data) && (
+            <SelectInput
+              options={[defaultModelValue, ...electionTypes]}
+              setValue={setSelectedModel}
+              value={selectedModel}
+            />
+          )}
         </h5>
-        <KeyValueTable kv={statsDisplay} />
+        {_.isEmpty(data) ? (
+          <EmptyPlaceholder />
+        ) : (
+          <>
+            <KeyValueTable kv={statsDisplay} />
+          </>
+        )}
       </Col>
     </Row>
   );

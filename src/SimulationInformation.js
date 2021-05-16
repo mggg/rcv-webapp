@@ -103,7 +103,7 @@ function SimulationInformation({
             {/* While loading, display a spinner */}
             {status === "pending" && (
               <div className="d-flex flex-column w-100">
-                <div style={{ height: "300px" }}>
+                <div style={{ height: "415px" }}>
                   <Spinner />
                 </div>
               </div>

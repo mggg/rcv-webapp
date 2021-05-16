@@ -40,20 +40,28 @@ function SimulationResultsHistogram({
     ? undefined
     : mean(_.flatten(data)) + 0.01;
 
+  const chartHeight = 350;
+  const chartWidth = 550;
   return (
     <VictoryChart
       style={{ parent: { fontSize: 12 } }}
-      height={325}
-      width={480}
+      height={chartHeight}
+      width={chartWidth}
       containerComponent={
         // Height should be larger when there's data (b/c of legend)
         // and height should be even larger when the legend will overflow onto 2 rows (i.e. #labels > 3)
         <VictoryContainer
-          height={someChartData ? (dataLabels.length > 3 ? 445 : 415) : 350}
+          height={
+            someChartData
+              ? dataLabels.length > 3
+                ? chartHeight + 110
+                : chartHeight + 90
+              : chartHeight + 10
+          }
         />
       }
     >
-      {/* Chart Title */}
+      {/* Chart Title, with No Data as placeholder when there is noData */}
       <VictoryLabel
         text={
           someChartData
@@ -62,7 +70,7 @@ function SimulationResultsHistogram({
               } ${selectedModel} Simulation(s) `
             : `No Data`
         }
-        x={225}
+        x={chartWidth / 2}
         y={20}
         textAnchor="middle"
       />
@@ -80,11 +88,9 @@ function SimulationResultsHistogram({
               bins={bins}
               labelComponent={<VictoryTooltip constrainToVisibleArea />}
               labels={({ datum }) =>
-                `# ${dataLabels[i]} Elections with ${
-                  datum.x - 0.5
-                }\n ${demographicVisualized} candidate${
-                  datum.x > 1 ? "(s)" : ""
-                } elected:\n${datum.y}`
+                `${datum.x - 0.5} ${demographicVisualized} candidate${
+                  datum.x > 1 ? "s" : ""
+                } elected in \n${datum.y} ${dataLabels[i]} Elections`
               }
             />
           ))}
@@ -108,16 +114,16 @@ function SimulationResultsHistogram({
       {someChartData && (
         <VictoryLegend
           x={10}
-          y={345}
+          y={chartHeight + 15}
           orientation="horizontal"
           itemsPerRow={3}
-          gutter={20}
+          gutter={15}
           style={{
             border: { stroke: "grey", strokeWidth: 1 },
             title: { fontSize: 16 },
           }}
           centerTitle={true}
-          title="Color Legend"
+          title="Bar Colors Legend"
           data={dataLabels.map((label, i) => ({
             name: label,
             symbol: {

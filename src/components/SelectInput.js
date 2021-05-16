@@ -1,15 +1,20 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-function SelectInput({ title, options, setValue }) {
+function SelectInput({ title, options, setValue, value }) {
   return (
     <Form.Group controlId="exampleForm.SelectCustom">
-      <Form.Label>{title}</Form.Label>
-      <Form.Control as="select" onChange={setValue}>
+      {title && <Form.Label>{title}</Form.Label>}
+      <Form.Control
+        as="select"
+        onChange={(e) => setValue(e.target.value)}
+        custom
+        value={value}
+      >
         {options.map((opt) => {
           return (
-            <option key={opt.id} value={opt.id}>
-              {opt.display}
+            <option key={opt} value={opt}>
+              {opt}
             </option>
           );
         })}
