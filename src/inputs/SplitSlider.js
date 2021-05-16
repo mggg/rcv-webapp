@@ -13,7 +13,6 @@ function Slider({
   onChange,
   labelFormat,
 }) {
-  console.log("variables", variables);
   return (
     <Range
       onChange={(values) => onChange(values[0])}

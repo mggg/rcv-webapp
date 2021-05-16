@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, Modal, Button } from "react-bootstrap";
 import { GitHub } from "react-feather";
+import LinkButton from "../components/LinkButton";
 // Images
 import ac from "../images/ac.png";
 import cs from "../images/cs.png";
-import plbt from "../images/pl-bt.png";
+import pl from "../images/pl.png";
+import bt from "../images/bt.png";
 import { ReactComponent as MGGGLogo } from "../images/mggg.svg";
 import { ReactComponent as Swoop } from "../images/swoop.svg";
 // Descriptions from file
@@ -46,15 +48,15 @@ function ModelCard({ image, title, description }) {
         {/* Modal with detailed information */}
       </Card>
       <Modal show={show} size="lg" onHide={handleClose}>
-        <Modal.Header closeButton>
+        <img
+          alt={`Schematic of the ${title} model`}
+          src={image}
+          className="float-left border model-card-image"
+        />
+        <Modal.Header className="border-0 pb-0">
           <Modal.Title>{title} Model Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <img
-            alt={`Schematic of the ${title} model`}
-            src={image}
-            className="float-left border model-card-image"
-          />
           <p>{description}</p>
         </Modal.Body>
         <Modal.Footer>
@@ -89,6 +91,9 @@ function AboutSection() {
         hope to catalyze discussions about RCV's viability as a tool for
         diminishing voter dilution in minority populations.
       </p>
+      <div className="d-flex justify-content-center">
+        <LinkButton to="/simulation">Run RCV Simulations</LinkButton>
+      </div>
     </section>
   );
 }
@@ -113,14 +118,14 @@ function ModelsSection() {
           xs={12}
           className="mt-4 pl-2 pr-2 d-flex justify-content-center"
         >
-          <ModelCard title="Plackett-Luce" description={pldesc} image={plbt} />
+          <ModelCard title="Plackett-Luce" description={pldesc} image={pl} />
         </Col>
         <Col
           sm={6}
           xs={12}
           className="mt-4 pl-2 pr-2 d-flex justify-content-center"
         >
-          <ModelCard title="Bradley-Terry" description={btdesc} image={plbt} />
+          <ModelCard title="Bradley-Terry" description={btdesc} image={bt} />
         </Col>
 
         <Col
@@ -164,7 +169,7 @@ function LearnMoreSection() {
           bugs you encounter, features you'd like, and how you are using our RCV
           simulation application.
         </p>
-        <Row className="mt-4">
+        <Row className="mt-4 mb-5">
           <ContributionComponent
             link="https://github.com/mggg/RCV_Basics"
             title="RCV Model Backend"

@@ -53,7 +53,7 @@ function SimulationPage() {
   return (
     <Container fluid ref={appRef}>
       <Row>
-        <Col md={7} className="pb-2 d-flex flex-column">
+        <Col lg={7} className="pb-2 d-flex flex-column">
           <InputParametersCard
             formTitle={"Election Details"}
             formInputs={electionInputs}
@@ -69,7 +69,7 @@ function SimulationPage() {
             resetData={() => setVoterState(initialVoterState)}
           />
         </Col>
-        <Col md={5} className="pb-2 d-flex flex-column">
+        <Col lg={5} className="pb-2 d-flex flex-column">
           <SimulationInformation
             appRef={appRef}
             combineFormData={combineFormData}

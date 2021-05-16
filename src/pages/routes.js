@@ -5,25 +5,16 @@ import AboutPage from "./AboutPage";
 // Config file serving as a single point of truth for all application routes
 const routes = [
   {
-    path: `/about`,
-    display: "About",
+    path: `/`,
+    isExact: true,
+    display: "Home",
     component: AboutPage,
   },
-  // {
-  //   path: `/oldSimulations`,
-  //   display: "Old Simulation",
-  //   component: SimulationPage,
-  // },
   {
-    path: `/`,
-    isHome: "true",
-    display: "Home",
+    path: `/simulation`,
+    display: "Simulation",
     component: EnsembleSimulationPage,
   },
 ];
 
-function getHomePath(routes) {
-  return routes.find((route) => route.isHome).path;
-}
-
-export { routes, getHomePath };
+export { routes };

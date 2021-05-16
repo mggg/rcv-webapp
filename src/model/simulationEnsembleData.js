@@ -25,10 +25,10 @@ const simulationInputs = [
     type: "number",
     min: 1,
     max: 4,
-    // padding: false,
     label: "Elections to simulate, per model",
     helperText: "Max 4",
-    info: "The number of elections to simulate with these parameters",
+    info:
+      "The number of elections to simulate with these parameters, for each model type.",
   },
   {
     id: "modelsToSimulate",

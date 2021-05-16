@@ -21,6 +21,10 @@ h1 {
   padding-top: 0.5rem;
 }
 
+.container-fluid {
+  max-width: 1300px;
+}
+
 .btn,
 .card,
 .nav-tabs .nav-link {
@@ -94,16 +98,23 @@ label[for] {
   font-style: italic;
 }
 
+select {
+  font-family: $font-family-sans-serif;
+}
+
 ///////////////////////////////
 //// Stats Table vars
 .stats-table-title {
-  line-height: 0.1rem;
-  border-bottom: 1px solid $gray-600;
   margin: 1rem 1rem 1rem 0;
   width: 100%;
+
   .literal-title {
     padding-right: 5px;
     background-color: $white;
+  }
+  .form-group {
+    margin-bottom: 0;
+    margin-left: 1rem;
   }
 }
 

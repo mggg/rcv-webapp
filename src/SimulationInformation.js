@@ -10,6 +10,7 @@ import LoadingButton from "./components/LoadingButton";
 import useAsync from "./hooks/useAsync";
 import GenericInput from "./inputs/GenericInput";
 import { getApiEndpoint, filterDataByModelTypes } from "./model/rcvModelData";
+import { rcvTypesToVisualize } from "./model/rcvTypesToVisualize";
 
 function SimulationInformation({
   appRef,
@@ -41,7 +42,17 @@ function SimulationInformation({
         return qs.stringify(params, { arrayFormat: "repeat" });
       },
     });
-    return response.data;
+    const data = response.data;
+    // Translate the response data into a list of data for each type of RCV election
+    return {
+      seatsOpen: data.seats_open,
+      rcvTypeLabels: rcvTypesToVisualize.map(
+        (modelType) => modelType["display"]
+      ),
+      rcvTypeResults: rcvTypesToVisualize.map((modelType) => {
+        return modelType["getPocElected"](data);
+      }),
+    };
   };
 
   // Store the results of simulations in state, as well as request status/error
@@ -92,7 +103,7 @@ function SimulationInformation({
             {/* While loading, display a spinner */}
             {status === "pending" && (
               <div className="d-flex flex-column w-100">
-                <div style={{ height: "300px" }}>
+                <div style={{ height: "415px" }}>
                   <Spinner />
                 </div>
               </div>

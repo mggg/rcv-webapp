@@ -9,7 +9,7 @@ function App() {
       <AppHeader routes={routes} />
       <Switch>
         {routes.map((route, i) => (
-          <Route path={route.path} key={i}>
+          <Route path={route.path} exact={route.isExact} key={i}>
             <route.component />
           </Route>
         ))}
