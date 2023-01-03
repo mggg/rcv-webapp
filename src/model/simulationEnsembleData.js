@@ -24,9 +24,9 @@ const simulationInputs = [
     dataid: "numElectionsEachSimulation",
     type: "number",
     min: 1,
-    max: 4,
+    max: 10,
     label: "Elections to simulate, per model",
-    helperText: "Max 4",
+    helperText: "Max 10",
     info:
       "The number of elections to simulate with these parameters, for each model type.",
   },

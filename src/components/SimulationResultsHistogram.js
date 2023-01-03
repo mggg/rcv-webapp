@@ -28,7 +28,7 @@ function SimulationResultsHistogram({
   const someChartData = !_.every(chartData, _.isEmpty);
 
   // The number of possible bins for our results
-  const bins = _.range(0, maxSeats + 2, 1);
+  const bins = _.range(-0.5, maxSeats + 2.5, 1);
   // Color of the bar changes to reflect the demographic charted
   const barColor = displayMajResults
     ? variables["majColor"]
@@ -88,7 +88,7 @@ function SimulationResultsHistogram({
               bins={bins}
               labelComponent={<VictoryTooltip constrainToVisibleArea />}
               labels={({ datum }) =>
-                `${datum.x - 0.5} ${demographicVisualized} candidate${
+                `${datum.x - 0} ${demographicVisualized} candidate${
                   datum.x > 1 ? "s" : ""
                 } elected in \n${datum.y} ${dataLabels[i]} Elections`
               }
@@ -99,6 +99,7 @@ function SimulationResultsHistogram({
       <VictoryAxis
         label={`Frequency of outcome`}
         textAnchor="middle"
+        offsetX={50}
         axisLabelComponent={<VictoryLabel dy={-12} />}
         dependentAxis
       />
@@ -106,7 +107,7 @@ function SimulationResultsHistogram({
       <VictoryAxis
         label={`Number of ${demographicVisualized} candidates elected\n (mean represented as dashed line)`}
         tickLabelComponent={<VictoryLabel dy={-5} />}
-        tickValues={bins.slice(0, bins.length)}
+        tickValues={_.range(0, maxSeats + 2)}
       />
 
       {/* CONDITIONALLY DISPLAYED DATA */}
