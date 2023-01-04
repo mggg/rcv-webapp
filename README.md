@@ -1,8 +1,10 @@
 # rcv-webapp
 
-A webapplication for running RCV simulations and visualizing the results.
+A web application for running RCV simulations and visualizing the results.
 
 _This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)._
+
+To deploy an updated version of the application, please see the `npm run deploy` script below.
 
 ## Before getting started
 
