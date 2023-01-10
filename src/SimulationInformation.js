@@ -35,13 +35,7 @@ function SimulationInformation({
   );
 
   const fetchData = async () => {
-    const response = await axios.get(apiURL, {
-      // Filter all the query params by the selectedModel
-      params: relevantParams,
-      paramsSerializer: (params) => {
-        return qs.stringify(params, { arrayFormat: "repeat" });
-      },
-    });
+    const response = await axios.post(apiURL, relevantParams);
     const data = response.data;
     // Translate the response data into a list of data for each type of RCV election
     return {
