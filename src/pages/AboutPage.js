@@ -91,6 +91,15 @@ function AboutSection() {
         hope to catalyze discussions about RCV's viability as a tool for
         diminishing voter dilution in minority populations.
       </p>
+  <p>
+          Disclaimer: MGGG is no longer able to maintain this web app. We have shifted to  
+          using{" "}
+        <a href="https://github.com/mggg/votekit">
+          "VoteKit"
+        </a> 
+          , our new Python package for simulating RCV. Please contact us at code@mggg.org 
+          to learn more about VoteKit, or to join an effor to relaunch this app.
+          </p>
       <div className="d-flex justify-content-center">
         <LinkButton to="/simulation">Run RCV Simulations</LinkButton>
       </div>
