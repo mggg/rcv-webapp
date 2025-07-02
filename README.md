@@ -2,6 +2,8 @@
 
 A webapplication for running RCV simulations and visualizing the results.
 
+Since its launch in 2021, this web app has been subsumed by MGGG's [VoteKit](https://github.com/mggg/votekit) Python package. We no longer maintain this app and are no longer able to verify the validity of the results it produces. If you are interested in being part of an effort to relaunch this app, please contact us at code@mggg.org and we'd love to chat!
+
 _This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)._
 
 ## Before getting started
