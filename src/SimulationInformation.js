@@ -96,7 +96,9 @@ function SimulationInformation({
             {/* When errors are present, log them to the console */}
             {status === "error" && (
               <p>
-                There was an error processing those simulations.
+                There was an error processing those simulations. MGGG is no longer able to maintain this
+               application. Please contact us at code@mggg.org if you would like to join an effort to relaunch this app.
+              Or see VoteKit, our new Python package for simulating RCV.
                 {console.error(error)}
               </p>
             )}
